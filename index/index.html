@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Ân Ngày Nhà Giáo Việt Nam 20/11</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Base typography & Reset */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+            background-color: #fcf8f2;
+        }
+
+        .font-chalk {
+            font-family: 'Alex Brush', 'Dancing Script', cursive;
+        }
+
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+
+        .font-calligraphy {
+            font-family: 'Great Vibes', 'Pinyon Script', cursive;
+        }
+
+        /* Smooth Screen Transitions */
+        .screen {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* --- SCREEN 1: WELCOME SCREEN --- */
+        #screen-welcome {
+            background: radial-gradient(circle at center, #fffbf2 0%, #f4e8d3 70%, #ebd7ba 100%);
+        }
+
+        .welcome-badge {
+            background: #fffbf5;
+            border: 4px double #d47a75;
+            box-shadow: 0 15px 35px rgba(184, 98, 93, 0.25), inset 0 0 15px rgba(212, 122, 117, 0.1);
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        .pulse-text {
+            animation: textPulse 2s infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.6; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        /* --- SCREEN 2: CHALKBOARD SCREEN --- */
+        #screen-chalkboard {
+            background: radial-gradient(circle at center, #d8c3a5 0%, #8d775f 100%);
+        }
+
+        .wood-desk {
+            background: linear-gradient(180deg, #bb8853 0%, #87572b 40%, #523111 100%);
+            box-shadow: inset 0 5px 15px rgba(255,255,255,0.2), 0 -10px 30px rgba(0,0,0,0.4);
+        }
+
+        .chalkboard-container {
+            background: #1e3b2e;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.3) 100%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 4px);
+            border: 18px solid #7c4c28;
+            border-image: linear-gradient(to bottom right, #a06637, #5c3517, #855029) 1 1 1 1;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                inset 0 0 80px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        /* Chalk effect */
+        .chalk-text {
+            color: rgba(255, 235, 238, 0.95);
+            text-shadow: 
+                0 0 2px rgba(255,255,255,0.8),
+                1px 1px 1px rgba(233, 100, 120, 0.4),
+                -1px -1px 2px rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.6));
+        }
+
+        /* Polaroid Photo Cards */
+        .polaroid {
+            background: #ffffff;
+            padding: 10px 10px 25px 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 2px 5px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.08) rotate(0deg) !important;
+            z-index: 40 !important;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+        }
+
+        .tape {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 22px;
+            background-color: rgba(240, 230, 210, 0.65);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            backdrop-filter: blur(1px);
+            z-index: 5;
+        }
+
+        /* Post-it Note */
+        .sticky-note {
+            background: #fff3a8;
+            box-shadow: 3px 5px 12px rgba(0,0,0,0.2);
+            transform: rotate(-3deg);
+        }
+
+        /* --- ENVELOPE MODAL --- */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope {
+            width: 320px;
+            height: 220px;
+            background: #f7ebe1;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 6px;
+            transition: all 0.5s ease;
+        }
+
+        @media (min-width: 640px) {
+            .envelope {
+                width: 480px;
+                height: 300px;
+            }
+        }
+
+        .envelope .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: #ebd8c8;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.6s ease 0.2s, z-index 0.2s ease 0.4s;
+            z-index: 4;
+            border-top: 2px solid #dfc7b3;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope .pocket {
+            position: absolute;
+            inset: 0;
+            background: #f7ebe1;
+            clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%);
+            z-index: 3;
+            border-radius: 6px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .letter {
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            bottom: 10px;
+            top: 10px;
+            background: #fffdf9;
+            background-image: repeating-linear-gradient(#fffdf9 0px, #fffdf9 28px, #e8dfd5 29px);
+            padding: 25px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(0);
+            overflow-y: auto;
+        }
+
+        .envelope.open .letter {
+            opacity: 1;
+            transform: translateY(-160px);
+            height: 420px;
+            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        @media (min-width: 640px) {
+            .envelope.open .letter {
+                transform: translateY(-180px);
+                height: 460px;
+            }
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #b83b35 0%, #8b1e19 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f7d488;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 5;
+            transition: transform 0.3s;
+        }
+
+        .wax-seal:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .envelope.open .wax-seal {
+            display: none;
+        }
+
+        /* --- SCREEN 3: DREAMY 20/11 PHOTO WALL --- */
+        #screen-sky {
+            background: linear-gradient(180deg, #a9c8f0 0%, #f6c9d1 43%, #ffe5c7 78%, #f6c5b5 100%);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .sky-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -3;
+            background:
+                radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.78) 0 5%, transparent 23%),
+                radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.72) 0 7%, transparent 25%),
+                radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.42), transparent 35%),
+                linear-gradient(180deg, #a9c8f0 0%, #eac7e1 38%, #ffe3c6 72%, #f7c8b9 100%);
+            animation: skyPan 24s ease-in-out infinite alternate;
+        }
+
+        .sky-bg::before,
+        .sky-bg::after {
+            content: "";
+            position: absolute;
+            inset: 8% -10% 22%;
+            background:
+                radial-gradient(ellipse at 8% 65%, rgba(255,246,235,.85) 0 8%, transparent 21%),
+                radial-gradient(ellipse at 23% 50%, rgba(255,248,241,.78) 0 9%, transparent 23%),
+                radial-gradient(ellipse at 43% 68%, rgba(255,245,230,.8) 0 10%, transparent 25%),
+                radial-gradient(ellipse at 65% 48%, rgba(255,250,244,.8) 0 9%, transparent 24%),
+                radial-gradient(ellipse at 87% 65%, rgba(255,242,230,.85) 0 10%, transparent 25%);
+            filter: blur(13px);
+            opacity: .9;
+        }
+
+        .sky-bg::after {
+            inset: auto -5% 0;
+            height: 19%;
+            background: linear-gradient(180deg, rgba(255,235,220,.1), rgba(255,245,231,.72) 20%, rgba(242,190,181,.55));
+            filter: blur(3px);
+            border-top: 2px solid rgba(255,255,255,.65);
+        }
+
+        @keyframes skyPan {
+            from { transform: scale(1); }
+            to { transform: scale(1.045); }
+        }
+
+        .gallery-title {
+            color: #f47e78;
+            text-shadow: 0 2px 0 rgba(255,255,255,.55), 0 8px 22px rgba(155,91,111,.18);
+            line-height: 1.12;
+        }
+
+        .gallery-title::after {
+            content: "♡";
+            display: block;
+            width: min(420px, 65vw);
+            margin: 3px auto 0;
+            color: #ef8b83;
+            font: 22px 'Montserrat', sans-serif;
+            letter-spacing: 12px;
+            border-top: 2px solid rgba(239,139,131,.75);
+            padding-top: 3px;
+        }
+
+        .memory-wall {
+            position: relative;
+            width: min(1180px, 96vw);
+            height: min(57vh, 450px);
+            margin: 0 auto;
+        }
+
+        .memory-photo {
+            position: absolute;
+            width: clamp(112px, 13vw, 184px);
+            padding: 7px 7px 19px;
+            background: rgba(255,255,250,.96);
+            border: 1px solid rgba(255,255,255,.95);
+            box-shadow: 0 9px 22px rgba(96,67,69,.24), 0 2px 5px rgba(96,67,69,.12);
+            cursor: pointer;
+            transition: transform .35s ease, box-shadow .35s ease;
+            transform: rotate(var(--tilt, 0deg));
+            z-index: 2;
+        }
+
+        .memory-photo img {
+            display: block;
+            width: 100%;
+            height: clamp(76px, 9.2vw, 126px);
+            object-fit: cover;
+            background: #f6e8df;
+        }
+
+        .memory-photo span {
+            display: block;
+            padding-top: 5px;
+            color: #846b68;
+            text-align: center;
+            font: 600 clamp(10px, 1vw, 13px) 'Caveat', cursive;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .memory-photo:hover {
+            transform: translateY(-9px) rotate(0deg) scale(1.09);
+            z-index: 30;
+            box-shadow: 0 18px 32px rgba(96,67,69,.3);
+        }
+
+        .memory-photo::before {
+            content: "";
+            position: absolute;
+            width: 42px;
+            height: 13px;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            background: rgba(255,239,205,.72);
+            box-shadow: 0 1px 3px rgba(90,70,60,.12);
+        }
+
+        .memory-heart {
+            position: absolute;
+            color: #ef8b83;
+            font-size: clamp(22px, 2.5vw, 34px);
+            text-shadow: 0 2px 5px rgba(255,255,255,.8);
+            z-index: 1;
+            animation: heartFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes heartFloat {
+            0%,100% { transform: translateY(0) rotate(-8deg); }
+            50% { transform: translateY(-8px) rotate(8deg); }
+        }
+
+        .sun-ray {
+            position: absolute;
+            inset: -20% -10% auto;
+            height: 85%;
+            background: radial-gradient(ellipse at 50% 85%, rgba(255,250,218,.7), transparent 58%);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulseRay 7s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseRay {
+            from { opacity: .55; transform: scale(.96); }
+            to { opacity: .95; transform: scale(1.04); }
+        }
+
+        .horizon-glow {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 17%;
+            z-index: -1;
+            background:
+                linear-gradient(180deg, rgba(255,244,226,.05), rgba(255,249,232,.78)),
+                repeating-linear-gradient(174deg, transparent 0 28px, rgba(255,255,255,.22) 29px 31px);
+            border-top: 2px solid rgba(255,255,255,.65);
+            box-shadow: 0 -10px 35px rgba(255,255,255,.25);
+        }
+
+
+        @media (max-width: 640px) {
+            .memory-wall {
+                width: 100%;
+                height: 52vh;
+                max-height: 390px;
+            }
+            .memory-photo {
+                width: clamp(82px, 27vw, 122px);
+                padding: 5px 5px 14px;
+            }
+            .memory-photo img {
+                height: clamp(58px, 17vw, 78px);
+            }
+            .memory-photo span { font-size: 10px; }
+            .memory-photo:nth-of-type(3n) { display: none; }
+            .gallery-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+        }
+
+        /* Modal Lightbox */
+        #photo-lightbox {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Floating Hearts / Particles */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden select-none bg-neutral-900">
+
+    <audio id="bg-audio" loop>
+        <source src="zip/op02.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- AUDIO BGM CONTROL (Web Audio API Synthesizer / Ambient sound) -->
+    <button id="bgm-toggle" class="fixed top-4 right-4 z-50 bg-white/80 hover:bg-white text-pink-700 px-3 py-2 rounded-full shadow-lg backdrop-blur-md transition flex items-center gap-2 text-xs font-semibold">
+        <i class="fa-solid fa-music text-pink-500 animate-spin" style="animation-duration: 4s;"></i>
+        <span id="bgm-status">Âm nhạc: Mở</span>
+    </button>
+
+    <!-- =================================================================== -->
+    <!-- SCREEN 1: WELCOME SCREEN (MÀN HÌNH CHÀO BẮT ĐẦU) -->
+    <!-- =================================================================== -->
+    <div id="screen-welcome" class="screen active flex flex-col items-center justify-center p-4">
+        <!-- Floating hearts in background -->
+        <div id="welcome-particles" class="absolute inset-0 pointer-events-none"></div>
+
+        <!-- Center Emblem / Badge -->
+        <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer" onclick="goToScreen('screen-chalkboard')">
+            <!-- Decorative laurel/wreath border inner -->
+            <div class="absolute inset-2 border border-rose-300/60 rounded-full pointer-events-none"></div>
+            
+            <!-- Icon / Book -->
+            <div class="text-rose-500 text-3xl mb-1">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <!-- Big Number 20/11 -->
+            <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold text-rose-600 my-1 tracking-wider">
+                20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
+            </h1>
+
+            <div class="w-16 h-0.5 bg-rose-300 my-1"></div>
+
+            <p class="font-handwriting text-2xl text-rose-700 font-bold tracking-wide">
+                Ngày Nhà Giáo Việt Nam
+            </p>
+
+            <!-- Book with heart SVG outline -->
+            <div class="mt-2 text-rose-400">
+                <svg class="w-8 h-8 mx-auto fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Tap to start text -->
+        <div class="mt-10 text-center cursor-pointer" onclick="goToScreen('screen-chalkboard')">
+            <p class="pulse-text text-xl sm:text-2xl font-handwriting text-rose-800 font-bold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-hand-pointer text-rose-500 text-lg"></i>
+                Chạm để bắt đầu
+            </p>
+        </div>
+    </div>
+
+
+    <!-- =================================================================== -->
+    <!-- SCREEN 2: CHALKBOARD CLASSROOM (BẢNG ĐEN LỚP HỌC) -->
+    <!-- =================================================================== -->
+    <div id="screen-chalkboard" class="screen flex flex-col justify-between items-center p-2 sm:p-6">
+        
+        <!-- Top Title Bar -->
+        <div class="w-full max-w-5xl flex justify-between items-center px-4 py-1 text-xs text-amber-100/70 font-sans">
+            <span><i class="fa-solid fa-chalkboard-user mr-1"></i> Lớp học thân yêu</span>
+            <span>Tri ân thầy cô 20/11</span>
+        </div>
+
+        <!-- MAIN CHALKBOARD CONTAINER -->
+        <div class="chalkboard-container w-full max-w-5xl h-[68vh] sm:h-[72vh] rounded-lg flex flex-col justify-between p-4 sm:p-8 my-auto overflow-hidden">
+            
+            <!-- Chalkboard Decorative Drawing Overlays (SVGs) -->
+            <!-- Top Left Sticky Note -->
+            <div class="sticky-note absolute top-4 left-4 p-3 rounded-xs text-neutral-800 w-24 sm:w-28 text-center pointer-events-none z-10">
+                <span class="font-handwriting text-lg sm:text-xl font-bold block">20/11 ♡</span>
+                <span class="text-[10px] text-amber-800 uppercase tracking-widest block mt-1">Memory</span>
+            </div>
+
+            <!-- Top Right Chalk Hearts & Paper Plane -->
+            <div class="absolute top-4 right-6 text-white/40 pointer-events-none hidden sm:block text-right">
+                <i class="fa-solid fa-paper-plane text-2xl mb-2 text-white/30 transform -rotate-12 block"></i>
+                <div class="text-xs font-handwriting text-pink-200/50">tri an thầy cô...</div>
+            </div>
+
+            <!-- Left Side Pinned Photos (Polaroids) -->
+            <div class="absolute left-3 sm:left-6 top-28 sm:top-24 flex flex-col gap-4 sm:gap-6 z-20">
+                <!-- Photo 1 -->
+                <div class="polaroid transform -rotate-6 w-24 sm:w-36" onclick="openLightbox('zip/anh03.jpg', 'Những ngày bên nhau ♡')">
+                    <div class="tape"></div>
+                    <img src="zip/anh03.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Kỷ niệm">
+                    <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-2 font-bold truncate">Những ngày bên nhau ♡</p>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="polaroid transform rotate-3 w-24 sm:w-36" onclick="openLightbox('zip/anh01.jpg', 'Một thời áo trắng ♡')">
+                    <div class="tape"></div>
+                    <img src="zip/anh01.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Lớp học">
+                    <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-2 font-bold truncate">Một thời áo trắng ♡</p>
+                </div>
+            </div>
+
+            <!-- Right Side Pinned Photo (Polaroid) -->
+            <div class="absolute right-3 sm:right-6 top-28 sm:top-24 z-20">
+                <div class="polaroid transform rotate-6 w-24 sm:w-36" onclick="openLightbox('zip/anh02.jpg', 'Thanh xuân của chúng mình')">
+                    <div class="tape"></div>
+                    <img src="zip/anh02.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Thanh xuân">
+                    <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-2 font-bold truncate">Thanh xuân của chúng mình</p>
+                </div>
+            </div>
+
+            <!-- CENTER CHALKBOARD ANIMATED HANDWRITING TEXT -->
+            <div class="my-auto text-center px-10 sm:px-32 z-10">
+                <div id="chalk-line-1" class="chalk-text font-chalk text-4xl sm:text-7xl md:text-8xl text-pink-200 min-h-[70px] sm:min-h-[110px]">
+                    <!-- Typed by JS -->
+                </div>
+                
+                <div id="chalk-line-2" class="chalk-text font-chalk text-3xl sm:text-6xl md:text-7xl text-white mt-1 sm:mt-2 min-h-[60px] sm:min-h-[90px]">
+                    <!-- Typed by JS -->
+                </div>
+
+                <div id="chalk-line-3" class="chalk-text font-handwriting text-3xl sm:text-5xl text-rose-300 font-bold mt-2 sm:mt-4 min-h-[40px]">
+                    <!-- Typed by JS -->
+                </div>
+            </div>
+
+            <!-- BOTTOM ENVELOPE PROMPT BUTTON -->
+            <div class="text-center z-20 pb-2">
+                <button id="btn-open-envelope" class="hidden opacity-0 transition-all duration-700 bg-rose-600/90 hover:bg-rose-500 text-white font-handwriting text-xl sm:text-2xl px-6 py-2.5 rounded-full shadow-lg border border-rose-300/40 transform hover:scale-105 active:scale-95 items-center gap-3 mx-auto">
+                    <i class="fa-solid fa-envelope-open-text text-amber-300"></i>
+                    <span>Mở thư tri ân</span>
+                </button>
+            </div>
+
+            <!-- Drawn Chalk Book Icon bottom left inside board -->
+            <div class="absolute bottom-4 left-6 text-white/20 pointer-events-none hidden sm:block">
+                <svg class="w-16 h-16 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- WOODEN CLASSROOM DESK AT BOTTOM -->
+        <div class="wood-desk w-full h-16 sm:h-20 rounded-t-xl border-t border-amber-300/30 flex items-center justify-center">
+            <span class="text-amber-200/50 text-xs tracking-widest font-sans">✦ 20 . 11 . 2024 ✦</span>
+        </div>
+    </div>
+
+
+    <!-- =================================================================== -->
+    <!-- ENVELOPE & LETTER MODAL (POPUP BỨC THƯ TRI ÂN) -->
+    <!-- =================================================================== -->
+    <div id="envelope-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+        
+        <div class="envelope-wrapper relative">
+            
+            <!-- Envelope structure -->
+            <div id="envelope" class="envelope">
+                <div class="flap"></div>
+                
+                <!-- Wax seal button to trigger opening -->
+                <div id="wax-seal" class="wax-seal" onclick="openLetter()">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                
+                <div class="pocket"></div>
+
+                <!-- Sliding Letter Paper -->
+                <div id="letter-content" class="letter flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-handwriting text-2xl sm:text-3xl font-bold text-rose-800 border-b border-rose-200 pb-2 mb-3">
+                            Kính gửi thầy cô,
+                        </h3>
+                        
+                        <p class="font-handwriting text-lg sm:text-xl text-neutral-800 leading-relaxed space-y-2">
+                            Nhân ngày <strong class="text-rose-700">Nhà giáo Việt Nam 20/11</strong>, chúng em kính chúc thầy cô luôn mạnh khỏe, hạnh phúc và luôn tràn đầy niềm vui trong sự nghiệp trồng người.
+                            <br><br>
+                            Cảm ơn thầy cô đã luôn tận tâm dạy dỗ, kiên nhẫn uốn nắn và đồng hành cùng chúng em trên hành trình trưởng thành. Những lời thầy cô giảng dạy sẽ mãi là hành trang quý giá theo chúng em suốt cuộc đời.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-rose-100 flex flex-col items-end">
+                        <p class="font-handwriting text-xl text-rose-800 font-bold">Học trò của thầy cô ♡</p>
+                        
+                        <!-- Continue Button to Scene 3 -->
+                        <button onclick="goToScreen('screen-sky')" class="mt-4 bg-rose-600 hover:bg-rose-700 text-white font-sans text-sm font-semibold px-6 py-2 rounded-full shadow-md transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                            <span>Tiếp tục</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Close button modal -->
+        <button onclick="closeEnvelopeModal()" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+
+    <!-- =================================================================== -->
+    <!-- SCREEN 3: DREAMY SKY & MEMORY GALLERY -->
+    <!-- =================================================================== -->
+    <div id="screen-sky" class="screen flex flex-col items-center justify-between px-3 sm:px-6 py-4 sm:py-6">
+        <div class="sky-bg"></div>
+        <div class="sun-ray"></div>
+        <div class="horizon-glow"></div>
+        <canvas id="sky-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
+
+        <header class="relative z-20 text-center mt-1 sm:mt-3">
+            <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">
+                Ngày nhà giáo Việt Nam
+            </h2>
+            <p class="font-handwriting text-xl sm:text-3xl text-rose-700/80 mt-1 font-bold tracking-widest">
+                Lưu giữ những khoảnh khắc thanh xuân · 20 / 11
+            </p>
+        </header>
+
+        <main class="relative z-20 my-auto w-full flex justify-center items-center">
+            <div class="memory-wall">
+                <span class="memory-heart" style="left:4%;top:53%">♡</span>
+                <span class="memory-heart" style="left:21%;top:20%;animation-delay:.7s">♡</span>
+                <span class="memory-heart" style="left:48%;top:42%;animation-delay:1.3s">♡</span>
+                <span class="memory-heart" style="right:19%;top:18%;animation-delay:.4s">♡</span>
+                <span class="memory-heart" style="right:2%;top:55%;animation-delay:1.7s">♡</span>
+
+                <div class="memory-photo" style="left:2%;top:15%;--tilt:-7deg" onclick="openLightbox(this.querySelector('img').src, 'Những ngày bên nhau ♡')">
+                    <img src="zip/anh04.jpg" alt="Kỷ niệm tập thể">
+                    <span>Những ngày bên nhau ♡</span>
+                </div>
+                <div class="memory-photo" style="left:14%;top:3%;--tilt:6deg" onclick="openLightbox(this.querySelector('img').src, 'Một thời áo trắng ♡')">
+                    <img src="zip/anh05.jpg" alt="Lớp học">
+                    <span>Một thời áo trắng ♡</span>
+                </div>
+                <div class="memory-photo" style="left:10%;top:55%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Thanh xuân rực rỡ')">
+                    <img src="zip/anh06.jpg" alt="Bạn bè">
+                    <span>Thanh xuân rực rỡ</span>
+                </div>
+                <div class="memory-photo" style="left:25%;top:28%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'Kỷ niệm không quên')">
+                    <img src="zip/anh07.jpg" alt="Kỷ niệm lớp">
+                    <span>Kỷ niệm không quên</span>
+                </div>
+                <div class="memory-photo" style="left:29%;top:65%;--tilt:7deg" onclick="openLightbox(this.querySelector('img').src, 'Ngày tháng thân thương')">
+                    <img src="zip/anh08.jpg" alt="Học sinh">
+                    <span>Ngày tháng thân thương</span>
+                </div>
+                <div class="memory-photo" style="left:37%;top:8%;--tilt:-5deg" onclick="openLightbox(this.querySelector('img').src, 'Nụ cười học trò')">
+                    <img src="zip/anh09.jpg" alt="Trong lớp học">
+                    <span>Nụ cười học trò</span>
+                </div>
+                <div class="memory-photo" style="left:43%;top:53%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Mãi nhớ thầy cô')">
+                    <img src="zip/anh010.jpg" alt="Thầy cô và học trò">
+                    <span>Mãi nhớ thầy cô</span>
+                </div>
+                <div class="memory-photo" style="left:52%;top:19%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Một chặng đường đẹp')">
+                    <img src="zip/anh019.jpg" alt="Bạn bè bên nhau">
+                    <span>Một chặng đường đẹp</span>
+                </div>
+                <div class="memory-photo" style="left:59%;top:62%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Tháng năm rực rỡ')">
+                    <img src="zip/anh012.jpg" alt="Kỷ niệm">
+                    <span>Tháng năm rực rỡ</span>
+                </div>
+                <div class="memory-photo" style="left:68%;top:7%;--tilt:-3deg" onclick="openLightbox(this.querySelector('img').src, 'Bên mái trường xưa')">
+                    <img src="zip/anh018.jpg" alt="Mái trường">
+                    <span>Bên mái trường xưa</span>
+                </div>
+                <div class="memory-photo" style="left:75%;top:37%;--tilt:6deg" onclick="openLightbox(this.querySelector('img').src, 'Chúng mình của năm ấy')">
+                    <img src="zip/anh014.jpg" alt="Tập thể">
+                    <span>Chúng mình của năm ấy</span>
+                </div>
+                <div class="memory-photo" style="right:1%;top:12%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Cùng nhau trưởng thành')">
+                    <img src="zip/anh015.jpg" alt="Lớp học vui vẻ">
+                    <span>Cùng nhau trưởng thành</span>
+                </div>
+                <div class="memory-photo" style="right:4%;top:62%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'Tri ân thầy cô')">
+                    <img src="zip/anh020.jpg" alt="Tri ân thầy cô">
+                    <span>Tri ân thầy cô ♡</span>
+                </div>
+            </div>
+        </main>
+
+        <footer class="relative z-20 text-center mb-1">
+            <p class="font-handwriting text-xl sm:text-2xl text-rose-800/80 font-bold drop-shadow-sm">
+                Cảm ơn thầy cô vì đã viết nên những trang thanh xuân đẹp nhất ♡
+            </p>
+            <button onclick="goToScreen('screen-chalkboard')" class="mt-2 bg-white/45 hover:bg-white/75 text-rose-800 backdrop-blur-md px-5 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition border border-white/70 shadow-md">
+                <i class="fa-solid fa-rotate-left mr-1"></i> Xem lại từ đầu
+            </button>
+        </footer>
+    </div>
+
+
+    <!-- =================================================================== -->
+    <!-- LIGHTBOX PHOTO MODAL (XEM ẢNH PHÓNG TO CHI TIẾT) -->
+    <!-- =================================================================== -->
+    <div id="photo-lightbox" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative max-w-3xl w-full bg-white p-3 sm:p-4 rounded-lg shadow-2xl">
+            <img id="lightbox-img" src="" class="w-full max-h-[75vh] object-contain rounded" alt="Chi tiết ảnh">
+            <p id="lightbox-caption" class="font-handwriting text-center text-xl sm:text-2xl text-neutral-800 font-bold mt-3"></p>
+            <button onclick="closeLightbox()" class="absolute -top-4 -right-4 bg-rose-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow-lg hover:bg-rose-700 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- =================================================================== -->
+    <!-- JAVASCRIPT INTERACTION & ANIMATION LOGIC -->
+    <!-- =================================================================== -->
+    <script>
+
+// ==========================================
+// 1. ĐIỀU KHIỂN NHẠC NỀN
+// ==========================================
+
+const bgAudio = document.getElementById('bg-audio');
+let isMuted = false;
+
+if (bgAudio) {
+    document.addEventListener('click', function () {
+        if (bgAudio.paused && !isMuted) {
+            bgAudio.play().catch(e => {
+                console.log("Trình duyệt chặn autoplay:", e);
+            });
+        }
+    }, { once: true });
+}
+
+const bgmToggle = document.getElementById('bgm-toggle');
+
+if (bgmToggle) {
+    bgmToggle.addEventListener('click', function () {
+        isMuted = !isMuted;
+
+        const statusEl = document.getElementById('bgm-status');
+
+        if (isMuted) {
+            if (bgAudio) bgAudio.pause();
+            if (statusEl) statusEl.innerText = "Âm nhạc: Tắt";
+        } else {
+            if (bgAudio) {
+                bgAudio.play().catch(e => console.log(e));
+            }
+            if (statusEl) statusEl.innerText = "Âm nhạc: Mở";
+        }
+    });
+}
+
+
+// ==========================================
+// 2. TẠO HIỆU ỨNG HẠT TRÊN MÀN HÌNH CHÀO
+// ==========================================
+
+function createWelcomeParticles() {
+    const container = document.getElementById('welcome-particles');
+
+    if (!container) return;
+
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+
+        p.className = 'particle text-rose-300/40 text-xl';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.animationDuration = (6 + Math.random() * 6) + 's';
+
+        p.innerHTML = '<i class="fa-solid fa-heart"></i>';
+
+        container.appendChild(p);
+    }
+}
+
+createWelcomeParticles();
+
+
+// ==========================================
+// 3. CHUYỂN ĐỔI MÀN HÌNH
+// ==========================================
+
+function goToScreen(screenId) {
+    const screens = document.querySelectorAll('.screen');
+
+    screens.forEach(s => {
+        s.classList.remove('active');
+    });
+
+    const target = document.getElementById(screenId);
+
+    if (target) {
+        target.classList.add('active');
+    } else {
+        console.error("Không tìm thấy màn hình:", screenId);
+        return;
+    }
+
+    if (screenId === 'screen-chalkboard') {
+        startChalkWriting();
+    }
+
+    if (screenId === 'screen-sky') {
+        initSkyCanvas();
+    }
+}
+
+
+// ==========================================
+// 4. HIỆU ỨNG VIẾT PHẤN
+// ==========================================
+
+let chalkWritingStarted = false;
+
+function startChalkWriting() {
+    if (chalkWritingStarted) return;
+
+    chalkWritingStarted = true;
+
+    const line1 = "Chúc mừng";
+    const line2 = "ngày nhà giáo Việt Nam";
+    const line3 = "20/11";
+
+    const el1 = document.getElementById('chalk-line-1');
+    const el2 = document.getElementById('chalk-line-2');
+    const el3 = document.getElementById('chalk-line-3');
+
+    const btnEnvelope = document.getElementById('btn-open-envelope');
+
+    if (!el1 || !el2 || !el3 || !btnEnvelope) return;
+
+    el1.textContent = "";
+    el2.textContent = "";
+    el3.textContent = "";
+
+    typeWriter(el1, line1, 100, () => {
+        setTimeout(() => {
+            typeWriter(el2, line2, 80, () => {
+                setTimeout(() => {
+                    typeWriter(el3, line3, 120, () => {
+
+                        btnEnvelope.classList.remove('hidden');
+
+                        setTimeout(() => {
+                            btnEnvelope.classList.remove('opacity-0');
+                            btnEnvelope.classList.add('flex');
+                        }, 100);
+
+                    });
+                }, 300);
+            });
+        }, 300);
+    });
+}
+
+
+function typeWriter(element, text, speed, callback) {
+    let i = 0;
+
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+
+            setTimeout(type, speed);
+        } else if (callback) {
+            callback();
+        }
+    }
+
+    type();
+}
+
+
+// ==========================================
+// 5. PHONG BÌ VÀ LÁ THƯ
+// ==========================================
+
+const btnOpenEnvelope = document.getElementById('btn-open-envelope');
+const envelopeModal = document.getElementById('envelope-modal');
+const envelope = document.getElementById('envelope');
+
+if (btnOpenEnvelope && envelopeModal) {
+    btnOpenEnvelope.addEventListener('click', () => {
+        envelopeModal.classList.remove('pointer-events-none');
+        envelopeModal.classList.remove('opacity-0');
+        envelopeModal.classList.add('opacity-100');
+    });
+}
+
+function openLetter() {
+    if (envelope) {
+        envelope.classList.add('open');
+    }
+}
+
+function closeEnvelopeModal() {
+    if (!envelopeModal) return;
+
+    envelopeModal.classList.add('opacity-0');
+    envelopeModal.classList.add('pointer-events-none');
+    envelopeModal.classList.remove('opacity-100');
+
+    setTimeout(() => {
+        if (envelope) {
+            envelope.classList.remove('open');
+        }
+    }, 500);
+}
+
+
+// ==========================================
+// 6. XEM ẢNH PHÓNG TO
+// ==========================================
+
+function openLightbox(src, caption) {
+    const modal = document.getElementById('photo-lightbox');
+    const img = document.getElementById('lightbox-img');
+    const cap = document.getElementById('lightbox-caption');
+
+    if (!modal || !img || !cap) return;
+
+    img.src = src;
+    cap.innerText = caption;
+
+    modal.classList.remove('pointer-events-none');
+    modal.classList.remove('opacity-0');
+    modal.classList.add('opacity-100');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('photo-lightbox');
+
+    if (!modal) return;
+
+    modal.classList.add('opacity-0');
+    modal.classList.add('pointer-events-none');
+    modal.classList.remove('opacity-100');
+}
+
+
+// ==========================================
+// 7. HIỆU ỨNG BẦU TRỜI
+// ==========================================
+
+let skyAnimationId = null;
+
+function initSkyCanvas() {
+    const canvas = document.getElementById('sky-canvas');
+
+    if (!canvas) return;
+
+    if (skyAnimationId !== null) {
+        cancelAnimationFrame(skyAnimationId);
+        skyAnimationId = null;
+    }
+
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    resize();
+
+    const particles = [];
+
+    for (let i = 0; i < 40; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 3 + 1,
+            alpha: Math.random() * 0.8 + 0.2,
+            speedY: -(Math.random() * 0.8 + 0.2),
+            speedX: (Math.random() - 0.5) * 0.5
+        });
+    }
+
+    function animateSky() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.y += p.speedY;
+            p.x += p.speedX;
+
+            if (p.y < 0) p.y = canvas.height;
+
+            if (p.x < 0 || p.x > canvas.width) {
+                p.speedX *= -1;
+            }
+
+            ctx.beginPath();
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.radius,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle = `rgba(255, 240, 220, ${p.alpha})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#fff';
+
+            ctx.fill();
+        });
+
+        if (
+            document.getElementById('screen-sky')?.classList.contains('active')
+        ) {
+            skyAnimationId = requestAnimationFrame(animateSky);
+        } else {
+            skyAnimationId = null;
+        }
+    }
+
+    animateSky();
+
+    window.addEventListener('resize', resize);
+}
+    </script>
+</body>
+</html>
