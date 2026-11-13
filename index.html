@@ -20,29 +20,28 @@
         .font-handwriting { font-family: 'Caveat', cursive; }
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
 
-        /* Smooth Screen Transitions & TỐI ƯU CUỘN CHO MOBILE */
+        /* Tối ưu chuyển cảnh mượt mà và tương thích tuyệt đối cho iPhone */
         .screen {
-            position: absolute; inset: 0; width: 100%; height: 100%;
             display: none;
             opacity: 0;
             transform: scale(1.02);
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            z-index: 10;
-            /* CỐT LÕI FIX LỖI MOBILE: Cho phép cuộn dọc, ẩn cuộn ngang */
-            overflow-y: auto; 
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch; /* Cuộn mượt trên iPhone/iPad */
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            width: 100%;
+            min-height: 100vh;
+            /* Cho phép cuộn tự do trên mobile, không bị khóa cứng lẹm màn hình */
+            box-sizing: border-box;
         }
 
         .screen.active {
             display: flex;
-            opacity: 1; pointer-events: auto; transform: scale(1); z-index: 20;
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* --- SCREEN 0 & 6: RADIAL BACKGROUND --- */
         .bg-radial-theme { 
             background: radial-gradient(circle at center, #fffbf2 0%, #f4e8d3 70%, #ebd7ba 100%); 
-            background-attachment: fixed; /* Cố định nền khi cuộn */
+            background-attachment: fixed;
         }
         
         .welcome-badge {
@@ -96,7 +95,7 @@
 
         /* --- SLIDE 3 & 4: SKY PHOTO WALL --- */
         .sky-stage { background: linear-gradient(180deg, #a9c8f0 0%, #f6c9d1 43%, #ffe5c7 78%, #f6c5b5 100%); position: relative; isolation: isolate; }
-        .sky-bg { position: absolute; inset: 0; z-index: -3; background: radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.78) 0 5%, transparent 23%), radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.72) 0 7%, transparent 25%), radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.42), transparent 35%), linear-gradient(180deg, #a9c8f0 0%, #eac7e1 38%, #ffe3c6 72%, #f7c8b9 100%); animation: skyPan 24s ease-in-out infinite alternate; }
+        .sky-bg { position: fixed; inset: 0; z-index: -3; background: radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.78) 0 5%, transparent 23%), radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.72) 0 7%, transparent 25%), radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.42), transparent 35%), linear-gradient(180deg, #a9c8f0 0%, #eac7e1 38%, #ffe3c6 72%, #f7c8b9 100%); animation: skyPan 24s ease-in-out infinite alternate; }
         .sky-bg::before, .sky-bg::after { content: ""; position: absolute; inset: 8% -10% 22%; background: radial-gradient(ellipse at 8% 65%, rgba(255,246,235,.85) 0 8%, transparent 21%), radial-gradient(ellipse at 23% 50%, rgba(255,248,241,.78) 0 9%, transparent 23%), radial-gradient(ellipse at 43% 68%, rgba(255,245,230,.8) 0 10%, transparent 25%), radial-gradient(ellipse at 65% 48%, rgba(255,250,244,.8) 0 9%, transparent 24%), radial-gradient(ellipse at 87% 65%, rgba(255,242,230,.85) 0 10%, transparent 25%); filter: blur(13px); opacity: .9; }
         .sky-bg::after { inset: auto -5% 0; height: 19%; background: linear-gradient(180deg, rgba(255,235,220,.1), rgba(255,245,231,.72) 20%, rgba(242,190,181,.55)); filter: blur(3px); border-top: 2px solid rgba(255,255,255,.65); }
         @keyframes skyPan { from { transform: scale(1); } to { transform: scale(1.045); } }
@@ -111,9 +110,9 @@
         .memory-photo::before { content: ""; position: absolute; width: 42px; height: 13px; top: -7px; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(255,239,205,.72); box-shadow: 0 1px 3px rgba(90,70,60,.12); }
         .memory-heart { position: absolute; color: #ef8b83; font-size: clamp(22px, 2.5vw, 34px); text-shadow: 0 2px 5px rgba(255,255,255,.8); z-index: 1; animation: heartFloat 4s ease-in-out infinite; }
         @keyframes heartFloat { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-8px) rotate(8deg); } }
-        .sun-ray { position: absolute; inset: -20% -10% auto; height: 85%; background: radial-gradient(ellipse at 50% 85%, rgba(255,250,218,.7), transparent 58%); pointer-events: none; z-index: -1; animation: pulseRay 7s ease-in-out infinite alternate; }
+        .sun-ray { position: fixed; inset: -20% -10% auto; height: 85%; background: radial-gradient(ellipse at 50% 85%, rgba(255,250,218,.7), transparent 58%); pointer-events: none; z-index: -1; animation: pulseRay 7s ease-in-out infinite alternate; }
         @keyframes pulseRay { from { opacity: .55; transform: scale(.96); } to { opacity: .95; transform: scale(1.04); } }
-        .horizon-glow { position: absolute; left: 0; right: 0; bottom: 0; height: 17%; z-index: -1; background: linear-gradient(180deg, rgba(255,244,226,.05), rgba(255,249,232,.78)), repeating-linear-gradient(174deg, transparent 0 28px, rgba(255,255,255,.22) 29px 31px); border-top: 2px solid rgba(255,255,255,.65); box-shadow: 0 -10px 35px rgba(255,255,255,.25); }
+        .horizon-glow { position: fixed; left: 0; right: 0; bottom: 0; height: 17%; z-index: -1; background: linear-gradient(180deg, rgba(255,244,226,.05), rgba(255,249,232,.78)), repeating-linear-gradient(174deg, transparent 0 28px, rgba(255,255,255,.22) 29px 31px); border-top: 2px solid rgba(255,255,255,.65); box-shadow: 0 -10px 35px rgba(255,255,255,.25); }
 
         @media (max-width: 640px) {
             .memory-wall { width: 100%; height: 52vh; max-height: 390px; }
@@ -125,10 +124,9 @@
         }
 
         /* Modal & Particles */
-        .particle { position: absolute; pointer-events: none; animation: floatUp 8s linear infinite; }
+        .particle { position: fixed; pointer-events: none; animation: floatUp 8s linear infinite; }
         @keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } }
 
-        /* Nút Xem lại trên thông điệp pháo hoa (màu hồng) */
         .btn-restart-fw {
            background-color: rgba(225, 29, 72, 0.8);
            color: white;
@@ -137,7 +135,7 @@
         .btn-restart-fw:hover { background-color: rgba(225, 29, 72, 1); }
     </style>
 </head>
-<body class="h-screen w-screen overflow-hidden select-none bg-neutral-900 relative">
+<body class="bg-neutral-900 relative">
 
     <audio id="bg-audio" loop>
         <source src="op02.mp3" type="audio/mp3">
@@ -148,48 +146,36 @@
         <span id="bgm-status">Âm nhạc: Mở</span>
     </button>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 0: MỞ ĐẦU -->
-    <!-- ========================================================== -->
-    <!-- Đổi flex-col items-center để cuộn tốt, dùng my-auto cho nội dung để nó luôn ở giữa nếu đủ chỗ -->
-    <div id="screen-welcome" class="screen bg-radial-theme active flex-col items-center px-4 py-12">
+    <div id="screen-welcome" class="screen bg-radial-theme active flex-col items-center justify-center p-4 min-h-screen">
         <div id="welcome-particles" class="absolute inset-0 pointer-events-none"></div>
-        
-        <div class="my-auto flex flex-col items-center w-full">
-            <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer" onclick="goToScreen('screen-teacher')">
-                <div class="absolute inset-2 border border-rose-300/60 rounded-full pointer-events-none"></div>
-                <div class="text-rose-500 text-3xl mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
-                <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold text-rose-600 my-1 tracking-wider">
-                    20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
-                </h1>
-                <div class="w-16 h-0.5 bg-rose-300 my-1"></div>
-                <p class="font-handwriting text-2xl text-rose-700 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
-                <div class="mt-2 text-rose-400">
-                    <svg class="w-8 h-8 mx-auto fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
+        <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer" onclick="goToScreen('screen-teacher')">
+            <div class="absolute inset-2 border border-rose-300/60 rounded-full pointer-events-none"></div>
+            <div class="text-rose-500 text-3xl mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold text-rose-600 my-1 tracking-wider">
+                20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
+            </h1>
+            <div class="w-16 h-0.5 bg-rose-300 my-1"></div>
+            <p class="font-handwriting text-2xl text-rose-700 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
+            <div class="mt-2 text-rose-400">
+                <svg class="w-8 h-8 mx-auto fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </div>
-            <div class="mt-10 text-center cursor-pointer" onclick="goToScreen('screen-teacher')">
-                <p class="pulse-text text-xl sm:text-2xl font-handwriting text-rose-800 font-bold flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-hand-pointer text-rose-500 text-lg"></i> Chạm để bắt đầu
-                </p>
-            </div>
+        </div>
+        <div class="mt-10 text-center cursor-pointer" onclick="goToScreen('screen-teacher')">
+            <p class="pulse-text text-xl sm:text-2xl font-handwriting text-rose-800 font-bold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-hand-pointer text-rose-500 text-lg"></i> Chạm để bắt đầu
+            </p>
         </div>
     </div>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 1: GIỚI THIỆU CÔ GIÁO -->
-    <!-- ========================================================== -->
-    <div id="screen-teacher" class="screen flex-col items-center px-4 sm:px-8 py-20">
-        <!-- Chữ Slide 1/5 để absolute (chạy theo cuộn) thay vì fixed để tránh lỗi layout mobile -->
+    <div id="screen-teacher" class="screen flex-col items-center justify-center p-4 sm:p-8 min-h-screen">
+        <div id="teacher-particles" class="absolute inset-0 pointer-events-none"></div>
         <div class="absolute top-4 left-4 z-30 bg-white/75 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
             Slide 1 / 5 · Người lái đò thầm lặng
         </div>
-        <div id="teacher-particles" class="absolute inset-0 pointer-events-none" style="position: fixed;"></div>
-        
-        <!-- Thêm my-auto để thẻ tự canh giữa trên PC, trên Mobile sẽ đẩy dãn ra để cuộn -->
-        <div class="teacher-card my-auto relative max-w-3xl w-full bg-[#fffdf9]/95 border-2 border-rose-200 rounded-2xl shadow-2xl p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10">
+        <div class="teacher-card relative max-w-3xl w-full bg-[#fffdf9]/95 border-2 border-rose-200 rounded-2xl shadow-2xl p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-12">
             <div class="absolute -top-3 -left-3 bg-rose-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md"><i class="fa-solid fa-heart"></i></div>
-            
             <div class="shrink-0">
                 <div class="polaroid transform -rotate-2 w-48 sm:w-56 cursor-pointer" onclick="openLightbox('anh01.jpg', 'Cô giáo kính yêu của chúng em ♡')">
                     <div class="tape"></div>
@@ -197,7 +183,6 @@
                     <p class="font-handwriting text-center text-rose-700 text-lg sm:text-xl mt-2 font-bold">Cô Đào Thị Huyền Trang ♡</p>
                 </div>
             </div>
-            
             <div class="text-center md:text-left flex-1">
                 <span class="inline-block bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2">Giáo viên chủ nhiệm</span>
                 <h2 class="font-calligraphy text-4xl sm:text-6xl text-rose-600 mb-1">Cô Đào Thị Huyền Trang</h2>
@@ -215,9 +200,7 @@
         </div>
     </div>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 2: BẢNG PHẤN & THƯ -->
-    <!-- ========================================================== -->
     <div id="screen-chalkboard" class="screen flex-col justify-between items-center p-2 sm:p-6 min-h-screen">
         <div class="w-full max-w-5xl flex justify-between items-center px-4 py-1 text-xs text-amber-100/80 font-sans">
             <span><i class="fa-solid fa-chalkboard-user mr-1"></i> Slide 2 / 5 · Lớp học thân yêu</span>
@@ -259,7 +242,7 @@
                 </button>
             </div>
         </div>
-        <div class="wood-desk w-full h-16 sm:h-20 rounded-t-xl border-t border-amber-300/30 flex items-center justify-center mt-auto">
+        <div class="wood-desk w-full h-16 sm:h-20 rounded-t-xl border-t border-amber-300/30 flex items-center justify-center">
             <span class="text-amber-200/50 text-xs tracking-widest font-sans">✦ 20 . 11 ✦</span>
         </div>
     </div>
@@ -291,16 +274,14 @@
         <button onclick="closeEnvelopeModal()" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 3: BỨC TƯỜNG KỶ NIỆM -->
-    <!-- ========================================================== -->
     <div id="screen-sky" class="screen sky-stage flex-col items-center justify-between px-3 sm:px-6 py-12 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
-        <canvas id="sky-canvas" class="absolute inset-0 pointer-events-none z-10" style="position: fixed;"></canvas>
+        <canvas id="sky-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
         <div class="absolute top-4 left-4 z-30 bg-white/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
             Slide 3 / 5 · Kỷ niệm lớp học
         </div>
-        <header class="relative z-20 text-center mt-1 sm:mt-3">
+        <header class="relative z-20 text-center mt-6">
             <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Ngày nhà giáo Việt Nam</h2>
             <p class="font-handwriting text-xl sm:text-3xl text-rose-700/80 mt-1 font-bold tracking-widest">Lưu giữ những khoảnh khắc thanh xuân · 20 / 11</p>
         </header>
@@ -350,7 +331,7 @@
                 </div>
             </div>
         </main>
-        <footer class="relative z-20 text-center mb-1 flex flex-col items-center">
+        <footer class="relative z-20 text-center mb-4 flex flex-col items-center">
             <p class="font-handwriting text-xl sm:text-2xl text-rose-800/80 font-bold drop-shadow-sm">Cảm ơn thầy cô vì đã viết nên những trang thanh xuân đẹp nhất ♡</p>
             <button onclick="goToScreen('screen-members')" class="mt-3 bg-rose-600 hover:bg-rose-700 text-white px-6 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition shadow-md inline-flex items-center gap-2">
                 <span>Giới thiệu thành viên</span> <i class="fa-solid fa-arrow-right"></i>
@@ -358,16 +339,14 @@
         </footer>
     </div>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 4: THÀNH VIÊN LỚP -->
-    <!-- ========================================================== -->
     <div id="screen-members" class="screen sky-stage flex-col items-center justify-between px-3 sm:px-6 py-12 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
-        <canvas id="members-canvas" class="absolute inset-0 pointer-events-none z-10" style="position: fixed;"></canvas>
+        <canvas id="members-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
         <div class="absolute top-4 left-4 z-30 bg-white/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
             Slide 4 / 5 · Đại gia đình của chúng em
         </div>
-        <header class="relative z-20 text-center mt-1 sm:mt-3">
+        <header class="relative z-20 text-center mt-6">
             <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Thành Viên Lớp Ta</h2>
             <p class="font-handwriting text-xl sm:text-3xl text-rose-700/80 mt-1 font-bold tracking-widest">Những mảnh ghép tạo nên thanh xuân rực rỡ ♡</p>
         </header>
@@ -416,7 +395,7 @@
                 </div>
             </div>
         </main>
-        <footer class="relative z-20 text-center mb-1 flex flex-col items-center">
+        <footer class="relative z-20 text-center mb-4 flex flex-col items-center">
             <p class="font-handwriting text-xl sm:text-2xl text-rose-800/80 font-bold drop-shadow-sm">Mãi là một tập thể đoàn kết dưới mái nhà chung của cô ♡</p>
             <button onclick="goToScreen('screen-video')" class="mt-3 bg-rose-600 hover:bg-rose-700 text-white px-6 py-2 rounded-full font-sans text-xs sm:text-sm font-semibold transition shadow-md inline-flex items-center gap-2">
                 <span>Tiếp tục: Xem thước phim Kỷ Niệm</span> <i class="fa-solid fa-play"></i>
@@ -424,31 +403,29 @@
         </footer>
     </div>
 
-    <!-- ========================================================== -->
     <!-- MÀN HÌNH 5: VIDEO & PHÁO HOA -->
-    <!-- ========================================================== -->
-    <div id="screen-video" class="screen bg-radial-theme flex-col items-center px-4 py-20 min-h-screen">
-        <div id="video-particles" class="absolute inset-0 pointer-events-none" style="position: fixed;"></div>
+    <div id="screen-video" class="screen bg-radial-theme flex-col items-center justify-center p-4 sm:p-8 min-h-screen">
+        <div id="video-particles" class="absolute inset-0 pointer-events-none"></div>
         <div class="absolute top-4 left-4 z-30 bg-white/75 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
             Slide 5 / 5 · Thước phim thanh xuân
         </div>
 
-        <div class="my-auto w-full flex flex-col items-center z-20 relative">
-            <h2 class="font-calligraphy text-5xl sm:text-7xl text-rose-600 mb-6 drop-shadow-sm text-center">Thước Phim Kỷ Niệm</h2>
-            <div class="w-full max-w-4xl bg-white/60 p-3 sm:p-5 rounded-2xl backdrop-blur-sm shadow-2xl border border-rose-200">
-                <video id="tribute-video" class="w-full aspect-video rounded-xl shadow-inner bg-black" controls>
-                    <source src="video.mp4" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ video.
-                </video>
-            </div>
-            <p class="font-handwriting text-xl text-rose-700 mt-6">Hãy xem đến hết video để nhận một bất ngờ nhé ♡</p>
+        <h2 class="font-calligraphy text-5xl sm:text-7xl text-rose-600 mb-6 z-20 drop-shadow-sm text-center">Thước Phim Kỷ Niệm</h2>
+
+        <div class="relative z-20 w-full max-w-4xl bg-white/60 p-3 sm:p-5 rounded-2xl backdrop-blur-sm shadow-2xl border border-rose-200">
+            <video id="tribute-video" class="w-full aspect-video rounded-xl shadow-inner bg-black" controls>
+                <source src="video.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
         </div>
 
+        <p class="font-handwriting text-xl text-rose-700 mt-6 z-20">Hãy xem đến hết video để nhận một bất ngờ nhé ♡</p>
+
         <!-- Canvas chứa pháo hoa -->
-        <canvas id="fireworks-canvas" class="absolute inset-0 pointer-events-none z-40 opacity-0 transition-opacity duration-1000" style="position: fixed;"></canvas>
+        <canvas id="fireworks-canvas" class="absolute inset-0 pointer-events-none z-40 opacity-0 transition-opacity duration-1000"></canvas>
 
         <!-- Thông điệp sau cùng -->
-        <div id="fireworks-msg" class="fixed inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000 z-50">
+        <div id="fireworks-msg" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000 z-50">
             <h1 class="font-calligraphy text-6xl sm:text-8xl text-white drop-shadow-[0_0_20px_rgba(255,100,150,0.8)] text-center px-4">
                 Cảm ơn Thầy Cô <br><span class="text-4xl sm:text-6xl font-handwriting mt-4 block text-rose-200">Mãi Mãi Một Tình Yêu ♡</span>
             </h1>
@@ -519,7 +496,7 @@
             const target = document.getElementById(screenId);
             if (target) {
                 target.classList.add('active');
-                target.scrollTop = 0; // Đưa thanh cuộn về đầu khi chuyển slide
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Tự động kéo lên đầu trang mượt mà khi đổi slide
             }
             
             if (screenId === 'screen-chalkboard') startChalkWriting();
