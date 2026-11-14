@@ -19,6 +19,13 @@
         .font-handwriting { font-family: 'Caveat', cursive; }
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
 
+        @media (max-width: 640px) {
+          #screen-chalkboard .absolute.left-3,
+          #screen-chalkboard .absolute.right-3 {
+        display: none !important;
+    }
+}
+
         .screen {
             display: none;
             opacity: 0;
