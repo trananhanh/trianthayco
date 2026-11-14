@@ -14,13 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Base typography & Reset */
         body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; user-select: none; background-color: #fcf8f2; margin: 0; padding: 0; }
         .font-chalk { font-family: 'Alex Brush', 'Dancing Script', cursive; }
         .font-handwriting { font-family: 'Caveat', cursive; }
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
 
-        /* Tối ưu chuyển cảnh mượt mà và tương thích tuyệt đối cho iPhone */
         .screen {
             display: none;
             opacity: 0;
@@ -28,7 +26,6 @@
             transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
             width: 100%;
             min-height: 100vh;
-            /* Cho phép cuộn tự do trên mobile, không bị khóa cứng lẹm màn hình */
             box-sizing: border-box;
             position: relative;
         }
@@ -39,7 +36,6 @@
             transform: scale(1);
         }
 
-        /* --- SCREEN 0 & 6: RADIAL BACKGROUND --- */
         .bg-radial-theme { 
             background: radial-gradient(circle at center, #fffbf2 0%, #f4e8d3 70%, #ebd7ba 100%); 
             background-attachment: fixed;
@@ -54,7 +50,6 @@
         .pulse-text { animation: textPulse 2s infinite; }
         @keyframes textPulse { 0%, 100% { opacity: 0.6; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1.03); } }
 
-        /* --- SLIDE 1: TEACHER INTRO --- */
         #screen-teacher { 
             background: radial-gradient(circle at 30% 25%, #fff9f5 0%, #fce8e6 48%, #f5d0cc 100%); 
             background-attachment: fixed;
@@ -62,7 +57,6 @@
         .teacher-card { box-shadow: 0 25px 50px -12px rgba(159, 64, 72, 0.22); animation: cardEntrance 0.9s ease-out; }
         @keyframes cardEntrance { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- SLIDE 2: CHALKBOARD SCREEN --- */
         #screen-chalkboard { background: radial-gradient(circle at center, #d8c3a5 0%, #8d775f 100%); background-attachment: fixed; }
         .wood-desk { background: linear-gradient(180deg, #bb8853 0%, #87572b 40%, #523111 100%); box-shadow: inset 0 5px 15px rgba(255,255,255,0.2), 0 -10px 30px rgba(0,0,0,0.4); }
         .chalkboard-container {
@@ -80,7 +74,6 @@
         .tape { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 70px; height: 22px; background-color: rgba(240, 230, 210, 0.65); box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: blur(1px); z-index: 5; }
         .sticky-note { background: #fff3a8; box-shadow: 3px 5px 12px rgba(0,0,0,0.2); transform: rotate(-3deg); }
 
-        /* --- ENVELOPE MODAL --- */
         .envelope-wrapper { perspective: 1000px; }
         .envelope { width: 320px; height: 220px; background: #f7ebe1; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-radius: 6px; transition: all 0.5s ease; }
         @media (min-width: 640px) { .envelope { width: 480px; height: 300px; } }
@@ -94,7 +87,6 @@
         .wax-seal:hover { transform: translate(-50%, -50%) scale(1.1); }
         .envelope.open .wax-seal { display: none; }
 
-        /* --- SLIDE 3 & 4: SKY PHOTO WALL --- */
         .sky-stage { background: linear-gradient(180deg, #a9c8f0 0%, #f6c9d1 43%, #ffe5c7 78%, #f6c5b5 100%); position: relative; isolation: isolate; }
         .sky-bg { position: fixed; inset: 0; z-index: -3; background: radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.78) 0 5%, transparent 23%), radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.72) 0 7%, transparent 25%), radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.42), transparent 35%), linear-gradient(180deg, #a9c8f0 0%, #eac7e1 38%, #ffe3c6 72%, #f7c8b9 100%); animation: skyPan 24s ease-in-out infinite alternate; }
         .sky-bg::before, .sky-bg::after { content: ""; position: absolute; inset: 8% -10% 22%; background: radial-gradient(ellipse at 8% 65%, rgba(255,246,235,.85) 0 8%, transparent 21%), radial-gradient(ellipse at 23% 50%, rgba(255,248,241,.78) 0 9%, transparent 23%), radial-gradient(ellipse at 43% 68%, rgba(255,245,230,.8) 0 10%, transparent 25%), radial-gradient(ellipse at 65% 48%, rgba(255,250,244,.8) 0 9%, transparent 24%), radial-gradient(ellipse at 87% 65%, rgba(255,242,230,.85) 0 10%, transparent 25%); filter: blur(13px); opacity: .9; }
@@ -103,7 +95,7 @@
         .gallery-title { color: #f47e78; text-shadow: 0 2px 0 rgba(255,255,255,.55), 0 8px 22px rgba(155,91,111,.18); line-height: 1.12; }
         .gallery-title::after { content: "♡"; display: block; width: min(420px, 65vw); margin: 3px auto 0; color: #ef8b83; font: 22px 'Montserrat', sans-serif; letter-spacing: 12px; border-top: 2px solid rgba(239,139,131,.75); padding-top: 3px; }
         .memory-wall { position: relative; width: min(1180px, 96vw); height: min(57vh, 450px); margin: 0 auto; }
-        .memory-photo { position: absolute; width: clamp(112px, 13vw, 184px); padding: 7px 7px 19px; background: rgba(255,255,250,.96); border: 1px solid rgba(255,255,255,.95); box-shadow: 0 9px 22px rgba(96,67,69,.24), 0 2px 5px rgba(96,67,69,.12); cursor: pointer; transition: transform .35s ease, box-shadow .35s ease; transform: rotate(var(--tilt, 0deg)); z-index: 2; }
+        .memory-photo { position: absolute; width: clamp(112px, 13vw, 184px); padding: 7px 7px 19px; background: rgba(255,255,250,.96); border: 1px solid rgba(255,255,250,.95); box-shadow: 0 9px 22px rgba(96,67,69,.24), 0 2px 5px rgba(96,67,69,.12); cursor: pointer; transition: transform .35s ease, box-shadow .35s ease; transform: rotate(var(--tilt, 0deg)); z-index: 2; }
         .memory-photo img { display: block; width: 100%; height: clamp(76px, 9.2vw, 126px); object-fit: cover; background: #f6e8df; }
         .memory-photo span { display: block; padding-top: 5px; color: #846b68; text-align: center; font: 600 clamp(10px, 1vw, 13px) 'Caveat', cursive; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .member-card span { color: #a64d57; font-weight: 700; }
@@ -124,8 +116,8 @@
             .gallery-title { font-size: clamp(2.5rem, 10vw, 4rem); }
         }
 
-        /* Modal & Particles */
-        .particle { position: fixed; pointer-events: none; animation: floatUp 8s linear infinite; }
+        /* THÊM POINTER-EVENTS: NONE ĐỂ KHÔNG CHẶN CLICK/CHẠM */
+        .particle { position: fixed; pointer-events: none; animation: floatUp 8s linear infinite; z-index: 5; }
         @keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } }
 
         .btn-restart-fw {
@@ -149,8 +141,8 @@
 
     <!-- MÀN HÌNH 0: MỞ ĐẦU -->
     <div id="screen-welcome" class="screen bg-radial-theme active flex-col items-center justify-center p-4 min-h-screen">
-        <div id="welcome-particles" class="absolute inset-0 pointer-events-none"></div>
-        <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer" onclick="goToScreen('screen-teacher')">
+        <div id="welcome-particles" class="absolute inset-0 pointer-events-none z-1"></div>
+        <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
             <div class="absolute inset-2 border border-rose-300/60 rounded-full pointer-events-none"></div>
             <div class="text-rose-500 text-3xl mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
             <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold text-rose-600 my-1 tracking-wider">
@@ -162,7 +154,7 @@
                 <svg class="w-8 h-8 mx-auto fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </div>
         </div>
-        <div class="mt-10 text-center cursor-pointer" onclick="goToScreen('screen-teacher')">
+        <div class="mt-10 text-center cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
             <p class="pulse-text text-xl sm:text-2xl font-handwriting text-rose-800 font-bold flex items-center justify-center gap-2">
                 <i class="fa-solid fa-hand-pointer text-rose-500 text-lg"></i> Chạm để bắt đầu
             </p>
@@ -189,7 +181,7 @@
                 <h2 class="font-calligraphy text-4xl sm:text-6xl text-rose-600 mb-1">Cô Đào Thị Huyền Trang</h2>
                 <p class="font-sans text-xs sm:text-sm text-amber-800/80 font-semibold mb-4"><i class="fa-solid fa-book-open mr-1 text-rose-400"></i> Môn giảng dạy: Ngữ Văn</p>
                 <div class="bg-rose-50/80 border-l-4 border-rose-400 p-4 rounded-r-lg mb-6">
-                    <p class="font-handwriting text-xl sm:text-2xl text-neutral-700 leading-relaxed">"Thầy cô được ví như người cha người mẹ thứ hai của bao thế hệ học trò."</p>
+                    <p class="font-handwriting text-xl sm:text-2xl text-neutral-700 leading-relaxed">"Một người thầy giỏi giống như ngọn nến – tự đốt cháy mình để soi sáng đường cho những người khác."</p>
                     <p class="font-sans text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">Cảm ơn cô đã luôn dịu dàng lắng nghe, bao dung cho những lần nghịch ngợm và dìu dắt tập thể lớp chúng em trưởng thành từng ngày.</p>
                 </div>
                 <div class="flex justify-center md:justify-end">
@@ -355,23 +347,23 @@
             <div class="memory-wall">
                 <span class="memory-heart" style="left:5%;top:50%">♡</span><span class="memory-heart" style="left:22%;top:18%;animation-delay:.6s">♡</span><span class="memory-heart" style="left:49%;top:40%;animation-delay:1.2s">♡</span>
                 
-                <div class="memory-photo member-card" style="left:2%;top:14%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Cảnh hào — thần đồng 2k12')">
-                    <img src="hao.jpg" alt="Cảnh hào"><span>Cảnh hào · Thần đồng 2k12</span>
+                <div class="memory-photo member-card" style="left:2%;top:14%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Minh Anh — Lớp trưởng gương mẫu')">
+                    <img src="anh01.jpg" alt="Minh Anh"><span>Minh Anh · Lớp trưởng</span>
                 </div>
-                <div class="memory-photo member-card" style="left:14%;top:3%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Ngô Tuấn  — Thần đồng tin học')">
-                    <img src="ngotuan.jpg" alt="Hoàng Nam"><span>Ngô Tuấn · Thần đống tin học</span>
+                <div class="memory-photo member-card" style="left:14%;top:3%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Hoàng Nam — Lớp phó học tập')">
+                    <img src="anh02.jpg" alt="Hoàng Nam"><span>Hoàng Nam · Lớp phó</span>
                 </div>
-                <div class="memory-photo member-card" style="left:10%;top:55%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Đinh vũ phong — Thần đồng bóng đá nhưng bá hơn')">
-                    <img src="vuphong.jpg" alt="Thảo Vy"><span>Đinh Vũ Phong · Tài năng trẻ</span>
+                <div class="memory-photo member-card" style="left:10%;top:55%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Thảo Vy — Bí thư chi đoàn')">
+                    <img src="anh03.jpg" alt="Thảo Vy"><span>Thảo Vy · Bí thư</span>
                 </div>
-                <div class="memory-photo member-card" style="left:25%;top:28%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'ảnh khởi động — Tập thể lớp 9.6')">
-                    <img src="dabong.jpg" alt="Gia Huy"><span>ảnh khởi động · Lớp 9.6</span>
+                <div class="memory-photo member-card" style="left:25%;top:28%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'Gia Huy — Cây văn nghệ lớp')">
+                    <img src="anh04.jpg" alt="Gia Huy"><span>Gia Huy · Văn nghệ</span>
                 </div>
-                <div class="memory-photo member-card" style="left:29%;top:65%;--tilt:7deg" onclick="openLightbox(this.querySelector('img').src, 'Đội hình đá bóng — Thủ quỹ tận tâm')">
-                    <img src="anhtapthe.jpg" alt="Khánh Linh"><span>Đội hình đá bóng · Bá Khí</span>
+                <div class="memory-photo member-card" style="left:29%;top:65%;--tilt:7deg" onclick="openLightbox(this.querySelector('img').src, 'Khánh Linh — Thủ quỹ tận tâm')">
+                    <img src="anh05.jpg" alt="Khánh Linh"><span>Khánh Linh · Thủ quỹ</span>
                 </div>
-                <div class="memory-photo member-card" style="left:37%;top:8%;--tilt:-5deg" onclick="openLightbox(this.querySelector('img').src, 'Tập thể lớp 9.6 — Đi chơi cuối năm')">
-                    <img src="anhdichoi.jpg" alt="Đức Minh"><span>Tập thể lớp 9.6 · kĩ niệm không thể quên</span>
+                <div class="memory-photo member-card" style="left:37%;top:8%;--tilt:-5deg" onclick="openLightbox(this.querySelector('img').src, 'Đức Minh — Đội trưởng thể thao')">
+                    <img src="anh06.jpg" alt="Đức Minh"><span>Đức Minh · Thể thao</span>
                 </div>
                 <div class="memory-photo member-card" style="left:43%;top:53%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Ngọc Hân — Nụ cười tỏa nắng')">
                     <img src="anh07.jpg" alt="Ngọc Hân"><span>Ngọc Hân · Tổ 1</span>
@@ -403,7 +395,8 @@
             </button>
         </footer>
     </div>
-<!-- MÀN HÌNH 5: VIDEO & PHÁO HOA & FOOTER -->
+
+    <!-- MÀN HÌNH 5: VIDEO & PHÁO HOA & FOOTER -->
     <div id="screen-video" class="screen bg-radial-theme flex-col items-center justify-center p-4 sm:p-8 min-h-screen">
         <div id="video-particles" class="absolute inset-0 pointer-events-none"></div>
         <div class="absolute top-4 left-4 z-30 bg-white/75 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
@@ -434,12 +427,254 @@
             </button>
         </div>
 
-        <!-- FOOTER ĐẶT TRỰC TIẾP Ở ĐÂY ĐỂ KHÔNG BỊ LỆCH MÀU -->
         <footer class="w-full bg-rose-50 text-rose-700 py-6 text-center border-t border-rose-200 mt-16 z-20">
             <h2 class="font-calligraphy text-3xl font-bold mb-2">Liên hệ</h2>
             <p class="font-handwriting text-xl">Email: Ngô Anh Tuấn - Lớp 9.6</p>
             <p class="font-sans text-xs text-neutral-500 mt-3">Thiết kế bởi Ngô Anh Tuấn</p>
         </footer>
     </div>
+
+    <!-- MODAL LIGHTBOX ẢNH -->
+    <div id="photo-lightbox" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative max-w-3xl w-full bg-white p-3 sm:p-4 rounded-lg shadow-2xl">
+            <img id="lightbox-img" src="" class="w-full max-h-[75vh] object-contain rounded" alt="Chi tiết ảnh">
+            <p id="lightbox-caption" class="font-handwriting text-center text-xl sm:text-2xl text-neutral-800 font-bold mt-3"></p>
+            <button onclick="closeLightbox()" class="absolute -top-4 -right-4 bg-rose-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow-lg hover:bg-rose-700 transition"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const bgAudio = document.getElementById('bg-audio');
+        let isMuted = false;
+        if (bgAudio) {
+            document.addEventListener('click', function () {
+                if (bgAudio.paused && !isMuted) bgAudio.play().catch(e => console.log(e));
+            }, { once: true });
+        }
+
+        const bgmToggle = document.getElementById('bgm-toggle');
+        if (bgmToggle) {
+            bgmToggle.addEventListener('click', function () {
+                isMuted = !isMuted;
+                const statusEl = document.getElementById('bgm-status');
+                if (isMuted) {
+                    if (bgAudio) bgAudio.pause();
+                    if (statusEl) statusEl.innerText = "Âm nhạc: Tắt";
+                } else {
+                    if (bgAudio) bgAudio.play().catch(e => console.log(e));
+                    if (statusEl) statusEl.innerText = "Âm nhạc: Mở";
+                }
+            });
+        }
+
+        function createFloatingHearts(containerId, count = 15) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle text-rose-400/40 text-xl';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.animationDuration = (6 + Math.random() * 6) + 's';
+                p.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                container.appendChild(p);
+            }
+        }
+        createFloatingHearts('welcome-particles', 15);
+        createFloatingHearts('teacher-particles', 12);
+        createFloatingHearts('video-particles', 15);
+
+        function goToScreen(screenId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => s.classList.remove('active'));
+            
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            if (screenId === 'screen-chalkboard') startChalkWriting();
+            if (screenId === 'screen-sky') initSkyCanvas('sky-canvas', 'screen-sky');
+            if (screenId === 'screen-members') initSkyCanvas('members-canvas', 'screen-members');
+        }
+
+        function resetApp() {
+            chalkWritingStarted = false;
+            const btnEnvelope = document.getElementById('btn-open-envelope');
+            if (btnEnvelope) { btnEnvelope.classList.add('hidden', 'opacity-0'); btnEnvelope.classList.remove('flex'); }
+            
+            const tributeVideo = document.getElementById('tribute-video');
+            if (tributeVideo) { tributeVideo.pause(); tributeVideo.currentTime = 0; }
+            if (fwAnimationId) { cancelAnimationFrame(fwAnimationId); fwAnimationId = null; }
+            fwParticles = [];
+            
+            const fwCanvas = document.getElementById('fireworks-canvas');
+            const fwMsg = document.getElementById('fireworks-msg');
+            if (fwCanvas) {
+                fwCanvas.classList.add('opacity-0');
+                const ctx = fwCanvas.getContext('2d');
+                ctx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+            }
+            if (fwMsg) {
+                fwMsg.classList.add('opacity-0');
+                fwMsg.classList.remove('pointer-events-auto');
+            }
+            goToScreen('screen-welcome');
+        }
+
+        let chalkWritingStarted = false;
+        function startChalkWriting() {
+            if (chalkWritingStarted) return;
+            chalkWritingStarted = true;
+            const el1 = document.getElementById('chalk-line-1'), el2 = document.getElementById('chalk-line-2'), el3 = document.getElementById('chalk-line-3');
+            const btnEnvelope = document.getElementById('btn-open-envelope');
+            if (!el1 || !el2 || !el3 || !btnEnvelope) return;
+            el1.textContent = ""; el2.textContent = ""; el3.textContent = "";
+
+            typeWriter(el1, "Chúc mừng", 100, () => {
+                setTimeout(() => { typeWriter(el2, "ngày nhà giáo Việt Nam", 80, () => {
+                    setTimeout(() => { typeWriter(el3, "20/11", 120, () => {
+                        btnEnvelope.classList.remove('hidden');
+                        setTimeout(() => { btnEnvelope.classList.remove('opacity-0'); btnEnvelope.classList.add('flex'); }, 100);
+                    });}, 300);
+                });}, 300);
+            });
+        }
+        function typeWriter(element, text, speed, callback) {
+            let i = 0;
+            function type() {
+                if (i < text.length) { element.textContent += text.charAt(i); i++; setTimeout(type, speed); } else if (callback) callback();
+            }
+            type();
+        }
+
+        const btnOpenEnvelope = document.getElementById('btn-open-envelope');
+        const envelopeModal = document.getElementById('envelope-modal');
+        const envelope = document.getElementById('envelope');
+        if (btnOpenEnvelope && envelopeModal) {
+            btnOpenEnvelope.addEventListener('click', () => { envelopeModal.classList.remove('pointer-events-none', 'opacity-0'); envelopeModal.classList.add('opacity-100'); });
+        }
+        function openLetter() { if (envelope) envelope.classList.add('open'); }
+        function closeEnvelopeModal() {
+            if (!envelopeModal) return;
+            envelopeModal.classList.add('opacity-0', 'pointer-events-none'); envelopeModal.classList.remove('opacity-100');
+            setTimeout(() => { if (envelope) envelope.classList.remove('open'); }, 500);
+        }
+
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('photo-lightbox'), img = document.getElementById('lightbox-img'), cap = document.getElementById('lightbox-caption');
+            if (!modal || !img || !cap) return;
+            img.src = src; cap.innerText = caption;
+            modal.classList.remove('pointer-events-none', 'opacity-0'); modal.classList.add('opacity-100');
+        }
+        function closeLightbox() {
+            const modal = document.getElementById('photo-lightbox');
+            if (!modal) return;
+            modal.classList.add('opacity-0', 'pointer-events-none'); modal.classList.remove('opacity-100');
+        }
+
+        let skyAnimationId = null;
+        function initSkyCanvas(canvasId, screenId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            if (skyAnimationId !== null) { cancelAnimationFrame(skyAnimationId); skyAnimationId = null; }
+            const ctx = canvas.getContext('2d');
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            resize();
+            const particles = [];
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1, alpha: Math.random() * 0.8 + 0.2,
+                    speedY: -(Math.random() * 0.8 + 0.2), speedX: (Math.random() - 0.5) * 0.5
+                });
+            }
+            function animateSky() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speedY; p.x += p.speedX;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 240, 220, ${p.alpha})`; ctx.shadowBlur = 10; ctx.shadowColor = '#fff'; ctx.fill();
+                });
+                if (document.getElementById(screenId)?.classList.contains('active')) { skyAnimationId = requestAnimationFrame(animateSky); } else { skyAnimationId = null; }
+            }
+            animateSky();
+            window.addEventListener('resize', resize);
+        }
+
+        const tributeVideo = document.getElementById('tribute-video');
+        tributeVideo.addEventListener('play', () => {
+            if (bgAudio && !bgAudio.paused) {
+                bgAudio.pause();
+                isMuted = true;
+                const statusEl = document.getElementById('bgm-status');
+                if (statusEl) statusEl.innerText = "Âm nhạc: Tắt";
+            }
+        });
+        tributeVideo.addEventListener('ended', () => { startFireworks(); });
+
+        const fwCanvas = document.getElementById('fireworks-canvas');
+        const fwCtx = fwCanvas.getContext('2d');
+        let fwParticles = [];
+        let fwAnimationId = null;
+
+        function startFireworks() {
+            fwCanvas.classList.remove('opacity-0');
+            const msgObj = document.getElementById('fireworks-msg');
+            msgObj.classList.remove('opacity-0');
+            msgObj.classList.add('pointer-events-auto');
+
+            resizeFw();
+            animateFireworks();
+            
+            setTimeout(() => createFirework(fwCanvas.width / 2, fwCanvas.height / 3), 500);
+            setTimeout(() => createFirework(fwCanvas.width / 4, fwCanvas.height / 2), 1000);
+            setTimeout(() => createFirework(fwCanvas.width * 3 / 4, fwCanvas.height / 2), 1500);
+        }
+
+        function resizeFw() { fwCanvas.width = window.innerWidth; fwCanvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeFw);
+
+        class FireworkParticle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y; this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * (Math.random() * 8 + 4), y: (Math.random() - 0.5) * (Math.random() * 8 + 4) };
+                this.alpha = 1; this.friction = 0.98; this.gravity = 0.15;
+            }
+            draw() {
+                fwCtx.globalAlpha = this.alpha; fwCtx.beginPath(); fwCtx.arc(this.x, this.y, 2.5, 0, Math.PI * 2, false); fwCtx.fillStyle = this.color; fwCtx.fill();
+            }
+            update() {
+                this.velocity.x *= this.friction; this.velocity.y *= this.friction; this.velocity.y += this.gravity;
+                this.x += this.velocity.x; this.y += this.velocity.y; this.alpha -= 0.015;
+            }
+        }
+
+        function createFirework(x, y) {
+            const colors = ['#ff0040', '#00ff40', '#0040ff', '#ff00ff', '#ffff00', '#ff8000', '#00ffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            for (let i = 0; i < 150; i++) fwParticles.push(new FireworkParticle(x, y, color));
+        }
+
+        function animateFireworks() {
+            fwAnimationId = requestAnimationFrame(animateFireworks);
+            fwCtx.globalCompositeOperation = 'source-over';
+            fwCtx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+            fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
+            
+            fwCtx.globalCompositeOperation = 'lighter';
+            fwParticles.forEach((p, index) => {
+                if (p.alpha > 0) { p.update(); p.draw(); } else { fwParticles.splice(index, 1); }
+            });
+            
+            if (Math.random() < 0.04) {
+                createFirework(Math.random() * fwCanvas.width, Math.random() * fwCanvas.height * 0.6);
+            }
+        }
+    </script>
 </body>
 </html>
