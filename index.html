@@ -14,17 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body { font-family: 'Montserrat', sans-serif; width: 100%; max-width: 100vw; overflow-x: hidden !important; user-select: none; background-color: #fcf8f2; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; user-select: none; background-color: #fcf8f2; margin: 0; padding: 0; }
         .font-chalk { font-family: 'Alex Brush', 'Dancing Script', cursive; }
         .font-handwriting { font-family: 'Caveat', cursive; }
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
-
-        @media (max-width: 640px) {
-          #screen-chalkboard .absolute.left-3,
-          #screen-chalkboard .absolute.right-3 {
-        display: none !important;
-    }
-}
 
         .screen {
             display: none;
@@ -101,7 +94,7 @@
         @keyframes skyPan { from { transform: scale(1); } to { transform: scale(1.045); } }
         .gallery-title { color: #f47e78; text-shadow: 0 2px 0 rgba(255,255,255,.55), 0 8px 22px rgba(155,91,111,.18); line-height: 1.12; }
         .gallery-title::after { content: "♡"; display: block; width: min(420px, 65vw); margin: 3px auto 0; color: #ef8b83; font: 22px 'Montserrat', sans-serif; letter-spacing: 12px; border-top: 2px solid rgba(239,139,131,.75); padding-top: 3px; }
-        .memory-wall { position: relative; width: 100%; max-width: 100vw; box-sizing: border-box; height: min(57vh, 450px); margin: 0 auto; overflow: hidden; }
+        .memory-wall { position: relative; width: min(1180px, 96vw); height: min(57vh, 450px); margin: 0 auto; }
         .memory-photo { position: absolute; width: clamp(112px, 13vw, 184px); padding: 7px 7px 19px; background: rgba(255,255,250,.96); border: 1px solid rgba(255,255,250,.95); box-shadow: 0 9px 22px rgba(96,67,69,.24), 0 2px 5px rgba(96,67,69,.12); cursor: pointer; transition: transform .35s ease, box-shadow .35s ease; transform: rotate(var(--tilt, 0deg)); z-index: 2; }
         .memory-photo img { display: block; width: 100%; height: clamp(76px, 9.2vw, 126px); object-fit: cover; background: #f6e8df; }
         .memory-photo span { display: block; padding-top: 5px; color: #846b68; text-align: center; font: 600 clamp(10px, 1vw, 13px) 'Caveat', cursive; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -177,10 +170,10 @@
         <div class="teacher-card relative max-w-3xl w-full bg-[#fffdf9]/95 border-2 border-rose-200 rounded-2xl shadow-2xl p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-12">
             <div class="absolute -top-3 -left-3 bg-rose-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md"><i class="fa-solid fa-heart"></i></div>
             <div class="shrink-0">
-                <div class="polaroid transform -rotate-2 w-48 sm:w-56 cursor-pointer" onclick="openLightbox('cotrang.jpg', 'Cô giáo kính yêu của chúng em ♡')">
+                <div class="polaroid transform -rotate-2 w-48 sm:w-56 cursor-pointer" onclick="openLightbox('anh01.jpg', 'Cô giáo kính yêu của chúng em ♡')">
                     <div class="tape"></div>
-                    <img src="cotrang.jpg" class="w-full h-52 sm:h-60 object-cover rounded-xs" alt="Ảnh cô giáo">
-                    <p class="font-handwriting text-center text-rose-700 text-sm sm:text-base mt-2 font-bold whitespace-nowrap">Cô Đào Thị Huyền Trang ♡</p>
+                    <img src="anh01.jpg" class="w-full h-52 sm:h-60 object-cover rounded-xs" alt="Ảnh cô giáo">
+                    <p class="font-handwriting text-center text-rose-700 text-lg sm:text-xl mt-2 font-bold">Cô Đào Thị Huyền Trang ♡</p>
                 </div>
             </div>
             <div class="text-center md:text-left flex-1">
@@ -188,7 +181,7 @@
                 <h2 class="font-calligraphy text-4xl sm:text-6xl text-rose-600 mb-1">Cô Đào Thị Huyền Trang</h2>
                 <p class="font-sans text-xs sm:text-sm text-amber-800/80 font-semibold mb-4"><i class="fa-solid fa-book-open mr-1 text-rose-400"></i> Môn giảng dạy: Ngữ Văn</p>
                 <div class="bg-rose-50/80 border-l-4 border-rose-400 p-4 rounded-r-lg mb-6">
-                    <p class="text-lg sm:text-xl text-rose-700 leading-relaxed font-sans">"Một người cô giáo giỏi giống như ngọn nến – âm thầm hy sinh, tận tụy soi sáng con đường tri thức và chắp cánh ước mơ cho bao thế hệ học trò"</p>
+                    <p class="font-handwriting text-xl sm:text-2xl text-neutral-700 leading-relaxed">"Một người thầy giỏi giống như ngọn nến – tự đốt cháy mình để soi sáng đường cho những người khác."</p>
                     <p class="font-sans text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">Cảm ơn cô đã luôn dịu dàng lắng nghe, bao dung cho những lần nghịch ngợm và dìu dắt tập thể lớp chúng em trưởng thành từng ngày.</p>
                 </div>
                 <div class="flex justify-center md:justify-end">
@@ -264,7 +257,7 @@
                     </div>
                     <div class="pt-4 border-t border-rose-100 flex flex-col items-end">
                         <p class="font-handwriting text-xl text-rose-800 font-bold">Học trò của thầy cô ♡</p>
-                        <button onclick="relative overflow-hidden backdrop-blur-xlbg-white/20 hover:bg-white/35 text-rose-700 border border-white/60 font-sans text-sm font-semibold px-8 py-3 rounded-full shadow-[0_8px_32px_rgba(255,100,120,0.2)] inset-shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                        <button onclick="closeEnvelopeModal(); goToScreen('screen-sky');" class="mt-4 bg-rose-600 hover:bg-rose-700 text-white font-sans text-sm font-semibold px-6 py-2 rounded-full shadow-md transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
                             <span>Tiếp tục</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -347,39 +340,39 @@
             Slide 4 / 5 · Đại gia đình của chúng em
         </div>
         <header class="relative z-20 text-center mt-6">
-            <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Khoảnh Khắc Tươi Đẹp Của Tuổi Học Trò</h2>
+            <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Thành Viên Lớp Ta</h2>
             <p class="font-handwriting text-xl sm:text-3xl text-rose-700/80 mt-1 font-bold tracking-widest">Những mảnh ghép tạo nên thanh xuân rực rỡ ♡</p>
         </header>
         <main class="relative z-20 my-auto w-full flex justify-center items-center py-6">
             <div class="memory-wall">
                 <span class="memory-heart" style="left:5%;top:50%">♡</span><span class="memory-heart" style="left:22%;top:18%;animation-delay:.6s">♡</span><span class="memory-heart" style="left:49%;top:40%;animation-delay:1.2s">♡</span>
                 
-                <div class="memory-photo member-card" style="left:2%;top:14%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Chào cờ — Thứ 2 dầu tuấn')">
-                    <img src="anhchaocothu2.jpg" alt="Cảnh hào"><span>Chào cờ · Sinh hoạt đầu tuần</span>
+                <div class="memory-photo member-card" style="left:2%;top:14%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Minh Anh — Lớp trưởng gương mẫu')">
+                    <img src="anh01.jpg" alt="Minh Anh"><span>Minh Anh · Lớp trưởng</span>
                 </div>
-                <div class="memory-photo member-card" style="left:14%;top:3%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Vũ Phong — Tài năng trẻ 2k12 nhưng bá hơn')">
-                    <img src="vuphong.jpg" alt="Vũ Phong"><span>Vũ Phong · siêu phủi prenium</span>
+                <div class="memory-photo member-card" style="left:14%;top:3%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Hoàng Nam — Lớp phó học tập')">
+                    <img src="anh02.jpg" alt="Hoàng Nam"><span>Hoàng Nam · Lớp phó</span>
                 </div>
-                <div class="memory-photo member-card" style="left:10%;top:55%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Bảo long — Học bá')">
-                    <img src="pp.jpg" alt="Gia huy"><span>Bảo long · Học bá</span>
+                <div class="memory-photo member-card" style="left:10%;top:55%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Thảo Vy — Bí thư chi đoàn')">
+                    <img src="anh03.jpg" alt="Thảo Vy"><span>Thảo Vy · Bí thư</span>
                 </div>
-                <div class="memory-photo member-card" style="left:25%;top:28%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'Đi chơi cuối năm — Kĩ niệm')">
-                    <img src="anhdichoi.jpg" alt="Đi chơi"><span>Cuối năm · Kĩ niệm</span>
+                <div class="memory-photo member-card" style="left:25%;top:28%;--tilt:-4deg" onclick="openLightbox(this.querySelector('img').src, 'Gia Huy — Cây văn nghệ lớp')">
+                    <img src="anh04.jpg" alt="Gia Huy"><span>Gia Huy · Văn nghệ</span>
                 </div>
-                <div class="memory-photo member-card" style="left:29%;top:65%;--tilt:7deg" onclick="openLightbox(this.querySelector('img').src, 'Ngô Tuấn — Lập trình viên')">
-                    <img src="ngotuan.jpg" alt="Ngô Tuấn"><span>Ngô Tuấn · Lập trình viên</span>
+                <div class="memory-photo member-card" style="left:29%;top:65%;--tilt:7deg" onclick="openLightbox(this.querySelector('img').src, 'Khánh Linh — Thủ quỹ tận tâm')">
+                    <img src="anh05.jpg" alt="Khánh Linh"><span>Khánh Linh · Thủ quỹ</span>
                 </div>
-                <div class="memory-photo member-card" style="left:37%;top:8%;--tilt:-5deg" onclick="openLightbox(this.querySelector('img').src, 'Đức Huy — Bo')">
-                    <img src="duchuy.jpg" alt="Đức Huy"><span>Đức Huy · Bo</span>
+                <div class="memory-photo member-card" style="left:37%;top:8%;--tilt:-5deg" onclick="openLightbox(this.querySelector('img').src, 'Đức Minh — Đội trưởng thể thao')">
+                    <img src="anh06.jpg" alt="Đức Minh"><span>Đức Minh · Thể thao</span>
                 </div>
-                <div class="memory-photo member-card" style="left:43%;top:53%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Đức Minh — Học bá của lớp')">
-                    <img src="ducminh.jpg" alt="Đức Minh"><span>Đức minh · Học bá</span>
+                <div class="memory-photo member-card" style="left:43%;top:53%;--tilt:5deg" onclick="openLightbox(this.querySelector('img').src, 'Ngọc Hân — Nụ cười tỏa nắng')">
+                    <img src="anh07.jpg" alt="Ngọc Hân"><span>Ngọc Hân · Tổ 1</span>
                 </div>
-                <div class="memory-photo member-card" style="left:52%;top:19%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Gia Phúc — trở thành cầu thủ')">
-                    <img src="giaphuc.jpg" alt="Gia Phúc"><span>Gia Phúc · Học bá</span>
+                <div class="memory-photo member-card" style="left:52%;top:19%;--tilt:4deg" onclick="openLightbox(this.querySelector('img').src, 'Tuấn Kiệt — Chuyên gia IT lớp')">
+                    <img src="anh08.jpg" alt="Tuấn Kiệt"><span>Tuấn Kiệt · Tổ 2</span>
                 </div>
-                <div class="memory-photo member-card" style="left:59%;top:62%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Bảo Phúc — Làm họa sĩ')">
-                    <img src="baophuc.jpg" alt="Bảo Phúc"><span>Bảo phúc · Học bá cùng bàn</span>
+                <div class="memory-photo member-card" style="left:59%;top:62%;--tilt:-6deg" onclick="openLightbox(this.querySelector('img').src, 'Bảo Trâm — Họa sĩ bảng tin')">
+                    <img src="anh09.jpg" alt="Bảo Trâm"><span>Bảo Trâm · Báo tường</span>
                 </div>
                 <div class="memory-photo member-card" style="left:68%;top:7%;--tilt:-3deg" onclick="openLightbox(this.querySelector('img').src, 'Quốc Bảo — Cây hài của lớp')">
                     <img src="anh010.jpg" alt="Quốc Bảo"><span>Quốc Bảo · Hoạt náo</span>
@@ -414,8 +407,8 @@
 
         <div class="relative z-20 w-full max-w-4xl bg-white/60 p-3 sm:p-5 rounded-2xl backdrop-blur-sm shadow-2xl border border-rose-200">
             <video id="tribute-video" class="w-full aspect-video rounded-xl shadow-inner bg-black" controls>
-                <source src="cuoinam.mp4" type="video/mp4">
-                Video cuối năm ghi lại những khoảng khắc đẹp nhất
+                <source src="video.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
             </video>
         </div>
 
@@ -436,8 +429,8 @@
 
         <footer class="w-full bg-rose-50 text-rose-700 py-6 text-center border-t border-rose-200 mt-16 z-20">
             <h2 class="font-calligraphy text-3xl font-bold mb-2">Liên hệ</h2>
-            <p class="font-handwriting text-xl">Email: ngotrananhtuan906@gmail.com</p>
-            <p class="font-sans text-xs text-neutral-500 mt-3">designed by Ngô Tuấn</p>
+            <p class="font-handwriting text-xl">Email: Ngô Anh Tuấn - Lớp 9.6</p>
+            <p class="font-sans text-xs text-neutral-500 mt-3">Thiết kế bởi Ngô Anh Tuấn</p>
         </footer>
     </div>
 
