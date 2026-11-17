@@ -2,38 +2,152 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tri Ân Ngày Nhà Giáo Việt Nam 20/11</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tri Ân Ngày Nhà Giáo Việt Nam 20/11 · iOS 26 Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Thêm Be Vietnam Pro chuẩn nét chữ tiếng Việt hiện đại kiểu iOS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Patrick+Hand&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Patrick+Hand&family=Pinyon+Script&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        :root {
+            --ios-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ios-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0.24) 100%);
+            --glass-border: rgba(255, 255, 255, 0.68);
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
             user-select: none;
-            background-color: #fcf8f2;
+            background-color: #141016;
             margin: 0;
             padding: 0;
+            color: #1f1720;
         }
+
         .font-chalk { font-family: 'Dancing Script', 'Alex Brush', cursive; }
         .font-handwriting { font-family: 'Patrick Hand', 'Caveat', cursive; }
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
 
+        /* =========================================================
+           iOS 26 LIQUID GLASS MATERIAL SYSTEM
+        ========================================================= */
+        .liquid-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 22px 48px -12px rgba(136, 19, 55, 0.16),
+                0 4px 16px rgba(0, 0, 0, 0.05),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.92),
+                inset 0 -1.5px 2px rgba(255, 255, 255, 0.28);
+        }
+
+        .liquid-glass-subtle {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+            backdrop-filter: blur(20px) saturate(175%);
+            -webkit-backdrop-filter: blur(20px) saturate(175%);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow:
+                0 10px 28px -8px rgba(136, 19, 55, 0.14),
+                inset 0 1px 1px rgba(255, 255, 255, 0.85);
+        }
+
+        .liquid-glass-dark {
+            background: linear-gradient(145deg, rgba(20, 38, 33, 0.80) 0%, rgba(13, 24, 24, 0.88) 100%);
+            backdrop-filter: blur(32px) saturate(185%);
+            -webkit-backdrop-filter: blur(32px) saturate(185%);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow:
+                0 30px 65px -15px rgba(0, 0, 0, 0.55),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.42),
+                inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        /* =========================================================
+           DYNAMIC ISLAND (iOS 26 FLOATING PILL)
+        ========================================================= */
+        .dynamic-island {
+            background: rgba(18, 16, 22, 0.78);
+            backdrop-filter: blur(26px) saturate(200%);
+            -webkit-backdrop-filter: blur(26px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow:
+                0 14px 34px rgba(0, 0, 0, 0.28),
+                inset 0 1px 1px rgba(255, 255, 255, 0.32);
+            transition: all 0.45s var(--ios-spring);
+        }
+        .dynamic-island:hover {
+            transform: translateX(-50%) scale(1.02);
+            background: rgba(18, 16, 22, 0.88);
+        }
+
+        /* Sóng nhạc trong Dynamic Island */
+        .eq-bar {
+            width: 2.5px;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(to top, #fb7185, #fde047);
+            animation: eqBounce 0.9s ease-in-out infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; height: 14px; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; height: 8px; }
+        .eq-paused .eq-bar {
+            animation-play-state: paused;
+            height: 4px !important;
+            opacity: 0.45;
+        }
+        @keyframes eqBounce {
+            0% { transform: scaleY(0.35); }
+            100% { transform: scaleY(1); }
+        }
+
+        .island-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.28);
+            transition: all 0.35s var(--ios-spring);
+            cursor: pointer;
+        }
+        .island-dot.active {
+            width: 18px;
+            background: linear-gradient(90deg, #fb7185, #fbbf24);
+            box-shadow: 0 0 8px rgba(251, 113, 133, 0.7);
+        }
+
+        /* Thanh Home Indicator cuối màn hình iOS */
+        .ios-home-indicator {
+            width: 134px;
+            height: 5px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+            margin: 0 auto;
+        }
+
+        /* =========================================================
+           SCREEN TRANSITIONS & AMBIENT MESH WALLPAPERS
+        ========================================================= */
         .screen {
             display: none;
             opacity: 0;
-            transform: scale(1.02);
-            transition: opacity 0.65s ease-in-out, transform 0.65s ease-in-out;
+            transform: scale(0.96) translateY(12px);
+            transition: opacity 0.6s var(--ios-smooth), transform 0.65s var(--ios-spring);
             width: 100%;
             min-height: 100vh;
-            box-sizing: border-box;
             position: relative;
             overflow: hidden;
         }
@@ -41,16 +155,37 @@
         .screen.active {
             display: flex;
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
-        /* Nền kem ánh vàng ấm áp */
-        .bg-radial-theme {
-            background: radial-gradient(circle at 50% 40%, #fffdf8 0%, #fae9d7 55%, #f0cfb8 100%);
+        /* Nền Mesh Gradient động kiểu hình nền iOS 26 */
+        .ios-wallpaper {
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.72) 0%, transparent 45%),
+                radial-gradient(circle at 85% 18%, rgba(253, 224, 171, 0.78) 0%, transparent 48%),
+                radial-gradient(circle at 75% 82%, rgba(244, 162, 184, 0.68) 0%, transparent 50%),
+                radial-gradient(circle at 22% 85%, rgba(196, 219, 255, 0.65) 0%, transparent 48%),
+                linear-gradient(145deg, #fff6f3 0%, #fce3e6 50%, #f8d4dc 100%);
             background-attachment: fixed;
         }
 
-        /* Hiệu ứng hào quang xoay sau huy hiệu mở đầu */
+        .mesh-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(55px);
+            opacity: 0.65;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbDrift 14s ease-in-out infinite alternate;
+        }
+        @keyframes orbDrift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(28px, -22px) scale(1.12); }
+        }
+
+        /* =========================================================
+           MÀN HÌNH 0: iOS 26 LOCK SCREEN & SPATIAL BADGE
+        ========================================================= */
         .sunburst-aura {
             position: absolute;
             width: 460px;
@@ -58,12 +193,12 @@
             border-radius: 50%;
             background: repeating-conic-gradient(
                 from 0deg,
-                rgba(255, 215, 160, 0.28) 0deg 10deg,
+                rgba(255, 255, 255, 0.35) 0deg 10deg,
                 transparent 10deg 20deg
             );
-            mask-image: radial-gradient(circle, black 25%, transparent 70%);
-            -webkit-mask-image: radial-gradient(circle, black 25%, transparent 70%);
-            animation: spinAura 28s linear infinite;
+            mask-image: radial-gradient(circle, black 25%, transparent 68%);
+            -webkit-mask-image: radial-gradient(circle, black 25%, transparent 68%);
+            animation: spinAura 30s linear infinite;
             pointer-events: none;
             z-index: 2;
         }
@@ -72,34 +207,43 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Vòng sóng lan tỏa quanh huy hiệu */
         .halo-ring {
             position: absolute;
-            width: 310px;
-            height: 310px;
+            width: 315px;
+            height: 315px;
             border-radius: 50%;
-            border: 2px solid rgba(225, 29, 72, 0.28);
-            animation: pulseRing 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+            border: 1.5px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+            animation: pulseRing 3.2s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
             pointer-events: none;
             z-index: 3;
         }
-        .halo-ring:nth-child(2) { animation-delay: 1.5s; }
+        .halo-ring:nth-child(2) { animation-delay: 1.6s; }
         @keyframes pulseRing {
-            0% { transform: scale(0.95); opacity: 0.85; }
-            100% { transform: scale(1.45); opacity: 0; }
+            0% { transform: scale(0.94); opacity: 0.9; }
+            100% { transform: scale(1.42); opacity: 0; }
         }
 
         .welcome-badge {
-            background: linear-gradient(145deg, #fffdf9 0%, #fff3ee 100%);
-            border: 4px double #d47a75;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 240, 244, 0.32) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
             box-shadow:
-                0 20px 45px rgba(184, 98, 93, 0.28),
-                0 0 35px rgba(251, 191, 36, 0.25),
-                inset 0 0 20px rgba(212, 122, 117, 0.14);
-            animation: floatSlow 4s ease-in-out infinite;
+                0 28px 60px rgba(190, 24, 93, 0.22),
+                0 0 40px rgba(255, 255, 255, 0.45),
+                inset 0 2px 3px rgba(255, 255, 255, 0.95),
+                inset 0 -3px 8px rgba(244, 63, 94, 0.12);
+            animation: floatSlow 4.5s ease-in-out infinite;
+            transition: transform 0.4s var(--ios-spring);
             overflow: hidden;
         }
-        /* Hiệu ứng ánh kim quét qua huy hiệu */
+        .welcome-badge:hover {
+            transform: scale(1.04) translateY(-4px);
+        }
+        .welcome-badge:active {
+            transform: scale(0.96);
+        }
         .welcome-badge::after {
             content: "";
             position: absolute;
@@ -110,7 +254,7 @@
             background: linear-gradient(
                 to right,
                 rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.65) 50%,
+                rgba(255, 255, 255, 0.75) 50%,
                 rgba(255, 255, 255, 0) 100%
             );
             transform: rotate(25deg);
@@ -121,36 +265,16 @@
             0%, 40% { left: -75%; }
             100% { left: 135%; }
         }
-
         @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-9px) rotate(0.6deg); }
-        }
-        .pulse-text { animation: textPulse 2s infinite; }
-        @keyframes textPulse {
-            0%, 100% { opacity: 0.7; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1.04); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-9px); }
         }
 
-        /* Màn hình 1: Cô giáo */
-        #screen-teacher {
-            background: radial-gradient(circle at 25% 20%, #fffaf7 0%, #fde6e4 48%, #f7cbc7 100%);
-            background-attachment: fixed;
-        }
-        .teacher-card {
-            box-shadow:
-                0 25px 55px -12px rgba(159, 64, 72, 0.26),
-                0 0 30px rgba(255, 228, 230, 0.8);
-            animation: cardEntrance 0.9s ease-out;
-        }
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: translateY(24px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Chữ ánh kim chuyển sắc cho tên cô */
+        /* =========================================================
+           TYPOGRAPHY & LIQUID GLASS BUTTONS
+        ========================================================= */
         .shimmer-gold-rose {
-            background: linear-gradient(120deg, #be123c 15%, #e11d48 40%, #d97706 50%, #e11d48 60%, #be123c 85%);
+            background: linear-gradient(120deg, #be123c 15%, #e11d48 38%, #d97706 50%, #e11d48 62%, #be123c 85%);
             background-size: 220% auto;
             -webkit-background-clip: text;
             background-clip: text;
@@ -161,13 +285,27 @@
             to { background-position: 220% center; }
         }
 
-        /* Nút bấm cao cấp có vệt sáng */
         .btn-luxe {
-            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.88) 0%, rgba(190, 18, 60, 0.94) 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
             color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.45);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.45);
+            box-shadow:
+                0 12px 28px -6px rgba(225, 29, 72, 0.45),
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.55);
+            transition: transform 0.35s var(--ios-spring), box-shadow 0.35s ease;
+        }
+        .btn-luxe:hover {
+            transform: scale(1.04) translateY(-1px);
+            box-shadow:
+                0 16px 34px -6px rgba(225, 29, 72, 0.55),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7);
+        }
+        .btn-luxe:active {
+            transform: scale(0.95);
         }
         .btn-luxe::after {
             content: "";
@@ -176,7 +314,7 @@
             left: -100%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
             transform: skewX(-20deg);
             animation: btnSweep 3.5s infinite;
         }
@@ -185,110 +323,162 @@
             100% { left: 160%; }
         }
 
-        /* Màn hình 2: Bảng phấn */
-        #screen-chalkboard {
-            background: radial-gradient(circle at center, #dec8aa 0%, #877057 100%);
-            background-attachment: fixed;
+        /* =========================================================
+           MÀN HÌNH 1: CONTACT POSTER CÔ GIÁO (SQUIRCLE GLASS)
+        ========================================================= */
+        .teacher-card {
+            border-radius: 36px;
+            animation: cardEntrance 0.85s var(--ios-spring);
         }
-        .wood-desk {
-            background: linear-gradient(180deg, #bb8853 0%, #87572b 40%, #523111 100%);
-            box-shadow: inset 0 5px 15px rgba(255,255,255,0.2), 0 -10px 30px rgba(0,0,0,0.4);
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(28px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .chalkboard-container {
-            background: #1b382b;
-            background-image:
-                radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.35) 100%),
-                repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 2px, transparent 2px, transparent 4px);
-            border: 14px solid #7c4c28;
-            border-image: linear-gradient(to bottom right, #a86c3b, #542f13, #8c552b) 1 1 1 1;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 0 80px rgba(0,0,0,0.65);
+
+        .glass-photo-frame {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.35));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 24px;
+            padding: 10px 10px 16px 10px;
+            box-shadow:
+                0 16px 36px rgba(136, 19, 55, 0.16),
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+            transition: transform 0.45s var(--ios-spring), box-shadow 0.4s ease;
+            cursor: pointer;
             position: relative;
         }
-        @media (min-width: 640px) {
-            .chalkboard-container { border-width: 18px; }
+        .glass-photo-frame:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 40 !important;
+            box-shadow:
+                0 24px 46px rgba(136, 19, 55, 0.24),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 1);
         }
+
+        /* =========================================================
+           MÀN HÌNH 2: BẢNG PHẤN LIQUID GLASS & THƯ TRI ÂN
+        ========================================================= */
+        #screen-chalkboard {
+            background:
+                radial-gradient(circle at 20% 25%, #e8d5c4 0%, transparent 45%),
+                radial-gradient(circle at 80% 75%, #c7a689 0%, transparent 50%),
+                linear-gradient(135deg, #cbb096 0%, #8e735b 100%);
+            background-attachment: fixed;
+        }
+
+        .chalkboard-container {
+            border-radius: 34px;
+            position: relative;
+            background-image:
+                radial-gradient(circle at 50% 42%, rgba(45, 95, 76, 0.42) 0%, rgba(12, 26, 22, 0.88) 100%);
+        }
+
         .chalk-text {
-            color: rgba(255, 240, 243, 0.96);
+            color: rgba(255, 245, 247, 0.97);
             text-shadow:
-                0 0 4px rgba(255,255,255,0.85),
-                0 0 14px rgba(244, 114, 182, 0.45),
-                1px 1px 1px rgba(233, 100, 120, 0.4);
+                0 0 6px rgba(255,255,255,0.8),
+                0 0 18px rgba(244, 114, 182, 0.5);
         }
         .chalk-underline {
             width: 0;
             height: 3px;
-            margin: 6px auto 0;
+            margin: 8px auto 0;
             border-radius: 999px;
             background: linear-gradient(90deg, transparent, #fbcfe8, #fde68a, #fbcfe8, transparent);
-            box-shadow: 0 0 10px rgba(253, 230, 138, 0.8);
-            transition: width 1s ease-out;
+            box-shadow: 0 0 12px rgba(253, 230, 138, 0.85);
+            transition: width 1s var(--ios-smooth);
         }
-        .chalk-underline.drawn { width: min(220px, 55%); }
+        .chalk-underline.drawn { width: min(240px, 60%); }
 
-        .polaroid {
-            background: #ffffff;
-            padding: 10px 10px 22px 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 2px 5px rgba(0,0,0,0.15);
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-        }
-        .polaroid:hover {
-            transform: scale(1.08) rotate(0deg) !important;
-            z-index: 40 !important;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.45), 0 0 20px rgba(255, 228, 230, 0.5);
-        }
-        .tape {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 22px;
-            background-color: rgba(245, 234, 210, 0.72);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            backdrop-filter: blur(1px);
-            z-index: 5;
-        }
-        .sticky-note {
-            background: linear-gradient(135deg, #fff5b8 0%, #fde68a 100%);
-            box-shadow: 3px 6px 14px rgba(0,0,0,0.25);
-            transform: rotate(-3deg);
+        .glass-widget-note {
+            background: linear-gradient(135deg, rgba(254, 240, 138, 0.42), rgba(253, 224, 71, 0.22));
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(254, 249, 195, 0.65);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
         }
 
-        /* Nút mở thư phát sáng */
         .glow-pulse-btn {
             animation: btnHalo 2.2s infinite;
         }
         @keyframes btnHalo {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.65), 0 10px 20px rgba(0,0,0,0.3); }
-            50% { box-shadow: 0 0 0 12px rgba(244, 63, 94, 0), 0 12px 24px rgba(0,0,0,0.35); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.65), 0 12px 24px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(244, 63, 94, 0), 0 14px 28px rgba(0,0,0,0.35); }
         }
 
-        /* Phong bì & Thư */
-        .envelope-wrapper { perspective: 1000px; }
-        .envelope { width: 320px; height: 220px; background: #f7ebe1; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border-radius: 6px; transition: all 0.5s ease; }
+        /* Phong bì & Thư iOS Glass Sheet */
+        .envelope-wrapper { perspective: 1100px; }
+        .envelope {
+            width: 320px;
+            height: 220px;
+            background: linear-gradient(145deg, rgba(255, 247, 240, 0.92), rgba(245, 228, 214, 0.86));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+            border-radius: 22px;
+            transition: all 0.5s var(--ios-spring);
+        }
         @media (min-width: 640px) { .envelope { width: 480px; height: 300px; } }
-        .envelope .flap { position: absolute; top: 0; left: 0; right: 0; height: 50%; background: #ebd8c8; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform 0.6s ease 0.2s, z-index 0.2s ease 0.4s; z-index: 4; border-top: 2px solid #dfc7b3; }
+        .envelope .flap {
+            position: absolute; top: 0; left: 0; right: 0; height: 52%;
+            background: linear-gradient(180deg, #eed8c6, #e2c5ae);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.65s var(--ios-smooth) 0.15s, z-index 0.2s ease 0.4s;
+            z-index: 4;
+            border-radius: 22px 22px 0 0;
+        }
         .envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
-        .envelope .pocket { position: absolute; inset: 0; background: #f7ebe1; clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%); z-index: 3; border-radius: 6px; box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
-        .letter { position: absolute; left: 5%; right: 5%; bottom: 10px; top: 10px; background: #fffdf9; background-image: repeating-linear-gradient(#fffdf9 0px, #fffdf9 28px, #e8dfd5 29px); padding: 25px 20px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2; opacity: 0; transform: translateY(0); overflow-y: auto; }
-        .envelope.open .letter { opacity: 1; transform: translateY(-160px); height: 420px; z-index: 10; box-shadow: 0 15px 35px rgba(0,0,0,0.28); }
-        @media (min-width: 640px) { .envelope.open .letter { transform: translateY(-180px); height: 460px; } }
+        .envelope .pocket {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, #fbf0e6, #f1decb);
+            clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+            z-index: 3;
+            border-radius: 22px;
+        }
+        .letter {
+            position: absolute; left: 4%; right: 4%; bottom: 10px; top: 10px;
+            background: rgba(255, 253, 250, 0.96);
+            backdrop-filter: blur(24px);
+            background-image: repeating-linear-gradient(transparent 0px, transparent 28px, rgba(225, 29, 72, 0.08) 29px);
+            padding: 24px 22px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.75s var(--ios-spring);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(0);
+            overflow-y: auto;
+        }
+        .envelope.open .letter {
+            opacity: 1;
+            transform: translateY(-155px);
+            height: 430px;
+            z-index: 10;
+            box-shadow: 0 28px 65px rgba(0, 0, 0, 0.35);
+        }
+        @media (min-width: 640px) {
+            .envelope.open .letter { transform: translateY(-175px); height: 470px; }
+        }
         .wax-seal {
             position: absolute;
-            top: 45%;
-            left: 50%;
+            top: 46%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 54px;
-            height: 54px;
+            width: 58px; height: 58px;
             border-radius: 50%;
-            background: radial-gradient(circle, #c83e37 0%, #8b1e19 100%);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.35), 0 0 20px rgba(251, 191, 36, 0.65), inset 0 2px 4px rgba(255,255,255,0.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fde68a;
+            background: radial-gradient(circle at 30% 30%, #f43f5e 0%, #9f1239 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.65);
+            box-shadow:
+                0 8px 20px rgba(159, 18, 57, 0.45),
+                0 0 24px rgba(251, 191, 36, 0.65),
+                inset 0 2px 4px rgba(255, 255, 255, 0.55);
+            display: flex; align-items: center; justify-content: center;
+            color: #fef08a;
             font-size: 22px;
             cursor: pointer;
             z-index: 5;
@@ -300,40 +490,133 @@
         }
         .envelope.open .wax-seal { display: none; }
 
-        /* Màn hình 3 & 4: Bầu trời kỷ niệm */
-        .sky-stage { background: linear-gradient(180deg, #a9c8f0 0%, #f6c9d1 43%, #ffe5c7 78%, #f6c5b5 100%); position: relative; isolation: isolate; }
-        .sky-bg { position: fixed; inset: 0; z-index: -3; background: radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.78) 0 5%, transparent 23%), radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.72) 0 7%, transparent 25%), radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.42), transparent 35%), linear-gradient(180deg, #a9c8f0 0%, #eac7e1 38%, #ffe3c6 72%, #f7c8b9 100%); animation: skyPan 24s ease-in-out infinite alternate; }
-        .sky-bg::before, .sky-bg::after { content: ""; position: absolute; inset: 8% -10% 22%; background: radial-gradient(ellipse at 8% 65%, rgba(255,246,235,.85) 0 8%, transparent 21%), radial-gradient(ellipse at 23% 50%, rgba(255,248,241,.78) 0 9%, transparent 23%), radial-gradient(ellipse at 43% 68%, rgba(255,245,230,.8) 0 10%, transparent 25%), radial-gradient(ellipse at 65% 48%, rgba(255,250,244,.8) 0 9%, transparent 24%), radial-gradient(ellipse at 87% 65%, rgba(255,242,230,.85) 0 10%, transparent 25%); filter: blur(13px); opacity: .9; }
-        .sky-bg::after { inset: auto -5% 0; height: 19%; background: linear-gradient(180deg, rgba(255,235,220,.1), rgba(255,245,231,.72) 20%, rgba(242,190,181,.55)); filter: blur(3px); border-top: 2px solid rgba(255,255,255,.65); }
+        /* =========================================================
+           MÀN HÌNH 3 & 4: iOS 26 SPATIAL PHOTOS MEMORIES
+        ========================================================= */
+        .sky-stage {
+            background: linear-gradient(180deg, #b8d4f8 0%, #f7ced6 44%, #ffe7cc 78%, #f8cbbd 100%);
+            position: relative;
+            isolation: isolate;
+        }
+        .sky-bg {
+            position: fixed; inset: 0; z-index: -3;
+            background:
+                radial-gradient(ellipse at 15% 24%, rgba(255,255,255,.82) 0 6%, transparent 24%),
+                radial-gradient(ellipse at 78% 22%, rgba(255,255,255,.76) 0 8%, transparent 26%),
+                radial-gradient(ellipse at 50% 5%, rgba(255,255,255,.48), transparent 36%),
+                linear-gradient(180deg, #b4d1f7 0%, #edd0e5 38%, #ffe5ca 72%, #f8cdbf 100%);
+            animation: skyPan 24s ease-in-out infinite alternate;
+        }
         @keyframes skyPan { from { transform: scale(1); } to { transform: scale(1.045); } }
-        .gallery-title { color: #e86660; text-shadow: 0 2px 0 rgba(255,255,255,.75), 0 8px 22px rgba(155,91,111,.22); line-height: 1.15; }
-        .gallery-title::after { content: "♡"; display: block; width: min(420px, 65vw); margin: 3px auto 0; color: #ef8b83; font: 22px 'Montserrat', sans-serif; letter-spacing: 12px; border-top: 2px solid rgba(239,139,131,.75); padding-top: 3px; }
-        .memory-wall { position: relative; width: min(1180px, 96vw); height: min(57vh, 450px); margin: 0 auto; }
-        .memory-photo { position: absolute; width: clamp(112px, 13vw, 184px); padding: 7px 7px 19px; background: rgba(255,255,250,.96); border: 1px solid rgba(255,255,250,.95); box-shadow: 0 9px 22px rgba(96,67,69,.24), 0 2px 5px rgba(96,67,69,.12); cursor: pointer; transition: transform .35s ease, box-shadow .35s ease; transform: rotate(var(--tilt, 0deg)); z-index: 2; }
-        .memory-photo img { display: block; width: 100%; height: clamp(76px, 9.2vw, 126px); object-fit: cover; background: #f6e8df; }
-        .memory-photo span { display: block; padding-top: 5px; color: #846b68; text-align: center; font: 600 clamp(11px, 1.1vw, 14px) 'Patrick Hand', 'Caveat', cursive; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .member-card span { color: #a64d57; font-weight: 700; }
-        .memory-photo:hover { transform: translateY(-9px) rotate(0deg) scale(1.1); z-index: 30; box-shadow: 0 18px 34px rgba(96,67,69,.32), 0 0 18px rgba(255, 255, 255, 0.8); }
-        .memory-photo::before { content: ""; position: absolute; width: 42px; height: 13px; top: -7px; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(255,239,205,.78); box-shadow: 0 1px 3px rgba(90,70,60,.12); }
-        .memory-heart { position: absolute; color: #ef8b83; font-size: clamp(22px, 2.5vw, 34px); text-shadow: 0 2px 5px rgba(255,255,255,.8); z-index: 1; animation: heartFloat 4s ease-in-out infinite; }
-        @keyframes heartFloat { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-8px) rotate(8deg); } }
-        .sun-ray { position: fixed; inset: -20% -10% auto; height: 85%; background: radial-gradient(ellipse at 50% 85%, rgba(255,250,218,.7), transparent 58%); pointer-events: none; z-index: -1; animation: pulseRay 7s ease-in-out infinite alternate; }
-        @keyframes pulseRay { from { opacity: .55; transform: scale(.96); } to { opacity: .95; transform: scale(1.04); } }
-        .horizon-glow { position: fixed; left: 0; right: 0; bottom: 0; height: 17%; z-index: -1; background: linear-gradient(180deg, rgba(255,244,226,.05), rgba(255,249,232,.78)), repeating-linear-gradient(174deg, transparent 0 28px, rgba(255,255,255,.22) 29px 31px); border-top: 2px solid rgba(255,255,255,.65); box-shadow: 0 -10px 35px rgba(255,255,255,.25); }
 
-        /* TỐI ƯU GIAO DIỆN ĐIỆN THOẠI (KHÔNG ĐÈ CHỮ, HIỆN ĐỦ ẢNH) */
+        .sun-ray {
+            position: fixed; inset: -20% -10% auto; height: 85%;
+            background: radial-gradient(ellipse at 50% 85%, rgba(255,250,218,.75), transparent 58%);
+            pointer-events: none; z-index: -1;
+            animation: pulseRay 7s ease-in-out infinite alternate;
+        }
+        @keyframes pulseRay { from { opacity: .55; transform: scale(.96); } to { opacity: .95; transform: scale(1.04); } }
+
+        .horizon-glow {
+            position: fixed; left: 0; right: 0; bottom: 0; height: 17%; z-index: -1;
+            background: linear-gradient(180deg, rgba(255,244,226,.05), rgba(255,249,232,.82));
+            border-top: 1.5px solid rgba(255,255,255,.75);
+        }
+
+        .gallery-title {
+            color: #e11d48;
+            text-shadow: 0 2px 12px rgba(255,255,255,.85);
+            line-height: 1.15;
+        }
+        .gallery-title::after {
+            content: "♡";
+            display: block;
+            width: min(380px, 62vw);
+            margin: 4px auto 0;
+            color: #fb7185;
+            font: 20px 'Be Vietnam Pro', sans-serif;
+            letter-spacing: 12px;
+            border-top: 1.5px solid rgba(251, 113, 133, 0.55);
+            padding-top: 3px;
+        }
+
+        .memory-wall {
+            position: relative;
+            width: min(1180px, 96vw);
+            height: min(57vh, 455px);
+            margin: 0 auto;
+        }
+
+        /* Thẻ ảnh Kỷ Niệm kiểu Liquid Glass Widget */
+        .memory-photo {
+            position: absolute;
+            width: clamp(114px, 13vw, 186px);
+            padding: 7px 7px 14px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.36) 100%);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow:
+                0 12px 28px rgba(96, 67, 69, 0.18),
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+            cursor: pointer;
+            transition: transform 0.4s var(--ios-spring), box-shadow 0.35s ease;
+            transform: rotate(var(--tilt, 0deg));
+            z-index: 2;
+        }
+        .memory-photo img {
+            display: block;
+            width: 100%;
+            height: clamp(78px, 9.2vw, 126px);
+            object-fit: cover;
+            border-radius: 14px;
+            background: #f6e8df;
+        }
+        .memory-photo span {
+            display: block;
+            padding-top: 6px;
+            color: #704e54;
+            text-align: center;
+            font: 600 clamp(11px, 1.05vw, 13.5px) 'Patrick Hand', 'Caveat', cursive;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .member-card span { color: #9f1239; font-weight: 700; }
+        .memory-photo:hover {
+            transform: translateY(-10px) rotate(0deg) scale(1.12);
+            z-index: 30;
+            box-shadow:
+                0 22px 42px rgba(159, 18, 57, 0.25),
+                0 0 22px rgba(255, 255, 255, 0.9),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 1);
+        }
+
+        .memory-heart {
+            position: absolute;
+            color: #fb7185;
+            font-size: clamp(22px, 2.5vw, 34px);
+            text-shadow: 0 2px 8px rgba(255,255,255,.9);
+            z-index: 1;
+            animation: heartFloat 4s ease-in-out infinite;
+        }
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) rotate(-8deg); }
+            50% { transform: translateY(-8px) rotate(8deg); }
+        }
+
+        /* =========================================================
+           TỐI ƯU GIAO DIỆN ĐIỆN THOẠI (RESPONSIVE iOS MOBILE)
+        ========================================================= */
         @media (max-width: 640px) {
             #screen-chalkboard .chalkboard-container {
                 height: auto;
-                min-height: 75vh;
-                padding: 14px 10px;
+                min-height: 74vh;
+                padding: 16px 12px;
                 gap: 10px;
+                border-radius: 28px;
             }
-            #screen-chalkboard .polaroid {
-                padding: 5px 5px 10px 5px;
-            }
-
-            /* Trên mobile, bức tường ảnh tự xếp lưới 2 cột để xem đủ 100% ảnh mà không bị đè */
             .memory-wall {
                 position: relative;
                 width: 100%;
@@ -341,8 +624,8 @@
                 max-height: none;
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 14px;
-                padding: 8px 6px;
+                gap: 12px;
+                padding: 8px 4px;
             }
             .memory-heart { display: none; }
             .memory-photo {
@@ -351,21 +634,25 @@
                 right: auto !important;
                 top: auto !important;
                 width: 100%;
-                padding: 6px 6px 14px;
-                transform: rotate(calc(var(--tilt, 0deg) * 0.45));
+                padding: 6px 6px 12px;
+                border-radius: 18px;
+                transform: rotate(calc(var(--tilt, 0deg) * 0.4));
             }
             .memory-photo img {
                 height: 115px;
+                border-radius: 12px;
             }
             .memory-photo span {
                 font-size: 13px;
             }
             .gallery-title {
-                font-size: clamp(2.4rem, 9.5vw, 3.6rem);
+                font-size: clamp(2.3rem, 9.2vw, 3.5rem);
             }
         }
 
-        /* Hiệu ứng cánh hoa & trái tim rơi lơ lửng */
+        /* =========================================================
+           PARTICLES, SPARKS & VIDEO FRAME
+        ========================================================= */
         .particle {
             position: fixed;
             pointer-events: none;
@@ -380,7 +667,6 @@
             100% { transform: translateY(-10vh) translateX(-18px) scale(1.15) rotate(360deg); opacity: 0; }
         }
 
-        /* Hạt pháo hoa nhỏ khi chạm/click màn hình */
         .click-spark {
             position: fixed;
             pointer-events: none;
@@ -393,157 +679,214 @@
             100% { transform: translate(var(--tx), var(--ty)) scale(1.15) rotate(45deg); opacity: 0; }
         }
 
-        /* Khung video rạp chiếu phim lung linh */
         .video-glow-frame {
-            box-shadow:
-                0 25px 50px -12px rgba(190, 18, 60, 0.28),
-                0 0 40px rgba(251, 191, 36, 0.25);
+            border-radius: 32px;
         }
 
         .btn-restart-fw {
-            background-color: rgba(225, 29, 72, 0.88);
+            background: rgba(225, 29, 72, 0.82);
+            backdrop-filter: blur(20px);
             color: white;
-            border-color: rgba(253, 230, 138, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            transition: transform 0.35s var(--ios-spring);
         }
-        .btn-restart-fw:hover { background-color: rgba(225, 29, 72, 1); }
+        .btn-restart-fw:hover {
+            background: rgba(225, 29, 72, 0.96);
+            transform: scale(1.05);
+        }
     </style>
 </head>
-<body class="bg-neutral-900 relative">
+<body class="relative">
 
     <audio id="bg-audio" loop>
         <source src="op02.mp3" type="audio/mp3">
     </audio>
 
-    <button id="bgm-toggle" class="fixed top-4 right-4 z-[100] bg-white/85 hover:bg-white text-pink-700 px-3.5 py-2 rounded-full shadow-lg backdrop-blur-md transition flex items-center gap-2 text-xs font-semibold cursor-pointer border border-rose-200">
-        <i class="fa-solid fa-music text-pink-500 animate-spin" style="animation-duration: 4s;"></i>
-        <span id="bgm-status">Âm nhạc: Mở</span>
-    </button>
+    <!-- iOS 26 DYNAMIC ISLAND (THANH TRẠNG THÁI & ĐIỀU KHIỂN NỔI) -->
+    <div id="dynamic-island" class="dynamic-island fixed top-3 left-1/2 -translate-x-1/2 z-[100] px-3.5 py-2 rounded-full flex items-center gap-3 text-white max-w-[94vw]">
+        <!-- Sóng nhạc + Tên Slide -->
+        <div class="flex items-center gap-2">
+            <div id="island-eq" class="flex items-end gap-[2.5px] h-3.5">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+            </div>
+            <span id="island-label" class="text-[11px] sm:text-xs font-medium text-white/90 whitespace-nowrap tracking-tight">20/11 · Tri Ân</span>
+        </div>
 
-    <!-- MÀN HÌNH 0: MỞ ĐẦU -->
-    <div id="screen-welcome" class="screen bg-radial-theme active flex-col items-center justify-center p-4 min-h-screen">
+        <!-- Chấm chuyển nhanh 6 màn hình -->
+        <div class="hidden xs:flex sm:flex items-center gap-1.5 px-1.5 py-1 rounded-full bg-white/10">
+            <button onclick="goToScreen('screen-welcome')" class="island-dot active" data-target="screen-welcome" title="Mở đầu"></button>
+            <button onclick="goToScreen('screen-teacher')" class="island-dot" data-target="screen-teacher" title="Cô giáo"></button>
+            <button onclick="goToScreen('screen-chalkboard')" class="island-dot" data-target="screen-chalkboard" title="Bảng phấn"></button>
+            <button onclick="goToScreen('screen-sky')" class="island-dot" data-target="screen-sky" title="Kỷ niệm thầy cô"></button>
+            <button onclick="goToScreen('screen-members')" class="island-dot" data-target="screen-members" title="Kỷ niệm cấp 2"></button>
+            <button onclick="goToScreen('screen-video')" class="island-dot" data-target="screen-video" title="Thước phim"></button>
+        </div>
+
+        <!-- Nút Bật / Tắt nhạc -->
+        <button id="bgm-toggle" class="bg-white/15 hover:bg-white/25 active:scale-95 text-white px-2.5 py-1 rounded-full transition flex items-center gap-1.5 text-[11px] font-semibold cursor-pointer border border-white/20">
+            <i id="bgm-icon" class="fa-solid fa-volume-high text-rose-300"></i>
+            <span id="bgm-status">Mở</span>
+        </button>
+    </div>
+
+    <!-- MÀN HÌNH 0: MỞ ĐẦU (iOS 26 LOCK SCREEN) -->
+    <div id="screen-welcome" class="screen ios-wallpaper active flex-col items-center justify-between pt-20 pb-5 px-4 min-h-screen">
+        <div class="mesh-orb w-80 h-80 bg-rose-300/60 top-10 -left-16"></div>
+        <div class="mesh-orb w-96 h-96 bg-amber-200/60 bottom-10 -right-16" style="animation-delay: -5s;"></div>
         <div id="welcome-particles" class="absolute inset-0 pointer-events-none z-1"></div>
-        <div class="sunburst-aura"></div>
-        <div class="halo-ring"></div>
-        <div class="halo-ring"></div>
 
-        <div class="welcome-badge relative w-72 h-72 sm:w-80 sm:h-80 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
-            <div class="absolute inset-2 border border-rose-300/70 rounded-full pointer-events-none"></div>
-            <div class="absolute inset-3.5 border border-dashed border-amber-400/50 rounded-full pointer-events-none"></div>
-            <div class="text-rose-500 text-3xl mb-1 drop-shadow-xs"><i class="fa-solid fa-graduation-cap"></i></div>
-            <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold shimmer-gold-rose my-1 tracking-wider">
-                20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
-            </h1>
-            <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-rose-400 to-transparent my-1"></div>
-            <p class="font-handwriting text-2xl sm:text-3xl text-rose-700 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
-            <div class="mt-2 text-rose-500 animate-bounce">
-                <svg class="w-8 h-8 mx-auto fill-current drop-shadow" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <!-- Cụm ngày giờ kiểu màn hình khóa iOS -->
+        <div class="text-center z-10 mt-2">
+            <div class="inline-flex items-center gap-1.5 liquid-glass-subtle px-3.5 py-1 rounded-full text-xs font-semibold text-rose-800/90 mb-1">
+                <i class="fa-solid fa-lock-open text-[10px] text-rose-500"></i>
+                <span>Thứ Sáu, 20 Tháng 11</span>
             </div>
         </div>
-        <div class="mt-10 text-center cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
-            <p class="pulse-text text-2xl sm:text-3xl font-handwriting text-rose-800 font-bold flex items-center justify-center gap-2 bg-white/65 backdrop-blur-xs px-6 py-2 rounded-full shadow-sm border border-rose-200/80">
-                <i class="fa-solid fa-hand-pointer text-rose-500 text-lg"></i> Chạm để bắt đầu
-            </p>
+
+        <!-- Huy hiệu kính lỏng trung tâm -->
+        <div class="relative flex items-center justify-center my-auto z-10">
+            <div class="sunburst-aura"></div>
+            <div class="halo-ring"></div>
+            <div class="halo-ring"></div>
+
+            <div class="welcome-badge relative w-72 h-72 sm:w-84 sm:h-84 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
+                <div class="absolute inset-2.5 border border-white/75 rounded-full pointer-events-none"></div>
+                <div class="w-12 h-12 rounded-2xl liquid-glass-subtle flex items-center justify-center text-rose-500 text-2xl mb-1 shadow-sm">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold shimmer-gold-rose my-1 tracking-wider">
+                    20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
+                </h1>
+                <div class="w-20 h-[1.5px] bg-gradient-to-r from-transparent via-rose-400/70 to-transparent my-1"></div>
+                <p class="font-handwriting text-2xl sm:text-3xl text-rose-800 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
+                <div class="mt-2 text-rose-500 animate-bounce">
+                    <svg class="w-7 h-7 mx-auto fill-current drop-shadow" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút Live Activity mở khóa & Home Indicator -->
+        <div class="text-center cursor-pointer z-10 w-full flex flex-col items-center gap-4" onclick="goToScreen('screen-teacher')">
+            <div class="liquid-glass px-6 py-3 rounded-full inline-flex items-center gap-3 transition transform hover:scale-105 active:scale-95">
+                <span class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center text-xs shadow">
+                    <i class="fa-solid fa-hand-pointer"></i>
+                </span>
+                <div class="text-left">
+                    <p class="text-[10px] uppercase tracking-wider text-rose-600/80 font-bold">Live Activity · 20/11</p>
+                    <p class="font-handwriting text-xl sm:text-2xl text-rose-900 font-bold leading-none">Chạm để mở khóa kỷ niệm ♡</p>
+                </div>
+            </div>
+            <div class="ios-home-indicator"></div>
         </div>
     </div>
 
-    <!-- MÀN HÌNH 1: GIỚI THIỆU CÔ GIÁO -->
-    <div id="screen-teacher" class="screen flex-col items-center justify-center p-4 sm:p-8 min-h-screen">
+    <!-- MÀN HÌNH 1: GIỚI THIỆU CÔ GIÁO (iOS 26 CONTACT POSTER) -->
+    <div id="screen-teacher" class="screen ios-wallpaper flex-col items-center justify-between pt-20 pb-5 px-4 sm:px-8 min-h-screen">
+        <div class="mesh-orb w-96 h-96 bg-pink-300/55 top-16 right-10"></div>
+        <div class="mesh-orb w-80 h-80 bg-rose-200/65 bottom-12 left-8" style="animation-delay: -4s;"></div>
         <div id="teacher-particles" class="absolute inset-0 pointer-events-none"></div>
-        <div class="absolute top-4 left-4 z-30 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow border border-rose-100">
-            Slide 1 / 5 · Người lái đò thầm lặng
-        </div>
-        <div class="teacher-card relative max-w-3xl w-full bg-[#fffdf9]/95 border-2 border-rose-200 rounded-2xl p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-12">
-            <div class="absolute -top-3.5 -left-3.5 bg-gradient-to-br from-rose-500 to-pink-600 text-white w-11 h-11 rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-heart"></i></div>
+
+        <div class="liquid-glass teacher-card relative max-w-3xl w-full p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-auto">
+            <div class="absolute -top-3.5 -left-3.5 bg-gradient-to-br from-rose-500 to-pink-600 text-white w-11 h-11 rounded-2xl flex items-center justify-center shadow-lg border border-white/60">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
             <div class="shrink-0">
-                <div class="polaroid transform -rotate-2 w-52 sm:w-56 cursor-pointer" onclick="openLightbox('cotrang.jpg', 'Cô giáo kính yêu của chúng em ♡')">
-                    <div class="tape"></div>
-                    <img src="cotrang.jpg" class="w-full h-56 sm:h-60 object-cover rounded-xs" alt="Ảnh cô giáo">
-                    <p class="font-chalk text-center text-rose-700 text-lg sm:text-xl mt-2 font-bold whitespace-nowrap">Cô Đào Thị Huyền Trang ♡</p>
+                <div class="glass-photo-frame transform -rotate-2 w-52 sm:w-56" onclick="openLightbox('cotrang.jpg', 'Cô giáo kính yêu của chúng em ♡')">
+                    <img src="cotrang.jpg" class="w-full h-56 sm:h-60 object-cover rounded-[18px]" alt="Ảnh cô giáo">
+                    <p class="font-chalk text-center text-rose-800 text-lg sm:text-xl mt-2.5 font-bold whitespace-nowrap">Cô Đào Thị Huyền Trang ♡</p>
                 </div>
             </div>
+
             <div class="text-center md:text-left flex-1">
-                <span class="inline-block bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-widest px-3.5 py-1 rounded-full mb-2 shadow-2xs">Giáo viên chủ nhiệm</span>
+                <span class="inline-flex items-center gap-1.5 liquid-glass-subtle text-rose-700 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-2">
+                    <i class="fa-solid fa-sparkles text-amber-500"></i> Giáo viên chủ nhiệm
+                </span>
                 <h2 class="font-calligraphy text-5xl sm:text-6xl shimmer-gold-rose mb-1 leading-tight py-1">Cô Đào Thị Huyền Trang</h2>
-                <p class="font-sans text-xs sm:text-sm text-amber-800/90 font-semibold mb-4"><i class="fa-solid fa-book-open mr-1 text-rose-500"></i> Môn giảng dạy: Ngữ Văn</p>
-                <div class="bg-gradient-to-r from-rose-50 to-amber-50/60 border-l-4 border-rose-500 p-4 rounded-r-xl mb-6 shadow-2xs">
-                    <p class="font-sans text-base sm:text-lg text-rose-700 font-semibold leading-relaxed">"Một cô giáo giỏi giống như ngọn nến – thắp sáng tương lai của bao thế hệ bằng chính sự hy sinh thầm lặng của mình."</p>
-                    <p class="font-sans text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed">Cảm ơn cô đã luôn dịu dàng lắng nghe, bao dung cho những lần nghịch ngợm và dìu dắt tập thể lớp chúng em trưởng thành từng ngày.</p>
+                <p class="text-xs sm:text-sm text-amber-900/90 font-semibold mb-4">
+                    <i class="fa-solid fa-book-open mr-1.5 text-rose-500"></i> Môn giảng dạy: Ngữ Văn
+                </p>
+
+                <div class="liquid-glass-subtle border-l-4 border-l-rose-500 p-4 rounded-2xl mb-6">
+                    <p class="text-sm sm:text-base text-rose-800 font-semibold leading-relaxed">
+                        "Một cô giáo giỏi giống như ngọn nến – thắp sáng tương lai của bao thế hệ bằng chính sự hy sinh thầm lặng của mình."
+                    </p>
+                    <p class="text-xs sm:text-sm text-neutral-700 mt-2 leading-relaxed">
+                        Cảm ơn cô đã luôn dịu dàng lắng nghe, bao dung cho những lần nghịch ngợm và dìu dắt tập thể lớp chúng em trưởng thành từng ngày.
+                    </p>
                 </div>
+
                 <div class="flex justify-center md:justify-end">
-                    <button onclick="goToScreen('screen-chalkboard')" class="btn-luxe font-sans text-sm font-semibold px-8 py-3 rounded-full transition transform hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer z-50">
+                    <button onclick="goToScreen('screen-chalkboard')" class="btn-luxe text-sm font-semibold px-8 py-3.5 rounded-full flex items-center gap-2.5 cursor-pointer z-50">
                         <span>Tiếp tục</span> <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
         </div>
+
+        <div class="ios-home-indicator mt-4 z-20"></div>
     </div>
 
-    <!-- MÀN HÌNH 2: BẢNG PHẤN & THƯ -->
-    <div id="screen-chalkboard" class="screen flex-col justify-between items-center p-2 sm:p-6 min-h-screen">
-        <div class="w-full max-w-5xl flex justify-between items-center px-4 py-1 text-xs text-amber-100/90 font-sans">
-            <span><i class="fa-solid fa-chalkboard-user mr-1"></i> Slide 2 / 5 · Lớp học thân yêu</span>
-            <span>Tri ân thầy cô 20/11</span>
-        </div>
-        <div class="chalkboard-container w-full max-w-5xl h-[68vh] sm:h-[72vh] rounded-lg flex flex-col justify-between p-4 sm:p-8 my-auto overflow-hidden">
-            <!-- Bụi phấn bay nhẹ trên bảng -->
+    <!-- MÀN HÌNH 2: BẢNG PHẤN KÍNH LỎNG & THƯ -->
+    <div id="screen-chalkboard" class="screen flex-col justify-between items-center pt-20 pb-5 px-3 sm:px-6 min-h-screen">
+        <div class="liquid-glass-dark chalkboard-container w-full max-w-5xl h-[72vh] sm:h-[75vh] flex flex-col justify-between p-4 sm:p-8 my-auto overflow-hidden">
             <div id="chalk-dust-container" class="absolute inset-0 pointer-events-none z-5"></div>
 
-            <!-- Giấy note góc trái -->
-            <div class="sticky-note relative sm:absolute top-0 left-0 sm:top-4 sm:left-4 p-2 sm:p-3 rounded-xs text-neutral-800 w-24 sm:w-28 text-center pointer-events-none z-10 self-start">
-                <span class="font-handwriting text-lg sm:text-xl font-bold block">20/11 ♡</span>
-                <span class="text-[9px] sm:text-[10px] text-amber-800 uppercase tracking-widest block">Memory</span>
+            <!-- Widget Note kính vàng góc trái -->
+            <div class="glass-widget-note relative sm:absolute top-0 left-0 sm:top-5 sm:left-5 px-3 py-2 text-amber-100 w-24 sm:w-28 text-center pointer-events-none z-10 self-start">
+                <span class="font-handwriting text-lg sm:text-xl font-bold block text-amber-200">20/11 ♡</span>
+                <span class="text-[9px] sm:text-[10px] text-amber-100/80 uppercase tracking-widest block">iOS Memory</span>
             </div>
 
-            <div class="absolute top-4 right-6 text-white/40 pointer-events-none hidden sm:block text-right">
-                <i class="fa-solid fa-paper-plane text-2xl mb-2 text-white/30 transform -rotate-12 block"></i>
-                <div class="text-sm font-handwriting text-pink-200/60">tri ân thầy cô...</div>
+            <div class="absolute top-5 right-6 text-white/45 pointer-events-none hidden sm:block text-right">
+                <i class="fa-solid fa-paper-plane text-2xl mb-1 text-rose-300/60 transform -rotate-12 block"></i>
+                <div class="text-sm font-handwriting text-pink-200/75">tri ân thầy cô...</div>
             </div>
 
             <!-- Khu vực chữ phấn ở giữa -->
-            <div class="my-auto text-center px-2 sm:px-32 z-10">
+            <div class="my-auto text-center px-2 sm:px-36 z-10">
                 <div id="chalk-line-1" class="chalk-text font-chalk text-4xl sm:text-7xl md:text-8xl text-pink-200 min-h-[52px] sm:min-h-[105px]"></div>
                 <div id="chalk-line-2" class="chalk-text font-chalk text-3xl sm:text-6xl md:text-7xl text-white mt-1 sm:mt-2 min-h-[48px] sm:min-h-[85px]"></div>
                 <div id="chalk-line-3" class="chalk-text font-handwriting text-3xl sm:text-5xl text-rose-300 font-bold mt-1 sm:mt-3 min-h-[36px]"></div>
                 <div id="chalk-underline" class="chalk-underline"></div>
             </div>
 
-            <!-- Cụm 3 ảnh: Xếp hàng ngang dưới chữ trên điện thoại (không bao giờ đè chữ), tách 2 bên trên máy tính -->
+            <!-- Cụm 3 ảnh Widget kính nổi -->
             <div class="flex flex-row justify-center items-center gap-2.5 sm:block z-20 my-2 sm:my-0">
-                <div class="sm:absolute sm:left-6 sm:top-24 flex flex-row sm:flex-col gap-2.5 sm:gap-6">
-                    <div class="polaroid transform -rotate-3 sm:-rotate-6 w-24 sm:w-36" onclick="openLightbox('anh03.jpg', 'Những ngày bên nhau ♡')">
-                        <div class="tape hidden sm:block"></div>
-                        <img src="anh03.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Kỷ niệm">
-                        <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-1 sm:mt-2 font-bold truncate">Những ngày bên nhau ♡</p>
+                <div class="sm:absolute sm:left-6 sm:top-24 flex flex-row sm:flex-col gap-2.5 sm:gap-5">
+                    <div class="glass-photo-frame transform -rotate-3 sm:-rotate-6 w-24 sm:w-36 !p-1.5 sm:!p-2 !rounded-[18px]" onclick="openLightbox('anh03.jpg', 'Những ngày bên nhau ♡')">
+                        <img src="anh03.jpg" class="w-full h-16 sm:h-24 object-cover rounded-[12px]" alt="Kỷ niệm">
+                        <p class="font-handwriting text-center text-neutral-800 text-xs sm:text-sm mt-1 font-bold truncate">Những ngày bên nhau ♡</p>
                     </div>
-                    <div class="polaroid transform rotate-2 sm:rotate-3 w-24 sm:w-36" onclick="openLightbox('anh01.jpg', 'Một thời áo trắng ♡')">
-                        <div class="tape hidden sm:block"></div>
-                        <img src="anh01.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Lớp học">
-                        <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-1 sm:mt-2 font-bold truncate">Một thời áo trắng ♡</p>
+                    <div class="glass-photo-frame transform rotate-2 sm:rotate-3 w-24 sm:w-36 !p-1.5 sm:!p-2 !rounded-[18px]" onclick="openLightbox('anh01.jpg', 'Một thời áo trắng ♡')">
+                        <img src="anh01.jpg" class="w-full h-16 sm:h-24 object-cover rounded-[12px]" alt="Lớp học">
+                        <p class="font-handwriting text-center text-neutral-800 text-xs sm:text-sm mt-1 font-bold truncate">Một thời áo trắng ♡</p>
                     </div>
                 </div>
                 <div class="sm:absolute sm:right-6 sm:top-24">
-                    <div class="polaroid transform -rotate-2 sm:rotate-6 w-24 sm:w-36" onclick="openLightbox('anh02.jpg', 'Thanh xuân của chúng mình')">
-                        <div class="tape hidden sm:block"></div>
-                        <img src="anh02.jpg" class="w-full h-16 sm:h-24 object-cover rounded-xs" alt="Thanh xuân">
-                        <p class="font-handwriting text-center text-neutral-700 text-xs sm:text-sm mt-1 sm:mt-2 font-bold truncate">Thanh xuân của chúng mình</p>
+                    <div class="glass-photo-frame transform -rotate-2 sm:rotate-6 w-24 sm:w-36 !p-1.5 sm:!p-2 !rounded-[18px]" onclick="openLightbox('anh02.jpg', 'Thanh xuân của chúng mình')">
+                        <img src="anh02.jpg" class="w-full h-16 sm:h-24 object-cover rounded-[12px]" alt="Thanh xuân">
+                        <p class="font-handwriting text-center text-neutral-800 text-xs sm:text-sm mt-1 font-bold truncate">Thanh xuân của chúng mình</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Nút mở thư -->
+            <!-- Nút mở thư Liquid Glass -->
             <div class="text-center z-20 pt-2 pb-1">
-                <button id="btn-open-envelope" class="hidden opacity-0 glow-pulse-btn transition-all duration-700 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-handwriting text-xl sm:text-2xl px-7 py-2.5 rounded-full border border-amber-200/70 transform hover:scale-105 active:scale-95 items-center gap-3 mx-auto cursor-pointer">
+                <button id="btn-open-envelope" class="hidden opacity-0 glow-pulse-btn btn-luxe font-handwriting text-xl sm:text-2xl px-8 py-2.5 rounded-full items-center gap-3 mx-auto cursor-pointer">
                     <i class="fa-solid fa-envelope-open-text text-amber-300"></i> <span>Mở thư tri ân</span>
                 </button>
             </div>
         </div>
-        <div class="wood-desk w-full h-14 sm:h-20 rounded-t-xl border-t border-amber-300/30 flex items-center justify-center">
-            <span class="text-amber-200/60 text-xs tracking-widest font-sans">✦ 20 . 11 ✦</span>
-        </div>
+
+        <div class="ios-home-indicator mt-3"></div>
     </div>
 
-    <!-- ENVELOPE MODAL -->
-    <div id="envelope-modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+    <!-- ENVELOPE MODAL (iOS 26 GLASS SHEET) -->
+    <div id="envelope-modal" class="fixed inset-0 bg-black/65 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
         <div class="envelope-wrapper relative">
             <div id="envelope" class="envelope">
                 <div class="flap"></div>
@@ -551,37 +894,36 @@
                 <div class="pocket"></div>
                 <div id="letter-content" class="letter flex flex-col justify-between">
                     <div>
-                        <h3 class="font-handwriting text-2xl sm:text-3xl font-bold text-rose-800 border-b border-rose-200 pb-2 mb-3">Kính gửi thầy cô,</h3>
+                        <h3 class="font-handwriting text-2xl sm:text-3xl font-bold text-rose-800 border-b border-rose-200/80 pb-2 mb-3">Kính gửi thầy cô,</h3>
                         <p class="font-handwriting text-xl sm:text-2xl text-neutral-800 leading-relaxed space-y-2">
                             Nhân ngày <strong class="text-rose-700">Nhà giáo Việt Nam 20/11</strong>, chúng em kính chúc thầy cô luôn mạnh khỏe, hạnh phúc và luôn tràn đầy niềm vui trong sự nghiệp trồng người.<br><br>
                             Cảm ơn thầy cô đã luôn tận tâm dạy dỗ, kiên nhẫn uốn nắn và đồng hành cùng chúng em trên hành trình trưởng thành. Những lời thầy cô giảng dạy sẽ mãi là hành trang quý giá theo chúng em suốt cuộc đời.
                         </p>
                     </div>
-                    <div class="pt-4 border-t border-rose-100 flex flex-col items-end pb-2">
+                    <div class="pt-4 border-t border-rose-100 flex flex-col items-end pb-1">
                         <p class="font-handwriting text-2xl text-rose-800 font-bold mb-2">Học trò của thầy cô ♡</p>
-                        <button onclick="closeEnvelopeModal(); goToScreen('screen-sky');" class="btn-luxe font-sans text-sm font-semibold px-7 py-3 rounded-full transition transform hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer z-50">
+                        <button onclick="closeEnvelopeModal(); goToScreen('screen-sky');" class="btn-luxe text-sm font-semibold px-7 py-3 rounded-full flex items-center gap-2 cursor-pointer z-50">
                             <span>Tiếp tục</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        <p id="seal-hint" class="text-amber-200/90 font-handwriting text-xl mt-5 animate-pulse">Chạm vào dấu sáp trái tim để mở thư nhé ♡</p>
-        <button onclick="closeEnvelopeModal()" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        <p id="seal-hint" class="text-white/95 liquid-glass-subtle !bg-white/15 px-5 py-2 rounded-full font-handwriting text-xl mt-6 animate-pulse">Chạm vào dấu sáp trái tim để mở thư nhé ♡</p>
+        <button onclick="closeEnvelopeModal()" class="fixed top-6 right-6 w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white flex items-center justify-center text-lg cursor-pointer transition"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- MÀN HÌNH 3: BỨC TƯỜNG KỶ NIỆM -->
-    <div id="screen-sky" class="screen sky-stage flex-col items-center justify-between px-3 sm:px-6 py-12 min-h-screen">
+    <!-- MÀN HÌNH 3: BỨC TƯỜNG KỶ NIỆM (iOS 26 SPATIAL MEMORIES) -->
+    <div id="screen-sky" class="screen sky-stage flex-col items-center justify-between pt-20 pb-5 px-3 sm:px-6 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
         <canvas id="sky-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
-        <div class="absolute top-4 left-4 z-30 bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
-            Slide 3 / 5 · Kỷ niệm các thầy cô trong trường
-        </div>
-        <header class="relative z-20 text-center mt-6">
+
+        <header class="relative z-20 text-center mt-2">
             <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Ngày nhà giáo Việt Nam</h2>
-            <p class="font-handwriting text-xl sm:text-3xl text-rose-700/90 mt-1 font-bold tracking-widest">Lưu giữ những khoảnh khắc thanh xuân · 20 / 11</p>
+            <p class="font-handwriting text-xl sm:text-3xl text-rose-800/90 mt-1 font-bold tracking-widest">Lưu giữ những khoảnh khắc thanh xuân · 20 / 11</p>
         </header>
-        <main class="relative z-20 my-auto w-full flex justify-center items-center py-6">
+
+        <main class="relative z-20 my-auto w-full flex justify-center items-center py-4">
             <div class="memory-wall">
                 <span class="memory-heart" style="left:4%;top:53%">♡</span><span class="memory-heart" style="left:21%;top:20%;animation-delay:.7s">♡</span>
                 <span class="memory-heart" style="left:48%;top:42%;animation-delay:1.3s">♡</span><span class="memory-heart" style="right:19%;top:18%;animation-delay:.4s">♡</span>
@@ -627,26 +969,29 @@
                 </div>
             </div>
         </main>
-        <footer class="relative z-20 text-center mb-4 flex flex-col items-center">
-            <p class="font-handwriting text-xl sm:text-2xl text-rose-800/90 font-bold drop-shadow-sm">Cảm ơn thầy cô vì đã viết nên những trang thanh xuân đẹp nhất ♡</p>
-            <button onclick="goToScreen('screen-members')" class="btn-luxe mt-3 px-7 py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition inline-flex items-center gap-2 cursor-pointer z-50">
+
+        <footer class="relative z-20 text-center flex flex-col items-center gap-3">
+            <div class="liquid-glass-subtle px-5 py-2 rounded-full">
+                <p class="font-handwriting text-lg sm:text-2xl text-rose-900 font-bold">Cảm ơn thầy cô vì đã viết nên những trang thanh xuân đẹp nhất ♡</p>
+            </div>
+            <button onclick="goToScreen('screen-members')" class="btn-luxe px-7 py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 cursor-pointer z-50">
                 <span>Kỷ niệm đẹp năm cấp 2</span> <i class="fa-solid fa-arrow-right"></i>
             </button>
+            <div class="ios-home-indicator mt-1"></div>
         </footer>
     </div>
 
-    <!-- MÀN HÌNH 4: KỶ NIỆM CẤP 2 -->
-    <div id="screen-members" class="screen sky-stage flex-col items-center justify-between px-3 sm:px-6 py-12 min-h-screen">
+    <!-- MÀN HÌNH 4: KỶ NIỆM CẤP 2 (iOS 26 SPATIAL ALBUM) -->
+    <div id="screen-members" class="screen sky-stage flex-col items-center justify-between pt-20 pb-5 px-3 sm:px-6 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
         <canvas id="members-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
-        <div class="absolute top-4 left-4 z-30 bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
-            Slide 4 / 5 · Những kĩ niệm tươi đẹp của trường em
-        </div>
-        <header class="relative z-20 text-center mt-6">
+
+        <header class="relative z-20 text-center mt-2">
             <h2 class="gallery-title font-calligraphy text-5xl sm:text-7xl md:text-8xl">Những Kĩ Niệm Đẹp Vào Năm Cấp 2</h2>
-            <p class="font-handwriting text-xl sm:text-3xl text-rose-700/90 mt-1 font-bold tracking-widest">Những mảnh ghép tạo nên thanh xuân rực rỡ ♡</p>
+            <p class="font-handwriting text-xl sm:text-3xl text-rose-800/90 mt-1 font-bold tracking-widest">Những mảnh ghép tạo nên thanh xuân rực rỡ ♡</p>
         </header>
-        <main class="relative z-20 my-auto w-full flex justify-center items-center py-6">
+
+        <main class="relative z-20 my-auto w-full flex justify-center items-center py-4">
             <div class="memory-wall">
                 <span class="memory-heart" style="left:5%;top:50%">♡</span><span class="memory-heart" style="left:22%;top:18%;animation-delay:.6s">♡</span><span class="memory-heart" style="left:49%;top:40%;animation-delay:1.2s">♡</span>
 
@@ -691,91 +1036,117 @@
                 </div>
             </div>
         </main>
-        <footer class="relative z-20 text-center mb-4 flex flex-col items-center">
-            <p class="font-handwriting text-xl sm:text-2xl text-rose-800/90 font-bold drop-shadow-sm">Mãi là một tập thể đoàn kết dưới mái nhà chung của cô ♡</p>
-            <button onclick="goToScreen('screen-video')" class="btn-luxe mt-3 px-7 py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition inline-flex items-center gap-2 cursor-pointer z-50">
+
+        <footer class="relative z-20 text-center flex flex-col items-center gap-3">
+            <div class="liquid-glass-subtle px-5 py-2 rounded-full">
+                <p class="font-handwriting text-lg sm:text-2xl text-rose-900 font-bold">Mãi là một tập thể đoàn kết dưới mái nhà chung của cô ♡</p>
+            </div>
+            <button onclick="goToScreen('screen-video')" class="btn-luxe px-7 py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 cursor-pointer z-50">
                 <span>Tiếp tục: Xem thước phim Kỷ Niệm</span> <i class="fa-solid fa-play"></i>
             </button>
+            <div class="ios-home-indicator mt-1"></div>
         </footer>
     </div>
 
     <!-- MÀN HÌNH 5: VIDEO & PHÁO HOA & FOOTER -->
-    <div id="screen-video" class="screen bg-radial-theme flex-col items-center justify-center p-4 sm:p-8 min-h-screen">
+    <div id="screen-video" class="screen ios-wallpaper flex-col items-center justify-between pt-20 pb-5 px-4 sm:px-8 min-h-screen">
+        <div class="mesh-orb w-96 h-96 bg-rose-300/60 top-12 left-10"></div>
+        <div class="mesh-orb w-80 h-80 bg-amber-200/65 bottom-16 right-10"></div>
         <div id="video-particles" class="absolute inset-0 pointer-events-none"></div>
-        <div class="absolute top-4 left-4 z-30 bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold text-rose-700 shadow">
-            Slide 5 / 5 · Thước phim thanh xuân
+
+        <div class="w-full max-w-4xl flex flex-col items-center my-auto z-20">
+            <h2 class="font-calligraphy text-5xl sm:text-7xl shimmer-gold-rose mb-5 drop-shadow-sm text-center py-1">Thước Phim Kỷ Niệm</h2>
+
+            <div class="liquid-glass video-glow-frame relative w-full p-3 sm:p-4">
+                <video id="tribute-video" class="w-full aspect-video rounded-[22px] shadow-lg bg-black" controls>
+                    <source src="giaovien2.mp4" type="video/mp4">
+                    Kĩ niệm cuối năm.
+                </video>
+            </div>
+
+            <p class="font-handwriting text-xl sm:text-2xl text-rose-800 mt-4 text-center font-semibold">Hãy xem đến hết video để nhận một bất ngờ nhé ♡</p>
+
+            <button onclick="startFireworks()" class="btn-luxe mt-3 px-7 py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> <span>Bắn pháo hoa chúc mừng</span>
+            </button>
         </div>
-
-        <h2 class="font-calligraphy text-5xl sm:text-7xl shimmer-gold-rose mb-6 z-20 drop-shadow-sm text-center py-1">Thước Phim Kỷ Niệm</h2>
-
-        <div class="video-glow-frame relative z-20 w-full max-w-4xl bg-white/75 p-3 sm:p-5 rounded-2xl backdrop-blur-sm border-2 border-rose-200">
-            <video id="tribute-video" class="w-full aspect-video rounded-xl shadow-inner bg-black" controls>
-                <source src="giaovien2.mp4" type="video/mp4">
-                Kĩ niệm cuối năm.
-            </video>
-        </div>
-
-        <p class="font-handwriting text-xl sm:text-2xl text-rose-700 mt-5 z-20 text-center">Hãy xem đến hết video để nhận một bất ngờ nhé ♡</p>
-
-        <button onclick="startFireworks()" class="btn-luxe mt-3 px-6 py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition inline-flex items-center gap-2 cursor-pointer z-20">
-            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> <span>Bắn pháo hoa chúc mừng</span>
-        </button>
 
         <!-- Canvas chứa pháo hoa -->
         <canvas id="fireworks-canvas" class="fixed inset-0 pointer-events-none z-40 opacity-0 transition-opacity duration-1000"></canvas>
 
         <!-- Thông điệp sau cùng -->
-        <div id="fireworks-msg" class="fixed inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000 z-50">
-            <h1 class="font-calligraphy text-6xl sm:text-8xl text-white drop-shadow-[0_0_25px_rgba(255,100,150,0.95)] text-center px-4">
-                Cảm ơn Thầy Cô <br><span class="text-4xl sm:text-6xl font-handwriting mt-4 block text-amber-200">Mãi Mãi Một Tình Yêu ♡</span>
-            </h1>
-            <button onclick="resetApp()" class="btn-restart-fw mt-12 pointer-events-auto backdrop-blur-md px-7 py-3 rounded-full font-sans text-sm font-semibold transition border shadow-xl flex items-center gap-2 cursor-pointer z-50">
-                <i class="fa-solid fa-rotate-left"></i> Xem lại từ đầu
-            </button>
+        <div id="fireworks-msg" class="fixed inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000 z-50 px-4">
+            <div class="liquid-glass-dark !bg-black/45 px-8 py-10 rounded-[36px] text-center max-w-2xl">
+                <h1 class="font-calligraphy text-6xl sm:text-8xl text-white drop-shadow-[0_0_25px_rgba(255,100,150,0.95)]">
+                    Cảm ơn Thầy Cô <br><span class="text-4xl sm:text-6xl font-handwriting mt-3 block text-amber-200">Mãi Mãi Một Tình Yêu ♡</span>
+                </h1>
+                <button onclick="resetApp()" class="btn-restart-fw mt-8 pointer-events-auto px-7 py-3 rounded-full text-sm font-semibold inline-flex items-center gap-2 cursor-pointer mx-auto">
+                    <i class="fa-solid fa-rotate-left"></i> Xem lại từ đầu
+                </button>
+            </div>
         </div>
 
-        <footer class="w-full bg-rose-50/90 text-rose-700 py-6 text-center border-t border-rose-200 mt-14 z-20 rounded-t-2xl">
-            <h2 class="font-calligraphy text-3xl font-bold mb-2">Liên hệ</h2>
+        <footer class="w-full max-w-4xl liquid-glass-subtle text-rose-800 py-5 px-4 text-center mt-10 z-20 rounded-[28px] flex flex-col items-center">
+            <h2 class="font-calligraphy text-3xl font-bold mb-1 text-rose-700">Liên hệ</h2>
             <p class="font-handwriting text-xl">Email: ngotrananhtuan906@gmail.com</p>
-            <p class="font-sans text-xs text-neutral-500 mt-3">designed by Ngô Tuấn</p>
+            <p class="text-xs text-neutral-600 mt-2 mb-3">designed by Ngô Tuấn</p>
+            <div class="ios-home-indicator"></div>
         </footer>
     </div>
 
-    <!-- MODAL LIGHTBOX ẢNH -->
-    <div id="photo-lightbox" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
-        <div class="relative max-w-3xl w-full bg-white p-3 sm:p-4 rounded-xl shadow-2xl">
-            <img id="lightbox-img" src="" class="w-full max-h-[75vh] object-contain rounded" alt="Chi tiết ảnh">
-            <p id="lightbox-caption" class="font-handwriting text-center text-2xl sm:text-3xl text-neutral-800 font-bold mt-3"></p>
-            <button onclick="closeLightbox()" class="absolute -top-4 -right-4 bg-rose-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-rose-700 transition cursor-pointer z-50"><i class="fa-solid fa-xmark"></i></button>
+    <!-- MODAL LIGHTBOX ẢNH (iOS 26 GLASS PREVIEW) -->
+    <div id="photo-lightbox" class="fixed inset-0 bg-black/75 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
+        <div class="relative max-w-3xl w-full liquid-glass !bg-white/85 p-3 sm:p-4 rounded-[30px] shadow-2xl">
+            <img id="lightbox-img" src="" class="w-full max-h-[74vh] object-contain rounded-[20px]" alt="Chi tiết ảnh">
+            <p id="lightbox-caption" class="font-handwriting text-center text-2xl sm:text-3xl text-rose-950 font-bold mt-3"></p>
+            <button onclick="closeLightbox()" class="absolute -top-3 -right-3 bg-rose-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg border border-white/60 hover:bg-rose-700 active:scale-90 transition cursor-pointer z-50"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
         const bgAudio = document.getElementById('bg-audio');
+        const islandEq = document.getElementById('island-eq');
         let isMuted = false;
+
+        function updateAudioUI(playing) {
+            const statusEl = document.getElementById('bgm-status');
+            const iconEl = document.getElementById('bgm-icon');
+            if (playing) {
+                if (statusEl) statusEl.innerText = "Mở";
+                if (iconEl) iconEl.className = "fa-solid fa-volume-high text-rose-300";
+                if (islandEq) islandEq.classList.remove('eq-paused');
+            } else {
+                if (statusEl) statusEl.innerText = "Tắt";
+                if (iconEl) iconEl.className = "fa-solid fa-volume-xmark text-white/50";
+                if (islandEq) islandEq.classList.add('eq-paused');
+            }
+        }
+
         if (bgAudio) {
+            updateAudioUI(false);
             document.addEventListener('click', function () {
-                if (bgAudio.paused && !isMuted) bgAudio.play().catch(e => console.log(e));
+                if (bgAudio.paused && !isMuted) {
+                    bgAudio.play().then(() => updateAudioUI(true)).catch(e => console.log(e));
+                }
             }, { once: true });
         }
 
         const bgmToggle = document.getElementById('bgm-toggle');
         if (bgmToggle) {
-            bgmToggle.addEventListener('click', function () {
+            bgmToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
                 isMuted = !isMuted;
-                const statusEl = document.getElementById('bgm-status');
                 if (isMuted) {
                     if (bgAudio) bgAudio.pause();
-                    if (statusEl) statusEl.innerText = "Âm nhạc: Tắt";
+                    updateAudioUI(false);
                 } else {
-                    if (bgAudio) bgAudio.play().catch(e => console.log(e));
-                    if (statusEl) statusEl.innerText = "Âm nhạc: Mở";
+                    if (bgAudio) bgAudio.play().then(() => updateAudioUI(true)).catch(e => console.log(e));
                 }
             });
         }
 
-        // Tạo hiệu ứng cánh hoa, trái tim và đốm sáng bay lơ lửng
+        // Hiệu ứng cánh hoa, trái tim và đốm sáng bay lơ lửng
         function createFloatingHearts(containerId, count = 18) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -783,7 +1154,7 @@
                 '<i class="fa-solid fa-heart text-rose-400/45"></i>',
                 '<i class="fa-solid fa-spa text-pink-400/50"></i>',
                 '<i class="fa-solid fa-sparkles text-amber-400/55"></i>',
-                '<span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-300/60 shadow-[0_0_8px_#fcd34d]"></span>'
+                '<span class="inline-block w-2.5 h-2.5 rounded-full bg-white/75 shadow-[0_0_10px_#fff]"></span>'
             ];
             for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
@@ -799,7 +1170,7 @@
         createFloatingHearts('teacher-particles', 16);
         createFloatingHearts('video-particles', 18);
 
-        // Bụi phấn bay lơ lửng trên bảng đen
+        // Bụi phấn bay lơ lửng trên bảng kính
         function createChalkDust() {
             const container = document.getElementById('chalk-dust-container');
             if (!container) return;
@@ -809,7 +1180,7 @@
                 d.style.left = Math.random() * 100 + '%';
                 d.style.animationDelay = Math.random() * 5 + 's';
                 d.style.animationDuration = (8 + Math.random() * 6) + 's';
-                d.innerHTML = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-white/35 shadow-[0_0_6px_#fff]"></span>';
+                d.innerHTML = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_6px_#fff]"></span>';
                 container.appendChild(d);
             }
         }
@@ -835,6 +1206,15 @@
             }
         });
 
+        const screenTitles = {
+            'screen-welcome': '20/11 · Tri Ân',
+            'screen-teacher': '1/5 · Cô Huyền Trang',
+            'screen-chalkboard': '2/5 · Bảng Phấn',
+            'screen-sky': '3/5 · Kỷ Niệm Trường',
+            'screen-members': '4/5 · Thanh Xuân Cấp 2',
+            'screen-video': '5/5 · Thước Phim'
+        };
+
         function goToScreen(screenId) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(s => s.classList.remove('active'));
@@ -844,6 +1224,15 @@
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+
+            // Cập nhật Dynamic Island
+            const islandLabel = document.getElementById('island-label');
+            if (islandLabel && screenTitles[screenId]) {
+                islandLabel.innerText = screenTitles[screenId];
+            }
+            document.querySelectorAll('.island-dot').forEach(dot => {
+                dot.classList.toggle('active', dot.dataset.target === screenId);
+            });
 
             if (screenId === 'screen-chalkboard') startChalkWriting();
             if (screenId === 'screen-sky') initSkyCanvas('sky-canvas', 'screen-sky');
@@ -991,8 +1380,7 @@
             if (bgAudio && !bgAudio.paused) {
                 bgAudio.pause();
                 isMuted = true;
-                const statusEl = document.getElementById('bgm-status');
-                if (statusEl) statusEl.innerText = "Âm nhạc: Tắt";
+                updateAudioUI(false);
             }
         });
         tributeVideo.addEventListener('ended', () => { startFireworks(); });
@@ -1056,7 +1444,6 @@
             for (let i = 0; i < 140; i++) fwParticles.push(new FireworkParticle(x, y, color));
         }
 
-        // Pháo hoa hình trái tim rực rỡ
         function createHeartFirework(x, y) {
             const colors = ['#ff4d6d', '#ff8fa3', '#ffd166'];
             const color = colors[Math.floor(Math.random() * colors.length)];
