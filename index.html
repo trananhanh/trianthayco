@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tri Ân Ngày Nhà Giáo Việt Nam 20/11 · iOS 26 Edition</title>
+    <title>Tri Ân Ngày Nhà Giáo Việt Nam 20/11 · iOS 27 Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts (Thêm Be Vietnam Pro chuẩn nét chữ tiếng Việt hiện đại kiểu iOS) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Patrick+Hand&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Caveat:wght@400;600;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Patrick+Hand&family=Pinyon+Script&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --ios-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ios-spring: cubic-bezier(0.32, 1.52, 0.62, 1);
             --ios-smooth: cubic-bezier(0.22, 1, 0.36, 1);
-            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0.24) 100%);
-            --glass-border: rgba(255, 255, 255, 0.68);
+            --glass-27-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.22) 55%, rgba(255, 240, 246, 0.34) 100%);
+            --ai-gradient: linear-gradient(120deg, #ff5f8f, #ff9e5e, #ffd166, #60a5fa, #c084fc, #ff5f8f);
         }
 
         * {
@@ -41,57 +41,115 @@
         .font-calligraphy { font-family: 'Great Vibes', 'Pinyon Script', cursive; }
 
         /* =========================================================
-           iOS 26 LIQUID GLASS MATERIAL SYSTEM
+           iOS 27 LIQUID GLASS 2.0 & PRISMATIC REFRACTION
         ========================================================= */
-        .liquid-glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(28px) saturate(190%);
-            -webkit-backdrop-filter: blur(28px) saturate(190%);
-            border: 1px solid var(--glass-border);
+        .liquid-glass-27 {
+            position: relative;
+            background: var(--glass-27-bg);
+            backdrop-filter: blur(34px) saturate(215%);
+            -webkit-backdrop-filter: blur(34px) saturate(215%);
+            border: 1px solid rgba(255, 255, 255, 0.78);
             box-shadow:
-                0 22px 48px -12px rgba(136, 19, 55, 0.16),
+                0 24px 52px -12px rgba(136, 19, 55, 0.18),
                 0 4px 16px rgba(0, 0, 0, 0.05),
-                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.92),
-                inset 0 -1.5px 2px rgba(255, 255, 255, 0.28);
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.96),
+                inset 0 -1.5px 2px rgba(255, 228, 238, 0.45);
+        }
+
+        /* Ánh sáng phản chiếu động theo con trỏ chuột (Specular Sheen) */
+        .spatial-tilt {
+            transform-style: preserve-3d;
+            transition: transform 0.25s var(--ios-smooth), box-shadow 0.35s ease;
+            will-change: transform;
+        }
+        .spatial-tilt::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at var(--mx, 50%) var(--my, 20%),
+                rgba(255, 255, 255, 0.55) 0%,
+                rgba(255, 255, 255, 0.12) 38%,
+                transparent 70%
+            );
+            opacity: 0.75;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .liquid-glass-subtle {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
-            backdrop-filter: blur(20px) saturate(175%);
-            -webkit-backdrop-filter: blur(20px) saturate(175%);
-            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.20) 100%);
+            backdrop-filter: blur(22px) saturate(185%);
+            -webkit-backdrop-filter: blur(22px) saturate(185%);
+            border: 1px solid rgba(255, 255, 255, 0.62);
             box-shadow:
                 0 10px 28px -8px rgba(136, 19, 55, 0.14),
-                inset 0 1px 1px rgba(255, 255, 255, 0.85);
+                inset 0 1px 1px rgba(255, 255, 255, 0.88);
         }
 
         .liquid-glass-dark {
-            background: linear-gradient(145deg, rgba(20, 38, 33, 0.80) 0%, rgba(13, 24, 24, 0.88) 100%);
-            backdrop-filter: blur(32px) saturate(185%);
-            -webkit-backdrop-filter: blur(32px) saturate(185%);
-            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: linear-gradient(145deg, rgba(18, 34, 30, 0.82) 0%, rgba(11, 20, 21, 0.90) 100%);
+            backdrop-filter: blur(36px) saturate(200%);
+            -webkit-backdrop-filter: blur(36px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.32);
             box-shadow:
-                0 30px 65px -15px rgba(0, 0, 0, 0.55),
-                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.42),
-                inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+                0 32px 68px -15px rgba(0, 0, 0, 0.58),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.48),
+                inset 0 -1px 2px rgba(255, 255, 255, 0.12);
         }
 
         /* =========================================================
-           DYNAMIC ISLAND (iOS 26 FLOATING PILL)
+           iOS 27 DYNAMIC ISLAND 2.0 (EXPANDABLE LIVE ACTIVITY)
         ========================================================= */
         .dynamic-island {
-            background: rgba(18, 16, 22, 0.78);
-            backdrop-filter: blur(26px) saturate(200%);
-            -webkit-backdrop-filter: blur(26px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(15, 14, 20, 0.82);
+            backdrop-filter: blur(30px) saturate(220%);
+            -webkit-backdrop-filter: blur(30px) saturate(220%);
+            border: 1px solid rgba(255, 255, 255, 0.24);
             box-shadow:
-                0 14px 34px rgba(0, 0, 0, 0.28),
-                inset 0 1px 1px rgba(255, 255, 255, 0.32);
+                0 16px 38px rgba(0, 0, 0, 0.32),
+                inset 0 1px 1px rgba(255, 255, 255, 0.35);
             transition: all 0.45s var(--ios-spring);
         }
-        .dynamic-island:hover {
-            transform: translateX(-50%) scale(1.02);
-            background: rgba(18, 16, 22, 0.88);
+        .dynamic-island.expanded {
+            background: rgba(15, 14, 20, 0.92);
+            box-shadow:
+                0 24px 55px rgba(0, 0, 0, 0.48),
+                0 0 0 1px rgba(255, 255, 255, 0.28),
+                inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
+        }
+        .island-expanded {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            transition: max-height 0.45s var(--ios-smooth), opacity 0.3s ease, padding 0.35s ease;
+        }
+        .dynamic-island.expanded .island-expanded {
+            max-height: 220px;
+            opacity: 1;
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.9rem !important;
+        }
+        .island-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .island-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-1px);
         }
 
         /* Sóng nhạc trong Dynamic Island */
@@ -125,17 +183,48 @@
         .island-dot.active {
             width: 18px;
             background: linear-gradient(90deg, #fb7185, #fbbf24);
-            box-shadow: 0 0 8px rgba(251, 113, 133, 0.7);
+            box-shadow: 0 0 8px rgba(251, 113, 133, 0.75);
         }
 
-        /* Thanh Home Indicator cuối màn hình iOS */
+        /* =========================================================
+           iOS 27 FLOATING GLASS DOCK & HOME INDICATOR
+        ========================================================= */
+        .ios27-dock {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.32) 100%);
+            backdrop-filter: blur(28px) saturate(210%);
+            -webkit-backdrop-filter: blur(28px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 12px 32px rgba(136, 19, 55, 0.16),
+                inset 0 1px 1px rgba(255, 255, 255, 0.95);
+        }
+        .dock-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #881337;
+            transition: all 0.35s var(--ios-spring);
+            cursor: pointer;
+        }
+        .dock-item:hover {
+            background: rgba(255, 255, 255, 0.55);
+        }
+        .dock-item.active {
+            background: linear-gradient(135deg, #e11d48, #be123c);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(225, 29, 72, 0.38);
+        }
+
         .ios-home-indicator {
             width: 134px;
             height: 5px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.65);
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
         }
 
         /* =========================================================
@@ -151,20 +240,18 @@
             position: relative;
             overflow: hidden;
         }
-
         .screen.active {
             display: flex;
             opacity: 1;
             transform: scale(1) translateY(0);
         }
 
-        /* Nền Mesh Gradient động kiểu hình nền iOS 26 */
         .ios-wallpaper {
             background:
-                radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.72) 0%, transparent 45%),
-                radial-gradient(circle at 85% 18%, rgba(253, 224, 171, 0.78) 0%, transparent 48%),
-                radial-gradient(circle at 75% 82%, rgba(244, 162, 184, 0.68) 0%, transparent 50%),
-                radial-gradient(circle at 22% 85%, rgba(196, 219, 255, 0.65) 0%, transparent 48%),
+                radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.75) 0%, transparent 45%),
+                radial-gradient(circle at 85% 18%, rgba(253, 224, 171, 0.8) 0%, transparent 48%),
+                radial-gradient(circle at 75% 82%, rgba(244, 162, 184, 0.7) 0%, transparent 50%),
+                radial-gradient(circle at 22% 85%, rgba(196, 219, 255, 0.68) 0%, transparent 48%),
                 linear-gradient(145deg, #fff6f3 0%, #fce3e6 50%, #f8d4dc 100%);
             background-attachment: fixed;
         }
@@ -173,7 +260,7 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(55px);
-            opacity: 0.65;
+            opacity: 0.68;
             pointer-events: none;
             z-index: 0;
             animation: orbDrift 14s ease-in-out infinite alternate;
@@ -184,8 +271,29 @@
         }
 
         /* =========================================================
-           MÀN HÌNH 0: iOS 26 LOCK SCREEN & SPATIAL BADGE
+           MÀN HÌNH 0: iOS 27 DEPTH LOCK SCREEN & APPLE INTELLIGENCE GLOW
         ========================================================= */
+        .ios27-lock-clock {
+            font-size: clamp(4.2rem, 15vw, 7.6rem);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(225, 29, 72, 0.36) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 8px 20px rgba(190, 18, 60, 0.14));
+        }
+
+        .ai-glow-pill {
+            background: var(--ai-gradient);
+            background-size: 250% 250%;
+            animation: aiShift 5s ease infinite;
+            box-shadow: 0 12px 30px -6px rgba(225, 29, 72, 0.28);
+        }
+        @keyframes aiShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .sunburst-aura {
             position: absolute;
             width: 460px;
@@ -193,7 +301,7 @@
             border-radius: 50%;
             background: repeating-conic-gradient(
                 from 0deg,
-                rgba(255, 255, 255, 0.35) 0deg 10deg,
+                rgba(255, 255, 255, 0.38) 0deg 10deg,
                 transparent 10deg 20deg
             );
             mask-image: radial-gradient(circle, black 25%, transparent 68%);
@@ -212,8 +320,8 @@
             width: 315px;
             height: 315px;
             border-radius: 50%;
-            border: 1.5px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.22);
             animation: pulseRing 3.2s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
             pointer-events: none;
             z-index: 3;
@@ -225,24 +333,17 @@
         }
 
         .welcome-badge {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 240, 244, 0.32) 100%);
-            backdrop-filter: blur(30px) saturate(200%);
-            -webkit-backdrop-filter: blur(30px) saturate(200%);
-            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 240, 244, 0.34) 100%);
+            backdrop-filter: blur(34px) saturate(215%);
+            -webkit-backdrop-filter: blur(34px) saturate(215%);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
             box-shadow:
                 0 28px 60px rgba(190, 24, 93, 0.22),
-                0 0 40px rgba(255, 255, 255, 0.45),
-                inset 0 2px 3px rgba(255, 255, 255, 0.95),
-                inset 0 -3px 8px rgba(244, 63, 94, 0.12);
+                0 0 40px rgba(255, 255, 255, 0.5),
+                inset 0 2px 3px rgba(255, 255, 255, 0.96),
+                inset 0 -3px 8px rgba(244, 63, 94, 0.14);
             animation: floatSlow 4.5s ease-in-out infinite;
-            transition: transform 0.4s var(--ios-spring);
             overflow: hidden;
-        }
-        .welcome-badge:hover {
-            transform: scale(1.04) translateY(-4px);
-        }
-        .welcome-badge:active {
-            transform: scale(0.96);
         }
         .welcome-badge::after {
             content: "";
@@ -254,7 +355,7 @@
             background: linear-gradient(
                 to right,
                 rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.75) 50%,
+                rgba(255, 255, 255, 0.78) 50%,
                 rgba(255, 255, 255, 0) 100%
             );
             transform: rotate(25deg);
@@ -267,7 +368,7 @@
         }
         @keyframes floatSlow {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-9px); }
+            50% { transform: translateY(-8px); }
         }
 
         /* =========================================================
@@ -286,23 +387,23 @@
         }
 
         .btn-luxe {
-            background: linear-gradient(135deg, rgba(225, 29, 72, 0.88) 0%, rgba(190, 18, 60, 0.94) 100%);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.9) 0%, rgba(190, 18, 60, 0.96) 100%);
+            backdrop-filter: blur(18px) saturate(190%);
+            -webkit-backdrop-filter: blur(18px) saturate(190%);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             position: relative;
             overflow: hidden;
             box-shadow:
                 0 12px 28px -6px rgba(225, 29, 72, 0.45),
-                inset 0 1.5px 1px rgba(255, 255, 255, 0.55);
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.6);
             transition: transform 0.35s var(--ios-spring), box-shadow 0.35s ease;
         }
         .btn-luxe:hover {
             transform: scale(1.04) translateY(-1px);
             box-shadow:
                 0 16px 34px -6px rgba(225, 29, 72, 0.55),
-                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7);
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75);
         }
         .btn-luxe:active {
             transform: scale(0.95);
@@ -314,7 +415,7 @@
             left: -100%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transform: skewX(-20deg);
             animation: btnSweep 3.5s infinite;
         }
@@ -336,15 +437,15 @@
         }
 
         .glass-photo-frame {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.35));
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.85);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.38));
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 255, 255, 0.88);
             border-radius: 24px;
             padding: 10px 10px 16px 10px;
             box-shadow:
                 0 16px 36px rgba(136, 19, 55, 0.16),
-                inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.96);
             transition: transform 0.45s var(--ios-spring), box-shadow 0.4s ease;
             cursor: pointer;
             position: relative;
@@ -372,7 +473,7 @@
             border-radius: 34px;
             position: relative;
             background-image:
-                radial-gradient(circle at 50% 42%, rgba(45, 95, 76, 0.42) 0%, rgba(12, 26, 22, 0.88) 100%);
+                radial-gradient(circle at 50% 42%, rgba(45, 95, 76, 0.44) 0%, rgba(12, 26, 22, 0.88) 100%);
         }
 
         .chalk-text {
@@ -393,11 +494,11 @@
         .chalk-underline.drawn { width: min(240px, 60%); }
 
         .glass-widget-note {
-            background: linear-gradient(135deg, rgba(254, 240, 138, 0.42), rgba(253, 224, 71, 0.22));
+            background: linear-gradient(135deg, rgba(254, 240, 138, 0.44), rgba(253, 224, 71, 0.24));
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(254, 249, 195, 0.65);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(254, 249, 195, 0.68);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.72);
             border-radius: 18px;
         }
 
@@ -414,9 +515,9 @@
         .envelope {
             width: 320px;
             height: 220px;
-            background: linear-gradient(145deg, rgba(255, 247, 240, 0.92), rgba(245, 228, 214, 0.86));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: linear-gradient(145deg, rgba(255, 247, 240, 0.94), rgba(245, 228, 214, 0.88));
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
             position: relative;
             box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
             border-radius: 22px;
@@ -442,8 +543,8 @@
         }
         .letter {
             position: absolute; left: 4%; right: 4%; bottom: 10px; top: 10px;
-            background: rgba(255, 253, 250, 0.96);
-            backdrop-filter: blur(24px);
+            background: rgba(255, 253, 250, 0.97);
+            backdrop-filter: blur(26px);
             background-image: repeating-linear-gradient(transparent 0px, transparent 28px, rgba(225, 29, 72, 0.08) 29px);
             padding: 24px 22px;
             border-radius: 24px;
@@ -491,7 +592,7 @@
         .envelope.open .wax-seal { display: none; }
 
         /* =========================================================
-           MÀN HÌNH 3 & 4: iOS 26 SPATIAL PHOTOS MEMORIES
+           MÀN HÌNH 3 & 4: iOS 27 SPATIAL PHOTOS MEMORIES
         ========================================================= */
         .sky-stage {
             background: linear-gradient(180deg, #b8d4f8 0%, #f7ced6 44%, #ffe7cc 78%, #f8cbbd 100%);
@@ -543,23 +644,22 @@
         .memory-wall {
             position: relative;
             width: min(1180px, 96vw);
-            height: min(57vh, 455px);
+            height: min(55vh, 445px);
             margin: 0 auto;
         }
 
-        /* Thẻ ảnh Kỷ Niệm kiểu Liquid Glass Widget */
         .memory-photo {
             position: absolute;
             width: clamp(114px, 13vw, 186px);
             padding: 7px 7px 14px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.36) 100%);
-            backdrop-filter: blur(18px) saturate(180%);
-            -webkit-backdrop-filter: blur(18px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.85);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.76) 0%, rgba(255, 255, 255, 0.38) 100%);
+            backdrop-filter: blur(20px) saturate(195%);
+            -webkit-backdrop-filter: blur(20px) saturate(195%);
+            border: 1px solid rgba(255, 255, 255, 0.88);
             border-radius: 20px;
             box-shadow:
                 0 12px 28px rgba(96, 67, 69, 0.18),
-                inset 0 1.5px 1px rgba(255, 255, 255, 0.95);
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.96);
             cursor: pointer;
             transition: transform 0.4s var(--ios-spring), box-shadow 0.35s ease;
             transform: rotate(var(--tilt, 0deg));
@@ -589,7 +689,7 @@
             z-index: 30;
             box-shadow:
                 0 22px 42px rgba(159, 18, 57, 0.25),
-                0 0 22px rgba(255, 255, 255, 0.9),
+                0 0 22px rgba(255, 255, 255, 0.92),
                 inset 0 1.5px 1.5px rgba(255, 255, 255, 1);
         }
 
@@ -612,7 +712,7 @@
         @media (max-width: 640px) {
             #screen-chalkboard .chalkboard-container {
                 height: auto;
-                min-height: 74vh;
+                min-height: 68vh;
                 padding: 16px 12px;
                 gap: 10px;
                 border-radius: 28px;
@@ -647,6 +747,10 @@
             }
             .gallery-title {
                 font-size: clamp(2.3rem, 9.2vw, 3.5rem);
+            }
+            .dock-item {
+                padding: 8px 11px;
+                font-size: 13px;
             }
         }
 
@@ -684,11 +788,11 @@
         }
 
         .btn-restart-fw {
-            background: rgba(225, 29, 72, 0.82);
+            background: rgba(225, 29, 72, 0.85);
             backdrop-filter: blur(20px);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.55);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.65);
             transition: transform 0.35s var(--ios-spring);
         }
         .btn-restart-fw:hover {
@@ -703,94 +807,142 @@
         <source src="op02.mp3" type="audio/mp3">
     </audio>
 
-    <!-- iOS 26 DYNAMIC ISLAND (THANH TRẠNG THÁI & ĐIỀU KHIỂN NỔI) -->
-    <div id="dynamic-island" class="dynamic-island fixed top-3 left-1/2 -translate-x-1/2 z-[100] px-3.5 py-2 rounded-full flex items-center gap-3 text-white max-w-[94vw]">
-        <!-- Sóng nhạc + Tên Slide -->
-        <div class="flex items-center gap-2">
-            <div id="island-eq" class="flex items-end gap-[2.5px] h-3.5">
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
-                <span class="eq-bar"></span>
+    <!-- iOS 27 DYNAMIC ISLAND 2.0 (CÓ THỂ CHẠM ĐỂ MỞ RỘNG) -->
+    <div id="dynamic-island" class="dynamic-island fixed top-3 left-1/2 -translate-x-1/2 z-[100] text-white w-[92vw] max-w-[420px] sm:max-w-[460px] rounded-[28px] overflow-hidden">
+        <!-- Thanh gọn mặc định -->
+        <div id="island-compact" class="px-4 py-2.5 flex items-center justify-between gap-2 cursor-pointer" onclick="toggleDynamicIsland(event)">
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div id="island-eq" class="flex items-end gap-[2.5px] h-3.5 shrink-0">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <span id="island-label" class="text-xs font-semibold text-white/95 truncate tracking-tight">20/11 · Tri Ân</span>
             </div>
-            <span id="island-label" class="text-[11px] sm:text-xs font-medium text-white/90 whitespace-nowrap tracking-tight">20/11 · Tri Ân</span>
+
+            <!-- Chỉ báo tiến trình 6 slide -->
+            <div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-white/10 shrink-0" onclick="event.stopPropagation()">
+                <button onclick="goToScreen('screen-welcome')" class="island-dot active" data-target="screen-welcome" title="Mở đầu"></button>
+                <button onclick="goToScreen('screen-teacher')" class="island-dot" data-target="screen-teacher" title="Cô giáo"></button>
+                <button onclick="goToScreen('screen-chalkboard')" class="island-dot" data-target="screen-chalkboard" title="Bảng phấn"></button>
+                <button onclick="goToScreen('screen-sky')" class="island-dot" data-target="screen-sky" title="Kỷ niệm thầy cô"></button>
+                <button onclick="goToScreen('screen-members')" class="island-dot" data-target="screen-members" title="Kỷ niệm cấp 2"></button>
+                <button onclick="goToScreen('screen-video')" class="island-dot" data-target="screen-video" title="Thước phim"></button>
+            </div>
+
+            <!-- Nút Bật / Tắt nhạc -->
+            <button id="bgm-toggle" class="bg-white/15 hover:bg-white/25 active:scale-95 text-white px-2.5 py-1 rounded-full transition flex items-center gap-1.5 text-[11px] font-semibold cursor-pointer border border-white/20 shrink-0">
+                <i id="bgm-icon" class="fa-solid fa-volume-high text-rose-300"></i>
+                <span id="bgm-status">Mở</span>
+            </button>
         </div>
 
-        <!-- Chấm chuyển nhanh 6 màn hình -->
-        <div class="hidden xs:flex sm:flex items-center gap-1.5 px-1.5 py-1 rounded-full bg-white/10">
-            <button onclick="goToScreen('screen-welcome')" class="island-dot active" data-target="screen-welcome" title="Mở đầu"></button>
-            <button onclick="goToScreen('screen-teacher')" class="island-dot" data-target="screen-teacher" title="Cô giáo"></button>
-            <button onclick="goToScreen('screen-chalkboard')" class="island-dot" data-target="screen-chalkboard" title="Bảng phấn"></button>
-            <button onclick="goToScreen('screen-sky')" class="island-dot" data-target="screen-sky" title="Kỷ niệm thầy cô"></button>
-            <button onclick="goToScreen('screen-members')" class="island-dot" data-target="screen-members" title="Kỷ niệm cấp 2"></button>
-            <button onclick="goToScreen('screen-video')" class="island-dot" data-target="screen-video" title="Thước phim"></button>
-        </div>
+        <!-- Bảng điều khiển mở rộng iOS 27 Live Activity -->
+        <div id="island-expanded" class="island-expanded px-4 pb-4 pt-1 border-t border-white/10">
+            <div class="flex items-center justify-between bg-white/10 rounded-2xl p-2.5 mb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-amber-400 flex items-center justify-center shadow">
+                        <i class="fa-solid fa-music text-white text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-white leading-tight">Giai Điệu Tri Ân 20/11</p>
+                        <p class="text-[10px] text-white/65">Nhạc nền kỷ niệm · op02.mp3</p>
+                    </div>
+                </div>
+                <button onclick="startFireworks(); closeDynamicIsland();" class="px-3 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-amber-500 text-[11px] font-bold text-white shadow hover:opacity-90 active:scale-95 transition cursor-pointer">
+                    <i class="fa-solid fa-sparkles mr-1"></i>Pháo hoa
+                </button>
+            </div>
 
-        <!-- Nút Bật / Tắt nhạc -->
-        <button id="bgm-toggle" class="bg-white/15 hover:bg-white/25 active:scale-95 text-white px-2.5 py-1 rounded-full transition flex items-center gap-1.5 text-[11px] font-semibold cursor-pointer border border-white/20">
-            <i id="bgm-icon" class="fa-solid fa-volume-high text-rose-300"></i>
-            <span id="bgm-status">Mở</span>
-        </button>
+            <div class="grid grid-cols-3 gap-1.5 text-[11px]">
+                <button onclick="goToScreen('screen-welcome'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-lock-open text-rose-300"></i><span>Mở đầu</span>
+                </button>
+                <button onclick="goToScreen('screen-teacher'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-chalkboard-user text-amber-300"></i><span>Cô Trang</span>
+                </button>
+                <button onclick="goToScreen('screen-chalkboard'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-envelope-open-text text-pink-300"></i><span>Bảng & Thư</span>
+                </button>
+                <button onclick="goToScreen('screen-sky'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-images text-sky-300"></i><span>Thầy Cô</span>
+                </button>
+                <button onclick="goToScreen('screen-members'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-users text-emerald-300"></i><span>Lớp 9.6</span>
+                </button>
+                <button onclick="goToScreen('screen-video'); closeDynamicIsland();" class="island-nav-btn">
+                    <i class="fa-solid fa-film text-purple-300"></i><span>Thước phim</span>
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- MÀN HÌNH 0: MỞ ĐẦU (iOS 26 LOCK SCREEN) -->
-    <div id="screen-welcome" class="screen ios-wallpaper active flex-col items-center justify-between pt-20 pb-5 px-4 min-h-screen">
-        <div class="mesh-orb w-80 h-80 bg-rose-300/60 top-10 -left-16"></div>
-        <div class="mesh-orb w-96 h-96 bg-amber-200/60 bottom-10 -right-16" style="animation-delay: -5s;"></div>
+    <!-- MÀN HÌNH 0: iOS 27 DEPTH LOCK SCREEN -->
+    <div id="screen-welcome" class="screen ios-wallpaper active flex-col items-center justify-between pt-20 pb-24 px-4 min-h-screen">
+        <div class="mesh-orb w-80 h-80 bg-rose-300/65 top-8 -left-16"></div>
+        <div class="mesh-orb w-96 h-96 bg-amber-200/65 bottom-12 -right-16" style="animation-delay: -5s;"></div>
+        <div class="mesh-orb w-72 h-72 bg-sky-200/55 top-1/3 right-1/4" style="animation-delay: -9s;"></div>
         <div id="welcome-particles" class="absolute inset-0 pointer-events-none z-1"></div>
 
-        <!-- Cụm ngày giờ kiểu màn hình khóa iOS -->
-        <div class="text-center z-10 mt-2">
-            <div class="inline-flex items-center gap-1.5 liquid-glass-subtle px-3.5 py-1 rounded-full text-xs font-semibold text-rose-800/90 mb-1">
-                <i class="fa-solid fa-lock-open text-[10px] text-rose-500"></i>
+        <!-- Cụm ngày giờ Depth Effect kiểu iOS 27 Lock Screen -->
+        <div class="text-center z-10 mt-1 select-none pointer-events-none">
+            <div class="inline-flex items-center gap-2 liquid-glass-27 px-4 py-1 rounded-full text-xs font-semibold text-rose-900/90 mb-1">
+                <i class="fa-solid fa-sparkles text-[10px] text-amber-500"></i>
                 <span>Thứ Sáu, 20 Tháng 11</span>
+                <span class="opacity-40">|</span>
+                <span class="text-rose-600 font-bold">Kĩ niệm</span>
+            </div>
+            <div class="ios27-lock-clock font-extrabold tracking-tighter leading-none">
+                20:11
             </div>
         </div>
 
-        <!-- Huy hiệu kính lỏng trung tâm -->
-        <div class="relative flex items-center justify-center my-auto z-10">
+        <!-- Huy hiệu kính lỏng trung tâm (đè chiều sâu lên đồng hồ 20:11) -->
+        <div class="relative flex items-center justify-center my-auto -mt-8 sm:-mt-12 z-20">
             <div class="sunburst-aura"></div>
             <div class="halo-ring"></div>
             <div class="halo-ring"></div>
 
-            <div class="welcome-badge relative w-72 h-72 sm:w-84 sm:h-84 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
-                <div class="absolute inset-2.5 border border-white/75 rounded-full pointer-events-none"></div>
+            <div class="welcome-badge spatial-tilt relative w-72 h-72 sm:w-84 sm:h-84 rounded-full flex flex-col items-center justify-center text-center p-6 cursor-pointer z-10" onclick="goToScreen('screen-teacher')">
+                <div class="absolute inset-2.5 border border-white/80 rounded-full pointer-events-none"></div>
                 <div class="w-12 h-12 rounded-2xl liquid-glass-subtle flex items-center justify-center text-rose-500 text-2xl mb-1 shadow-sm">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
                 <h1 class="font-calligraphy text-6xl sm:text-7xl font-bold shimmer-gold-rose my-1 tracking-wider">
                     20 <span class="text-3xl font-sans text-rose-400 font-light">/</span> 11
                 </h1>
-                <div class="w-20 h-[1.5px] bg-gradient-to-r from-transparent via-rose-400/70 to-transparent my-1"></div>
-                <p class="font-handwriting text-2xl sm:text-3xl text-rose-800 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
+                <div class="w-24 h-[1.5px] bg-gradient-to-r from-transparent via-rose-400/80 to-transparent my-1"></div>
+                <p class="font-handwriting text-2xl sm:text-3xl text-rose-900 font-bold tracking-wide">Ngày Nhà Giáo Việt Nam</p>
                 <div class="mt-2 text-rose-500 animate-bounce">
                     <svg class="w-7 h-7 mx-auto fill-current drop-shadow" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                 </div>
             </div>
         </div>
 
-        <!-- Nút Live Activity mở khóa & Home Indicator -->
-        <div class="text-center cursor-pointer z-10 w-full flex flex-col items-center gap-4" onclick="goToScreen('screen-teacher')">
-            <div class="liquid-glass px-6 py-3 rounded-full inline-flex items-center gap-3 transition transform hover:scale-105 active:scale-95">
-                <span class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-500 to-pink-600 text-white flex items-center justify-center text-xs shadow">
-                    <i class="fa-solid fa-hand-pointer"></i>
-                </span>
-                <div class="text-left">
-                    <p class="text-[10px] uppercase tracking-wider text-rose-600/80 font-bold">Live Activity · 20/11</p>
-                    <p class="font-handwriting text-xl sm:text-2xl text-rose-900 font-bold leading-none">Chạm để mở khóa kỷ niệm ♡</p>
+        <!-- Nút mở khóa viền sáng Apple Intelligence -->
+        <div class="text-center cursor-pointer z-20 w-full flex flex-col items-center" onclick="goToScreen('screen-teacher')">
+            <div class="ai-glow-pill p-[2px] rounded-full transition transform hover:scale-105 active:scale-95">
+                <div class="liquid-glass-27 px-6 py-3 rounded-full inline-flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-gradient-to-br from-rose-500 via-pink-500 to-amber-500 text-white flex items-center justify-center text-xs shadow">
+                        <i class="fa-solid fa-hand-pointer"></i>
+                    </span>
+                    <div class="text-left">
+                        <p class="text-[10px] uppercase tracking-wider text-rose-600 font-bold">Spatial Memory · 20/11</p>
+                        <p class="font-handwriting text-xl sm:text-2xl text-rose-950 font-bold leading-none">Chạm để mở khóa kỷ niệm ♡</p>
+                    </div>
                 </div>
             </div>
-            <div class="ios-home-indicator"></div>
         </div>
     </div>
 
-    <!-- MÀN HÌNH 1: GIỚI THIỆU CÔ GIÁO (iOS 26 CONTACT POSTER) -->
-    <div id="screen-teacher" class="screen ios-wallpaper flex-col items-center justify-between pt-20 pb-5 px-4 sm:px-8 min-h-screen">
-        <div class="mesh-orb w-96 h-96 bg-pink-300/55 top-16 right-10"></div>
-        <div class="mesh-orb w-80 h-80 bg-rose-200/65 bottom-12 left-8" style="animation-delay: -4s;"></div>
+    <!-- MÀN HÌNH 1: GIỚI THIỆU CÔ GIÁO (iOS 27 SPATIAL CONTACT POSTER) -->
+    <div id="screen-teacher" class="screen ios-wallpaper flex-col items-center justify-center pt-20 pb-24 px-4 sm:px-8 min-h-screen">
+        <div class="mesh-orb w-96 h-96 bg-pink-300/60 top-16 right-10"></div>
+        <div class="mesh-orb w-80 h-80 bg-rose-200/70 bottom-12 left-8" style="animation-delay: -4s;"></div>
         <div id="teacher-particles" class="absolute inset-0 pointer-events-none"></div>
 
-        <div class="liquid-glass teacher-card relative max-w-3xl w-full p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-auto">
-            <div class="absolute -top-3.5 -left-3.5 bg-gradient-to-br from-rose-500 to-pink-600 text-white w-11 h-11 rounded-2xl flex items-center justify-center shadow-lg border border-white/60">
+        <div class="liquid-glass-27 spatial-tilt teacher-card relative max-w-3xl w-full p-6 sm:p-10 z-20 flex flex-col md:flex-row items-center gap-6 sm:gap-10 my-auto">
+            <div class="absolute -top-3.5 -left-3.5 bg-gradient-to-br from-rose-500 via-pink-500 to-amber-500 text-white w-11 h-11 rounded-2xl flex items-center justify-center shadow-lg border border-white/70">
                 <i class="fa-solid fa-heart"></i>
             </div>
 
@@ -811,7 +963,7 @@
                 </p>
 
                 <div class="liquid-glass-subtle border-l-4 border-l-rose-500 p-4 rounded-2xl mb-6">
-                    <p class="text-sm sm:text-base text-rose-800 font-semibold leading-relaxed">
+                    <p class="text-sm sm:text-base text-rose-900 font-semibold leading-relaxed">
                         "Một cô giáo giỏi giống như ngọn nến – thắp sáng tương lai của bao thế hệ bằng chính sự hy sinh thầm lặng của mình."
                     </p>
                     <p class="text-xs sm:text-sm text-neutral-700 mt-2 leading-relaxed">
@@ -826,13 +978,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="ios-home-indicator mt-4 z-20"></div>
     </div>
 
     <!-- MÀN HÌNH 2: BẢNG PHẤN KÍNH LỎNG & THƯ -->
-    <div id="screen-chalkboard" class="screen flex-col justify-between items-center pt-20 pb-5 px-3 sm:px-6 min-h-screen">
-        <div class="liquid-glass-dark chalkboard-container w-full max-w-5xl h-[72vh] sm:h-[75vh] flex flex-col justify-between p-4 sm:p-8 my-auto overflow-hidden">
+    <div id="screen-chalkboard" class="screen flex-col justify-center items-center pt-20 pb-24 px-3 sm:px-6 min-h-screen">
+        <div class="liquid-glass-dark chalkboard-container w-full max-w-5xl h-[70vh] sm:h-[73vh] flex flex-col justify-between p-4 sm:p-8 my-auto overflow-hidden">
             <div id="chalk-dust-container" class="absolute inset-0 pointer-events-none z-5"></div>
 
             <!-- Widget Note kính vàng góc trái -->
@@ -881,12 +1031,10 @@
                 </button>
             </div>
         </div>
-
-        <div class="ios-home-indicator mt-3"></div>
     </div>
 
-    <!-- ENVELOPE MODAL (iOS 26 GLASS SHEET) -->
-    <div id="envelope-modal" class="fixed inset-0 bg-black/65 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+    <!-- ENVELOPE MODAL (iOS 27 GLASS SHEET) -->
+    <div id="envelope-modal" class="fixed inset-0 bg-black/65 backdrop-blur-2xl z-[110] flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
         <div class="envelope-wrapper relative">
             <div id="envelope" class="envelope">
                 <div class="flap"></div>
@@ -913,8 +1061,8 @@
         <button onclick="closeEnvelopeModal()" class="fixed top-6 right-6 w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white flex items-center justify-center text-lg cursor-pointer transition"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- MÀN HÌNH 3: BỨC TƯỜNG KỶ NIỆM (iOS 26 SPATIAL MEMORIES) -->
-    <div id="screen-sky" class="screen sky-stage flex-col items-center justify-between pt-20 pb-5 px-3 sm:px-6 min-h-screen">
+    <!-- MÀN HÌNH 3: BỨC TƯỜNG KỶ NIỆM (iOS 27 SPATIAL MEMORIES) -->
+    <div id="screen-sky" class="screen sky-stage flex-col items-center justify-between pt-20 pb-24 px-3 sm:px-6 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
         <canvas id="sky-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
 
@@ -971,18 +1119,17 @@
         </main>
 
         <footer class="relative z-20 text-center flex flex-col items-center gap-3">
-            <div class="liquid-glass-subtle px-5 py-2 rounded-full">
+            <div class="liquid-glass-27 px-5 py-2 rounded-full">
                 <p class="font-handwriting text-lg sm:text-2xl text-rose-900 font-bold">Cảm ơn thầy cô vì đã viết nên những trang thanh xuân đẹp nhất ♡</p>
             </div>
             <button onclick="goToScreen('screen-members')" class="btn-luxe px-7 py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 cursor-pointer z-50">
                 <span>Kỷ niệm đẹp năm cấp 2</span> <i class="fa-solid fa-arrow-right"></i>
             </button>
-            <div class="ios-home-indicator mt-1"></div>
         </footer>
     </div>
 
-    <!-- MÀN HÌNH 4: KỶ NIỆM CẤP 2 (iOS 26 SPATIAL ALBUM) -->
-    <div id="screen-members" class="screen sky-stage flex-col items-center justify-between pt-20 pb-5 px-3 sm:px-6 min-h-screen">
+    <!-- MÀN HÌNH 4: KỶ NIỆM CẤP 2 (iOS 27 SPATIAL ALBUM) -->
+    <div id="screen-members" class="screen sky-stage flex-col items-center justify-between pt-20 pb-24 px-3 sm:px-6 min-h-screen">
         <div class="sky-bg"></div><div class="sun-ray"></div><div class="horizon-glow"></div>
         <canvas id="members-canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
 
@@ -1038,18 +1185,17 @@
         </main>
 
         <footer class="relative z-20 text-center flex flex-col items-center gap-3">
-            <div class="liquid-glass-subtle px-5 py-2 rounded-full">
+            <div class="liquid-glass-27 px-5 py-2 rounded-full">
                 <p class="font-handwriting text-lg sm:text-2xl text-rose-900 font-bold">Mãi là một tập thể đoàn kết dưới mái nhà chung của cô ♡</p>
             </div>
             <button onclick="goToScreen('screen-video')" class="btn-luxe px-7 py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 cursor-pointer z-50">
                 <span>Tiếp tục: Xem thước phim Kỷ Niệm</span> <i class="fa-solid fa-play"></i>
             </button>
-            <div class="ios-home-indicator mt-1"></div>
         </footer>
     </div>
 
     <!-- MÀN HÌNH 5: VIDEO & PHÁO HOA & FOOTER -->
-    <div id="screen-video" class="screen ios-wallpaper flex-col items-center justify-between pt-20 pb-5 px-4 sm:px-8 min-h-screen">
+    <div id="screen-video" class="screen ios-wallpaper flex-col items-center justify-between pt-20 pb-24 px-4 sm:px-8 min-h-screen">
         <div class="mesh-orb w-96 h-96 bg-rose-300/60 top-12 left-10"></div>
         <div class="mesh-orb w-80 h-80 bg-amber-200/65 bottom-16 right-10"></div>
         <div id="video-particles" class="absolute inset-0 pointer-events-none"></div>
@@ -1057,7 +1203,7 @@
         <div class="w-full max-w-4xl flex flex-col items-center my-auto z-20">
             <h2 class="font-calligraphy text-5xl sm:text-7xl shimmer-gold-rose mb-5 drop-shadow-sm text-center py-1">Thước Phim Kỷ Niệm</h2>
 
-            <div class="liquid-glass video-glow-frame relative w-full p-3 sm:p-4">
+            <div class="liquid-glass-27 video-glow-frame relative w-full p-3 sm:p-4">
                 <video id="tribute-video" class="w-full aspect-video rounded-[22px] shadow-lg bg-black" controls>
                     <source src="giaovien2.mp4" type="video/mp4">
                     Kĩ niệm cuối năm.
@@ -1076,7 +1222,7 @@
 
         <!-- Thông điệp sau cùng -->
         <div id="fireworks-msg" class="fixed inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000 z-50 px-4">
-            <div class="liquid-glass-dark !bg-black/45 px-8 py-10 rounded-[36px] text-center max-w-2xl">
+            <div class="liquid-glass-dark !bg-black/50 px-8 py-10 rounded-[36px] text-center max-w-2xl">
                 <h1 class="font-calligraphy text-6xl sm:text-8xl text-white drop-shadow-[0_0_25px_rgba(255,100,150,0.95)]">
                     Cảm ơn Thầy Cô <br><span class="text-4xl sm:text-6xl font-handwriting mt-3 block text-amber-200">Mãi Mãi Một Tình Yêu ♡</span>
                 </h1>
@@ -1086,29 +1232,84 @@
             </div>
         </div>
 
-        <footer class="w-full max-w-4xl liquid-glass-subtle text-rose-800 py-5 px-4 text-center mt-10 z-20 rounded-[28px] flex flex-col items-center">
+        <footer class="w-full max-w-4xl liquid-glass-27 text-rose-800 py-5 px-4 text-center mt-10 z-20 rounded-[28px] flex flex-col items-center">
             <h2 class="font-calligraphy text-3xl font-bold mb-1 text-rose-700">Liên hệ</h2>
             <p class="font-handwriting text-xl">Email: ngotrananhtuan906@gmail.com</p>
-            <p class="text-xs text-neutral-600 mt-2 mb-3">designed by Ngô Tuấn</p>
-            <div class="ios-home-indicator"></div>
+            <p class="text-xs text-neutral-600 mt-2">designed by Ngô Tuấn</p>
         </footer>
     </div>
 
-    <!-- MODAL LIGHTBOX ẢNH (iOS 26 GLASS PREVIEW) -->
-    <div id="photo-lightbox" class="fixed inset-0 bg-black/75 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
-        <div class="relative max-w-3xl w-full liquid-glass !bg-white/85 p-3 sm:p-4 rounded-[30px] shadow-2xl">
-            <img id="lightbox-img" src="" class="w-full max-h-[74vh] object-contain rounded-[20px]" alt="Chi tiết ảnh">
-            <p id="lightbox-caption" class="font-handwriting text-center text-2xl sm:text-3xl text-rose-950 font-bold mt-3"></p>
-            <button onclick="closeLightbox()" class="absolute -top-3 -right-3 bg-rose-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg border border-white/60 hover:bg-rose-700 active:scale-90 transition cursor-pointer z-50"><i class="fa-solid fa-xmark"></i></button>
+    <!-- iOS 27 FLOATING GLASS DOCK & HOME INDICATOR -->
+    <nav class="ios27-dock-wrapper fixed bottom-2 left-1/2 -translate-x-1/2 z-[95] flex flex-col items-center gap-2 pointer-events-none">
+        <div class="ios27-dock pointer-events-auto flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 rounded-full">
+            <button onclick="goToScreen('screen-welcome')" class="dock-item active" data-target="screen-welcome" title="Mở đầu">
+                <i class="fa-solid fa-house"></i>
+                <span class="hidden sm:inline">Mở đầu</span>
+            </button>
+            <button onclick="goToScreen('screen-teacher')" class="dock-item" data-target="screen-teacher" title="Cô giáo">
+                <i class="fa-solid fa-heart"></i>
+                <span class="hidden sm:inline">Cô giáo</span>
+            </button>
+            <button onclick="goToScreen('screen-chalkboard')" class="dock-item" data-target="screen-chalkboard" title="Bảng & Thư">
+                <i class="fa-solid fa-envelope"></i>
+                <span class="hidden sm:inline">Thư</span>
+            </button>
+            <button onclick="goToScreen('screen-sky')" class="dock-item" data-target="screen-sky" title="Kỷ niệm 20/11">
+                <i class="fa-solid fa-images"></i>
+                <span class="hidden sm:inline">20/11</span>
+            </button>
+            <button onclick="goToScreen('screen-members')" class="dock-item" data-target="screen-members" title="Cấp 2">
+                <i class="fa-solid fa-user-group"></i>
+                <span class="hidden sm:inline">Cấp 2</span>
+            </button>
+            <button onclick="goToScreen('screen-video')" class="dock-item" data-target="screen-video" title="Video">
+                <i class="fa-solid fa-film"></i>
+                <span class="hidden sm:inline">Video</span>
+            </button>
+        </div>
+        <div class="ios-home-indicator"></div>
+    </nav>
+
+    <!-- MODAL LIGHTBOX ẢNH (iOS 27 GLASS PREVIEW) -->
+    <div id="photo-lightbox" class="fixed inset-0 bg-rose-950/25 backdrop-blur-2xl z-[120] flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
+        <div class="relative max-w-3xl w-full p-3 sm:p-4 rounded-[30px] border border-white/90 shadow-[0_25px_60px_rgba(136,19,55,0.25)]" style="background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 244, 247, 0.88)); backdrop-filter: blur(30px);">
+            <img id="lightbox-img" src="" class="w-full max-h-[74vh] object-contain rounded-[20px] shadow-sm" alt="Chi tiết ảnh">
+            <p id="lightbox-caption" class="font-handwriting text-center text-2xl sm:text-3xl text-rose-900 font-bold mt-3"></p>
+            <button onclick="closeLightbox()" class="absolute -top-3 -right-3 bg-rose-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg border border-white/80 hover:bg-rose-700 active:scale-90 transition cursor-pointer z-50"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
         const bgAudio = document.getElementById('bg-audio');
         const islandEq = document.getElementById('island-eq');
+        const dynamicIsland = document.getElementById('dynamic-island');
         let isMuted = false;
 
+        /* =========================================================
+           iOS 27 DYNAMIC ISLAND 2.0 (MỞ RỘNG / THU GỌN)
+        ========================================================= */
+        function toggleDynamicIsland(e) {
+            if (e) e.stopPropagation();
+            if (dynamicIsland) {
+                dynamicIsland.classList.toggle('expanded');
+            }
+        }
+
+        function closeDynamicIsland() {
+            if (dynamicIsland) {
+                dynamicIsland.classList.remove('expanded');
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            if (dynamicIsland && !dynamicIsland.contains(e.target)) {
+                closeDynamicIsland();
+            }
+        });
+
+        /* =========================================================
+           QUẢN LÝ ÂM THANH NỀN
+        ========================================================= */
         function updateAudioUI(playing) {
             const statusEl = document.getElementById('bgm-status');
             const iconEl = document.getElementById('bgm-icon');
@@ -1146,7 +1347,33 @@
             });
         }
 
-        // Hiệu ứng cánh hoa, trái tim và đốm sáng bay lơ lửng
+        /* =========================================================
+           iOS 27 SPATIAL 3D TILT & SPECULAR LIGHT REFLECTION
+        ========================================================= */
+        document.querySelectorAll('.spatial-tilt').forEach(card => {
+            card.addEventListener('pointermove', (e) => {
+                if (e.pointerType !== 'mouse') return;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const mx = ((x / rect.width) * 100).toFixed(1) + '%';
+                const my = ((y / rect.height) * 100).toFixed(1) + '%';
+                const rotateY = ((x / rect.width) - 0.5) * 9;
+                const rotateX = (0.5 - (y / rect.height)) * 9;
+
+                card.style.setProperty('--mx', mx);
+                card.style.setProperty('--my', my);
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+            });
+
+            card.addEventListener('pointerleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        /* =========================================================
+           HIỆU ỨNG HẠT LƠ LỬNG & TIA SÁNG CHẠM MÀN HÌNH
+        ========================================================= */
         function createFloatingHearts(containerId, count = 18) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1154,7 +1381,7 @@
                 '<i class="fa-solid fa-heart text-rose-400/45"></i>',
                 '<i class="fa-solid fa-spa text-pink-400/50"></i>',
                 '<i class="fa-solid fa-sparkles text-amber-400/55"></i>',
-                '<span class="inline-block w-2.5 h-2.5 rounded-full bg-white/75 shadow-[0_0_10px_#fff]"></span>'
+                '<span class="inline-block w-2.5 h-2.5 rounded-full bg-white/80 shadow-[0_0_10px_#fff]"></span>'
             ];
             for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
@@ -1170,7 +1397,6 @@
         createFloatingHearts('teacher-particles', 16);
         createFloatingHearts('video-particles', 18);
 
-        // Bụi phấn bay lơ lửng trên bảng kính
         function createChalkDust() {
             const container = document.getElementById('chalk-dust-container');
             if (!container) return;
@@ -1186,7 +1412,6 @@
         }
         createChalkDust();
 
-        // Hiệu ứng tia sáng & trái tim lấp lánh mỗi khi chạm/click màn hình
         document.addEventListener('pointerdown', (e) => {
             const symbols = ['♡', '✦', '✿', '✧'];
             const colors = ['#f43f5e', '#fbbf24', '#ec4899', '#fb7185'];
@@ -1206,6 +1431,9 @@
             }
         });
 
+        /* =========================================================
+           ĐIỀU HƯỚNG MÀN HÌNH & ĐỒNG BỘ DOCK / DYNAMIC ISLAND
+        ========================================================= */
         const screenTitles = {
             'screen-welcome': '20/11 · Tri Ân',
             'screen-teacher': '1/5 · Cô Huyền Trang',
@@ -1225,13 +1453,13 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Cập nhật Dynamic Island
             const islandLabel = document.getElementById('island-label');
             if (islandLabel && screenTitles[screenId]) {
                 islandLabel.innerText = screenTitles[screenId];
             }
-            document.querySelectorAll('.island-dot').forEach(dot => {
-                dot.classList.toggle('active', dot.dataset.target === screenId);
+
+            document.querySelectorAll('.island-dot, .dock-item').forEach(el => {
+                el.classList.toggle('active', el.dataset.target === screenId);
             });
 
             if (screenId === 'screen-chalkboard') startChalkWriting();
@@ -1243,12 +1471,23 @@
             chalkWritingStarted = false;
             const btnEnvelope = document.getElementById('btn-open-envelope');
             const underline = document.getElementById('chalk-underline');
-            if (btnEnvelope) { btnEnvelope.classList.add('hidden', 'opacity-0'); btnEnvelope.classList.remove('flex'); }
-            if (underline) { underline.classList.remove('drawn'); }
+            if (btnEnvelope) {
+                btnEnvelope.classList.add('hidden', 'opacity-0');
+                btnEnvelope.classList.remove('flex');
+            }
+            if (underline) {
+                underline.classList.remove('drawn');
+            }
 
             const tributeVideo = document.getElementById('tribute-video');
-            if (tributeVideo) { tributeVideo.pause(); tributeVideo.currentTime = 0; }
-            if (fwAnimationId) { cancelAnimationFrame(fwAnimationId); fwAnimationId = null; }
+            if (tributeVideo) {
+                tributeVideo.pause();
+                tributeVideo.currentTime = 0;
+            }
+            if (fwAnimationId) {
+                cancelAnimationFrame(fwAnimationId);
+                fwAnimationId = null;
+            }
             fwParticles = [];
 
             const fwCanvas = document.getElementById('fireworks-canvas');
@@ -1265,30 +1504,51 @@
             goToScreen('screen-welcome');
         }
 
+        /* =========================================================
+           HIỆU ỨNG VIẾT PHẤN & MỞ PHONG BÌ
+        ========================================================= */
         let chalkWritingStarted = false;
         function startChalkWriting() {
             if (chalkWritingStarted) return;
             chalkWritingStarted = true;
-            const el1 = document.getElementById('chalk-line-1'), el2 = document.getElementById('chalk-line-2'), el3 = document.getElementById('chalk-line-3');
+            const el1 = document.getElementById('chalk-line-1');
+            const el2 = document.getElementById('chalk-line-2');
+            const el3 = document.getElementById('chalk-line-3');
             const btnEnvelope = document.getElementById('btn-open-envelope');
             const underline = document.getElementById('chalk-underline');
             if (!el1 || !el2 || !el3 || !btnEnvelope) return;
-            el1.textContent = ""; el2.textContent = ""; el3.textContent = "";
+            el1.textContent = "";
+            el2.textContent = "";
+            el3.textContent = "";
 
             typeWriter(el1, "Chúc mừng", 90, () => {
-                setTimeout(() => { typeWriter(el2, "ngày nhà giáo Việt Nam", 75, () => {
-                    setTimeout(() => { typeWriter(el3, "20/11", 110, () => {
-                        if (underline) underline.classList.add('drawn');
-                        btnEnvelope.classList.remove('hidden');
-                        setTimeout(() => { btnEnvelope.classList.remove('opacity-0'); btnEnvelope.classList.add('flex'); }, 100);
-                    });}, 250);
-                });}, 250);
+                setTimeout(() => {
+                    typeWriter(el2, "ngày nhà giáo Việt Nam", 75, () => {
+                        setTimeout(() => {
+                            typeWriter(el3, "20/11", 110, () => {
+                                if (underline) underline.classList.add('drawn');
+                                btnEnvelope.classList.remove('hidden');
+                                setTimeout(() => {
+                                    btnEnvelope.classList.remove('opacity-0');
+                                    btnEnvelope.classList.add('flex');
+                                }, 100);
+                            });
+                        }, 250);
+                    });
+                }, 250);
             });
         }
+
         function typeWriter(element, text, speed, callback) {
             let i = 0;
             function type() {
-                if (i < text.length) { element.textContent += text.charAt(i); i++; setTimeout(type, speed); } else if (callback) callback();
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
             }
             type();
         }
@@ -1297,6 +1557,7 @@
         const envelopeModal = document.getElementById('envelope-modal');
         const envelope = document.getElementById('envelope');
         const sealHint = document.getElementById('seal-hint');
+
         if (btnOpenEnvelope && envelopeModal) {
             btnOpenEnvelope.addEventListener('click', () => {
                 envelopeModal.classList.remove('pointer-events-none', 'opacity-0');
@@ -1304,36 +1565,60 @@
                 if (sealHint) sealHint.style.display = 'block';
             });
         }
+
         function openLetter() {
             if (envelope) envelope.classList.add('open');
             if (sealHint) sealHint.style.display = 'none';
         }
+
         function closeEnvelopeModal() {
             if (!envelopeModal) return;
-            envelopeModal.classList.add('opacity-0', 'pointer-events-none'); envelopeModal.classList.remove('opacity-100');
-            setTimeout(() => { if (envelope) envelope.classList.remove('open'); }, 500);
+            envelopeModal.classList.add('opacity-0', 'pointer-events-none');
+            envelopeModal.classList.remove('opacity-100');
+            setTimeout(() => {
+                if (envelope) envelope.classList.remove('open');
+            }, 500);
         }
 
+        /* =========================================================
+           LIGHTBOX XEM ẢNH CHI TIẾT
+        ========================================================= */
         function openLightbox(src, caption) {
-            const modal = document.getElementById('photo-lightbox'), img = document.getElementById('lightbox-img'), cap = document.getElementById('lightbox-caption');
+            const modal = document.getElementById('photo-lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
             if (!modal || !img || !cap) return;
-            img.src = src; cap.innerText = caption;
-            modal.classList.remove('pointer-events-none', 'opacity-0'); modal.classList.add('opacity-100');
+            img.src = src;
+            cap.innerText = caption;
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
         }
+
         function closeLightbox() {
             const modal = document.getElementById('photo-lightbox');
             if (!modal) return;
-            modal.classList.add('opacity-0', 'pointer-events-none'); modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
         }
 
+        /* =========================================================
+           CANVAS BẦU TRỜI KỶ NIỆM
+        ========================================================= */
         let skyAnimationId = null;
         function initSkyCanvas(canvasId, screenId) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
-            if (skyAnimationId !== null) { cancelAnimationFrame(skyAnimationId); skyAnimationId = null; }
+            if (skyAnimationId !== null) {
+                cancelAnimationFrame(skyAnimationId);
+                skyAnimationId = null;
+            }
             const ctx = canvas.getContext('2d');
-            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
             resize();
+
             const particles = [];
             for (let i = 0; i < 55; i++) {
                 particles.push({
@@ -1347,6 +1632,7 @@
                     isGold: i % 3 === 0
                 });
             }
+
             function animateSky() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 particles.forEach(p => {
@@ -1375,15 +1661,22 @@
             window.addEventListener('resize', resize);
         }
 
+        /* =========================================================
+           VIDEO & PHÁO HOA CHÚC MỪNG
+        ========================================================= */
         const tributeVideo = document.getElementById('tribute-video');
-        tributeVideo.addEventListener('play', () => {
-            if (bgAudio && !bgAudio.paused) {
-                bgAudio.pause();
-                isMuted = true;
-                updateAudioUI(false);
-            }
-        });
-        tributeVideo.addEventListener('ended', () => { startFireworks(); });
+        if (tributeVideo) {
+            tributeVideo.addEventListener('play', () => {
+                if (bgAudio && !bgAudio.paused) {
+                    bgAudio.pause();
+                    isMuted = true;
+                    updateAudioUI(false);
+                }
+            });
+            tributeVideo.addEventListener('ended', () => {
+                startFireworks();
+            });
+        }
 
         const fwCanvas = document.getElementById('fireworks-canvas');
         const fwCtx = fwCanvas.getContext('2d');
@@ -1405,7 +1698,10 @@
             setTimeout(() => createFirework(fwCanvas.width * 3 / 4, fwCanvas.height / 2.2), 1200);
         }
 
-        function resizeFw() { fwCanvas.width = window.innerWidth; fwCanvas.height = window.innerHeight; }
+        function resizeFw() {
+            fwCanvas.width = window.innerWidth;
+            fwCanvas.height = window.innerHeight;
+        }
         window.addEventListener('resize', resizeFw);
 
         class FireworkParticle {
@@ -1463,7 +1759,12 @@
 
             fwCtx.globalCompositeOperation = 'lighter';
             fwParticles.forEach((p, index) => {
-                if (p.alpha > 0) { p.update(); p.draw(); } else { fwParticles.splice(index, 1); }
+                if (p.alpha > 0) {
+                    p.update();
+                    p.draw();
+                } else {
+                    fwParticles.splice(index, 1);
+                }
             });
 
             if (Math.random() < 0.045) {
